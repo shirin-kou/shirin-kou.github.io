@@ -8,8 +8,8 @@ subtitle: test
 description:
 keywords: 
 author: SHIRIN KOU
-language: ja
-timezone: Asia/Tokyo
+language: 
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -80,7 +80,7 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:shirin-kou/190413.git
-  branch: gh-pages
+  branch: master
 
 # # Sitemap
 # sitemap: 
