@@ -80,7 +80,7 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:shirin-kou/190413.git
-  branch: master
+  branch: gh-pages
 
 # # Sitemap
 # sitemap: 
