@@ -20,7 +20,7 @@ permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: docs
+public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-Daily
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

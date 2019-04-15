@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="<%= url_for() %>" rel="home">
+        <% if (config.logo || theme.logo) { %>
+        <img src="<%- config.logo || theme.logo %>" alt="<%- config.title %>" height="60">
+        <% } %>
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
