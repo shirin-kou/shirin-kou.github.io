@@ -1,4 +1,4 @@
 ---
 title: Setting
-layout: settiong
+layout: setting
 ---
