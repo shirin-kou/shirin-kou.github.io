@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shirin-kou.github.io/190413.git/advice/index.html</loc>
+    
+    <lastmod>2019-04-17T10:40:22.656Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shirin-kou.github.io/190413.git/goal-2/index.html</loc>
+    
+    <lastmod>2019-04-17T10:40:14.767Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shirin-kou.github.io/190413.git/login/index.html</loc>
+    
+    <lastmod>2019-04-17T10:40:09.269Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shirin-kou.github.io/190413.git/question/index.html</loc>
+    
+    <lastmod>2019-04-17T10:39:58.940Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shirin-kou.github.io/190413.git/setting/index.html</loc>
+    
+    <lastmod>2019-04-17T10:39:42.273Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shirin-kou.github.io/190413.git/index.html</loc>
     
     <lastmod>2019-04-17T10:37:37.130Z</lastmod>
@@ -16,44 +51,9 @@
   </url>
   
   <url>
-    <loc>https://shirin-kou.github.io/190413.git/goal-2/index.html</loc>
-    
-    <lastmod>2019-04-16T22:00:13.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/setting/index.html</loc>
-    
-    <lastmod>2019-04-16T22:00:09.477Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/question/index.html</loc>
-    
-    <lastmod>2019-04-16T22:00:04.193Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/login/index.html</loc>
-    
-    <lastmod>2019-04-16T21:53:22.004Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://shirin-kou.github.io/190413.git/goal/index.html</loc>
     
     <lastmod>2019-04-16T21:51:23.669Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/advice/index.html</loc>
-    
-    <lastmod>2019-04-15T11:42:29.618Z</lastmod>
     
   </url>
   
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>https://shirin-kou.github.io/190413.git/posts/Goal-2.html</loc>
+    <loc>https://shirin-kou.github.io/190413.git/posts/Advice.html</loc>
     
     <lastmod>2019-04-15T11:13:11.584Z</lastmod>
     
@@ -86,7 +86,7 @@
   </url>
   
   <url>
-    <loc>https://shirin-kou.github.io/190413.git/posts/Advice.html</loc>
+    <loc>https://shirin-kou.github.io/190413.git/posts/Goal-2.html</loc>
     
     <lastmod>2019-04-15T11:13:11.584Z</lastmod>
     
