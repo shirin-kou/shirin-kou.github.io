@@ -79,5 +79,5 @@ theme: Daily
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:shirin-kou/190413.git
-  branch: gh-pages
+  repo: https://github.com/shirin-kou/shirin-kou.github.io.git
+  branch: master
