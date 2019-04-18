@@ -1,3 +1,10 @@
 <div class="content-area">
     goal だよ
+    <%_ const array = ['痩せたい', '仕事に集中したい', '睡眠を改善したい','食事に気をつけたい','不調を改善したい'] _%>
+
+    <ul>
+        <% array.forEach(function(value) { %>
+        <li><%= value %></li>
+        <% }); %>
+    </ul>
 </div>
