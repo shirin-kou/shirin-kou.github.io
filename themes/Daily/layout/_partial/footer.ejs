@@ -1,15 +1,23 @@
 <!-- Footer -->
 <footer class="site-info">
-  <p>
+  <!-- <p>
     <span>
       <%- config.title %> &copy;
       <%= (new Date()).getFullYear() %></span>
-    <% if(config.footer !== null) { %>
-    <!-- <span class="split">|</span> -->
-    <span>
+    <% if(config.footer !== null) { %> -->
+  <!-- <span class="split">|</span> -->
+  <!-- <span>
       <%- config.footer || theme.footer %></span>
     <% } %>
-  </p>
+  </p> -->
+
+  <div class="logo">
+    <a href="<%= url_for() %>" rel="home">
+      <% if (config.logo || theme.logo) { %>
+      <img src="https://img.icons8.com/ios-glyphs/30/000000/top-menu.png"> <% } %>
+    </a>
+  </div>
+
 </footer>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"
   integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
