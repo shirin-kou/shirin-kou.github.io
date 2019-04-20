@@ -83,36 +83,37 @@
 
   <!-- Main Content -->
   <div class="content-area">
-    goal だよ
+    <h1>goal だよ</h1>
     <div>
         <h1>目標を１つ選んでください</h1>
     </div>
+    <div id="text"></div>
     <tr>
-        <td>
+        <td id="goal_1">
             <img src="../source/images/github.svg" alt>
             <p>やせたい</p>
         </td>
-        <td>
-            <img src="../source/images/github.svg" alt>
+        <td id="goal_2">
+            <img src=" ../source/images/github.svg" alt>
             <p>仕事に専念したい</p>
         </td>
     </tr>
     <tr>
-        <td>
+        <td id="goal_3">
             <img src="../source/images/github.svg" alt>
             <p>睡眠を改善したい</p>
         </td>
-        <td>
+        <td id="goal_4">
             <img src="../source/images/github.svg" alt>
             <p>食事に気をつけたい</p>
         </td>
     </tr>
     <tr>
-        <td>
+        <td id="goal_5">
             <img src="../source/images/github.svg" alt>
             <p>不調を改善したい</p>
         </td>
-        <td>
+        <td id="goal_6">
             <img src="../source/images/github.svg" alt>
             <p>●●を改善したい</p>
         </td>
@@ -121,21 +122,24 @@
 
 
 
-    <!--
-    <ul>
-        
-        <li>痩せたい</li>
-        
-        <li>仕事に集中したい</li>
-        
-        <li>睡眠を改善したい</li>
-        
-        <li>食事に気をつけたい</li>
-        
-        <li>不調を改善したい</li>
-        
-    </ul> -->
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
+        authDomain: "myakushin.firebaseapp.com",
+        databaseURL: "https://myakushin.firebaseio.com",
+        projectId: "myakushin",
+        storageBucket: "myakushin.appspot.com",
+        messagingSenderId: "537042555866"
+    };
+    firebase.initializeApp(config);
+</script>
+<script src="/js/app.js"></script>
 
   <!-- Footer -->
   <!-- Footer -->
