@@ -5,13 +5,6 @@
         <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
         <img src="../source/images/wave.png" alt="" height="100">
     </div>
-    <div class="logo">
-        <a href="<%= url_for() %>" rel="home">
-            <% if (config.logo || theme.logo) { %>
-            <img src="<%- config.logo || theme.logo %>" alt="<%- config.title %>" height="60">
-            <% } %>
-        </a>
-    </div>
     <div>
         <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
         <form name="checkList">
