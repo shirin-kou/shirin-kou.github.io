@@ -1,5 +1,5 @@
 html {
-  font-family: sans-serif;
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
 
@@ -96,7 +96,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   font-size: 1em; }
 
 button,
@@ -252,7 +252,7 @@ input,
 select,
 textarea {
   color: #3a3a3a;
-  font-family: 'Open sans',sans-serif;
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   font-size: 100%;
   line-height: 1.5; }
 
@@ -285,7 +285,7 @@ address {
 
 pre {
   background: #eee;
-  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   font-size: 15px;
   font-size: 1.5rem;
   line-height: 1.6;
@@ -298,7 +298,7 @@ code,
 kbd,
 tt,
 var {
-  font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
+  font: 15px helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif; }
 
 abbr,
 acronym {
@@ -380,7 +380,7 @@ th {
   font-weight: bold; }
 
 h1, h2, h3, h4 {
-  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei"; }
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif; }
 
 h1 {
   font-size: 1.250em; }
@@ -541,7 +541,7 @@ Content
     opacity: 0.7; }
 
 .entry-title {
-  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   letter-spacing: 0.2em;
   color: #000;
   text-align: center;
@@ -569,14 +569,14 @@ Content
 
 .posted-on {
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   font-size: 0.688em;
   text-transform: uppercase;
   letter-spacing: 0.2em; }
 
 .tags-links {
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
   font-size: 0.800em;
   font-style: normal;
   margin-bottom: 30px; }
@@ -607,7 +607,7 @@ Content
     color: #3a3a3a;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+    font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
     font-size: 0.750em; }
 
 .meta-arraw {
@@ -756,7 +756,7 @@ Footer
       height: 60px; }
 
 .navbar {
-  float: right;
+  float: center;
   padding-top: 25px; }
   .navbar ul:after {
     content: '';
