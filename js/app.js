@@ -1,3 +1,7 @@
+$(function () {
+  alart('here!');
+})
+
 // var newPostRef = firebase.database().ref();
 
 // // 日時を取得する関数
