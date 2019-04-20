@@ -1,5 +1,5 @@
 $(function () {
-  alert('hogeru');
+  //処理
 });
 
 // var newPostRef = firebase.database().ref();

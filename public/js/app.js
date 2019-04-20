@@ -1,5 +1,5 @@
 $(function () {
-  alert('hogehoge');
+  //処理
 });
 
 // var newPostRef = firebase.database().ref();
