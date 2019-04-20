@@ -1,5 +1,5 @@
 $(function () {
-  alert('hogehoge');
+  alert('hogeru');
 });
 
 // var newPostRef = firebase.database().ref();
