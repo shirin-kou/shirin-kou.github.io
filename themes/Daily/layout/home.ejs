@@ -1,25 +1,31 @@
 <div class="content-area">
     homeだよ
     <div>
-        <p>今日の波形</p>
-        <p>脈の拍動がいつもより大きくなっています</p>
+        <h1>今日の波形</h1>
+        <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
         <img src="../source/images/wave.png" alt="">
     </div>
 
     <div>
-        <p>このような状態ではありませんか？該当する状態にチェックを入れてください。</p>
-        <%_ const array = ['早食い、食べ物をよく噛まずに飲み込んでいませんか？', '夜遅くに油っこい食事を摂っていませんか？', '休憩を取らずに、長時間仕事をしてしまいがちではありませんか？'] _%>
+        <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
+        <form name="checkList">
+            <input type="checkbox" name="checkList" value="質問１">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）<br>
+            <input type="checkbox" name="checkList" value="質問２">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）<br>
+            <input type="checkbox" name="checkList" value="質問３">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）
+        </form>
+
+        <!-- <%_ const array = ['早食い、食べ物をよく噛まずに飲み込んでいませんか？', '夜遅くに油っこい食事を摂っていませんか？', '休憩を取らずに、長時間仕事をしてしまいがちではありませんか？'] _%>
 
         <ul>
             <% array.forEach(function(value) { %>
 
             <li><%= value %></li>
             <% }); %>
-        </ul>
+        </ul> -->
     </div>
 
-    <div>
-        <a href="https://shirin-kou.github.io/advice/">Advice</a>
+    <div class="">
+        <a href="https://shirin-kou.github.io/advice/">Adviceを見る</a>
     </div>
 </div>
 

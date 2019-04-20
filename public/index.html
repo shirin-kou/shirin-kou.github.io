@@ -52,13 +52,6 @@
   <div class="header-inside">
 
     <!-- navigationbar / 要編集-->
-    <div class="logo">
-      <a href="/" rel="setting">
-        
-        <img src="https://hexo.io/logo.svg" alt="Myakushin" height="60">
-        
-      </a>
-    </div>
 
 
     <!-- Navigation -->
@@ -72,13 +65,13 @@
       </ul>
     </nav>
 
-    <div class="logo">
+    <!-- <div class="logo">
       <a href="/" rel="home">
         
         <img src="https://hexo.io/logo.svg" alt="Myakushin" height="60">
         
       </a>
-    </div>
+    </div> -->
 
     <div class="button-wrap">
       <button class="menu-toggle">Primary Menu</button>
@@ -92,27 +85,36 @@
   <div class="content-area">
     homeだよ
     <div>
-        <p>今日の波形</p>
-        <p>脈の拍動がいつもより大きくなっています</p>
+        <h1>今日の波形</h1>
+        <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
         <img src="../source/images/wave.png" alt>
     </div>
 
     <div>
-        <p>このような状態ではありませんか？該当する状態にチェックを入れてください。</p>
+        <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
+        <form name="checkList">
+            <input type="checkbox" name="checkList" value="質問１">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）<br>
+            <input type="checkbox" name="checkList" value="質問２">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）<br>
+            <input type="checkbox" name="checkList" value="質問３">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）
+        </form>
 
+        <!--
         <ul>
             
+
             <li>早食い、食べ物をよく噛まずに飲み込んでいませんか？</li>
             
+
             <li>夜遅くに油っこい食事を摂っていませんか？</li>
             
+
             <li>休憩を取らずに、長時間仕事をしてしまいがちではありませんか？</li>
             
-        </ul>
+        </ul> -->
     </div>
 
-    <div>
-        <a href="https://shirin-kou.github.io/advice/">Advice</a>
+    <div class>
+        <a href="https://shirin-kou.github.io/advice/">Adviceを見る</a>
     </div>
 </div>
 

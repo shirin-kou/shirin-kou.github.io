@@ -2,13 +2,6 @@
   <div class="header-inside">
 
     <!-- navigationbar / 要編集-->
-    <div class="logo">
-      <a href="<%= url_for() %>" rel="setting">
-        <% if (config.logo || theme.logo) { %>
-        <img src="<%- config.logo || theme.logo %>" alt="<%- config.title %>" height="60">
-        <% } %>
-      </a>
-    </div>
 
 
     <!-- Navigation -->
@@ -23,13 +16,13 @@
       </ul>
     </nav>
 
-    <div class="logo">
+    <!-- <div class="logo">
       <a href="<%= url_for() %>" rel="home">
         <% if (config.logo || theme.logo) { %>
         <img src="<%- config.logo || theme.logo %>" alt="<%- config.title %>" height="60">
         <% } %>
       </a>
-    </div>
+    </div> -->
 
     <div class="button-wrap">
       <button class="menu-toggle">Primary Menu</button>
