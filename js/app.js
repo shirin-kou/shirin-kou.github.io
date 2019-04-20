@@ -1,6 +1,6 @@
 $(function () {
-  alart('here!');
-})
+  alert('here!');
+});
 
 // var newPostRef = firebase.database().ref();
 
