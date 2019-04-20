@@ -1,6 +1,6 @@
-function hoge() {
-  alert("ピコン。");
-}
+$(function () {
+  alert('hogehoge');
+});
 
 // var newPostRef = firebase.database().ref();
 
