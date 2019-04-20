@@ -4,39 +4,34 @@
         <h1>目標を１つ選んでください</h1>
     </div>
     <div id="text">comment</div>
-    <tr>
-        <td id="goal_1">
+
+    <div id="goal">
+        <div id="goal_1">
             <img src="../source/images/github.svg" alt="">
             <p>やせたい</p>
-        </td>
-        <td id="goal_2">
+        </div>
+        <div id="goal_2">
             <img src=" ../source/images/github.svg" alt="">
             <p>仕事に専念したい</p>
-        </td>
-    </tr>
-    <tr>
-        <td id="goal_3">
+        </div>
+        <div id="goal_3">
             <img src="../source/images/github.svg" alt="">
             <p>睡眠を改善したい</p>
-        </td>
-        <td id="goal_4">
+        </div>
+        <div id="goal_4">
             <img src="../source/images/github.svg" alt="">
             <p>食事に気をつけたい</p>
-        </td>
-    </tr>
-    <tr>
-        <td id="goal_5">
+        </div>
+        <div id="goal_5">
             <img src="../source/images/github.svg" alt="">
             <p>不調を改善したい</p>
-        </td>
-        <td id="goal_6">
+        </div>
+        <div id="goal_6">
             <img src="../source/images/github.svg" alt="">
             <p>●●を改善したい</p>
-        </td>
-    </tr>
-    </table>
+        </div>
 
-
+    </div>
 
 </div>
 
@@ -61,23 +56,23 @@
         $(function () {
             $("#goal_1").on("click", function () {
                 $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-                $("#goal_1").val("");
+                $("#goal").val("");
             });
             $("#goal_2").on("click", function () {
                 $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
-                $("#goal_2").val("");
+                $("#goal").val("");
             });
             $("#goal_3").on("click", function () {
                 $('#text').val("夜ぐっすり眠れるような生活アドバイスをします。がんばりましょう！");
-                $("#goal_3").val("");
+                $("#goal").val("");
             });
             $("#goal_4").on("click", function () {
                 $('#text').val("体調に合わせた食事のアドバイスをします。がんばりましょう！");
-                $("#goal_4").val("");
+                $("#goal").val("");
             });
             $("#goal_5").on("click", function () {
                 $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
-                $("#goal_5").val("");
+                $("#goal").val("");
             });
         });
     </script>
