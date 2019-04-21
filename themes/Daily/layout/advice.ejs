@@ -1,8 +1,9 @@
 <!-- unchange -->
-<% var title = 'advice だよ'; %>
+<% var title = 'Advice'; %>
 <% var subTitle = ''; %>
 
 <!-- change -->
+<% var adviceImage = '/images/diet.png'; %>
 <% var measureTime = '測定時間'; %>
 <% var adviceComment = 'アドバイスコメント'; %>
 
@@ -13,7 +14,7 @@
     <h2><%= subTitle %></h2>
 
     <div class="adviceImg">
-        <img src="../source/images/weibo.svg" alt="">
+        <img src=<%= adviceImage %> alt="">
     </div>
     <div> <%= measureTime %> </div>
     <div> <%= adviceComment %> </div>
