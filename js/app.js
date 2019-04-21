@@ -12,9 +12,9 @@ app.use(express.static("public"));
 
 //送信ボタンクリックでメッセージ送信
 $(function () {
-  $(document).on('click', '#goal_1 tr', function () {
-    $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-    $("#goal_1").val("");
+  $('#goal_1 tr').on('click', function () {
+    $('#text').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+    $("#goal").val("");
 
   });
   // $("#goal_1").on("click", function () {
