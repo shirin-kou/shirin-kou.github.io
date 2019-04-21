@@ -5,13 +5,18 @@ $(function () {
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
 app.use(express.static("public"));
 
-//送信ボタンクリックでメッセージ送信
-$(function () {
-  $(document).on('click', '#goal_1 tr', function () {
-    $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-    $("#goal_1").val("");
+$(document).on('click', '#goal_1 tr', function () {
+  $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+  $("#goal_1").val("");
+});
 
-  });
+//送信ボタンクリックでメッセージ送信
+// $(function () {
+//   $(document).on('click', '#goal_1 tr', function () {
+//     $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+//     $("#goal_1").val("");
+
+//   });
   // $("#goal_1").on("click", function () {
   //   $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
   //   $("#goal_1").val("");
@@ -33,9 +38,7 @@ $(function () {
   //   $("#goal_5").val("");
   // });
 });
-// $(document).on('click', '#tehuda1 td', function () {
-//   console.log('hoge');
-// });
+
 // //メッセージが追加されたら自動的に表示
 // newPostRef.on('child_added', function (data) {
 //   var k = data.key;
