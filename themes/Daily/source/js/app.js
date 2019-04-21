@@ -1,5 +1,5 @@
 $(function () {
-  //処理
+  alert('hoge');
 });
 
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
