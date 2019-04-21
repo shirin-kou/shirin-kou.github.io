@@ -4,7 +4,6 @@ $(function () {
 
 $(function () {
   $('#comment').on('click', function () {
-    alert('hoge');
     $('#comment1').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
   });
 });
