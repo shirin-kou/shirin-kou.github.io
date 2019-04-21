@@ -5,13 +5,18 @@
 <% var linkTitle = ['Goal', 'Question', 'Log-out']; %>
 
 <!-- change -->
-<!-- なし -->
+<% var GoogleAccount_picture = '/images/github.svg'; %>
+<% var GoogleAccount_ID = 'GoogleAccount_ID'; %>
+
 
 
 <!-- HTML -->
 <div class="content-area">
     <h1><%= title %></h1>
     <h2><%= subTitle %></h2>
+
+    <img src=<%= GoogleAccount_picture %> alt="">
+    <p><%= GoogleAccount_ID %></p>
 
     <table>
         <tr>
@@ -34,6 +39,4 @@
     <div>
         <a href=<%= link[2] %>><input type="button" value=<%= linkTitle[2] %>></a>
     </div>
-    反映させる。<br>
-    ID名と写真
 </div>
