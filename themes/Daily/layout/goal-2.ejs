@@ -1,21 +1,7 @@
-<!-- <div class="content-area">
-    <h1>goal2 だよ</h1>
-    <div>”Goal”で選択された項目をFirabaseでひっぱってくる</div>
-    <div>上に合わせたコメント</div>
-</div> -->
+<% var title = 'Goal-2'; %>
+<% var subTitle = 'Goal”で選択された項目をFirabaseでひっぱってくる'; %>
 
-<% var  title = "goal2", array=["hoge","fuga","poyo"] %>
-<html>
-
-
-<body>
-    <% include  %>
+<div class="content-area">
     <h1><%= title %></h1>
-    <ul>
-        <% for(var i=0;i<array.length;i++){ %>
-        <li><%= array[i] %></li>
-        <% } %>
-    </ul>
-</body>
-
-</html>
+    <h2><%= subTitle %></h2>
+</div>
