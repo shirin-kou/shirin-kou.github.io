@@ -2,6 +2,11 @@
 <% var subTitle = '嗜好について教えてください'; %>
 <% var question = ['Q1, 普段どれくらい水分をとりますか?','Q2, どちらの方が好きですか？','Q3, 普段の食事量はどれくらいですか？','Q4, 普段お酒はどれくらい飲みますか？','Q5, タバコは吸いますか？']; %>
 <% var questionName = ['water','temp','meal','alcohol','tobacco']; %>
+<% var questionContents_0 = ['よくとる','普通','あまり取らない']; %>
+<% var questionContents_1 = ['冷たいもの','温かいもの']; %>
+<% var questionContents_2 = ['普通','大食い','少食']; %>
+<% var questionContents_3 = ['ほとんど毎日','たまに飲む']; %>
+<% var questionContents_4 = ['吸わない','現在吸っている']; %>
 
 
 <div class="content-area">
@@ -11,39 +16,52 @@
     <div class="question">
         <div><%= question[0] %></div>
         <form name=<%= questionName[0] %>>
-            <input type="radio" name=<%= questionName[0] %> value="よくとる">よくとる
-            <input type="radio" name=<%= questionName[0] %> value="普通">普通
-            <input type="radio" name=<%= questionName[0] %> value="あまり取らない">あまり取らない
+            <input type="radio" name=<%= questionName[0] %>
+                value=<%= questionContents_0[0] %>><%= questionContents_0[0] %>
+            <input type="radio" name=<%= questionName[0] %>
+                value=<%= questionContents_0[1] %>><%= questionContents_0[1] %>
+            <input type="radio" name=<%= questionName[0] %>
+                value=<%= questionContents_0[2] %>><%= questionContents_0[2] %>
         </form>
     </div>
     <div class="question">
         <div><%= question[1] %></div>
         <form name=<%= questionName[1] %>>
-            <input type="radio" name=<%= questionName[1] %> value="冷たいもの">冷たいもの
-            <input type="radio" name=<%= questionName[1] %> value="温かいもの">温かいもの
+            <input type="radio" name=<%= questionName[1] %>
+                value=<%= questionContents_1[0] %>><%= questionContents_1[0] %>
+            <input type="radio" name=<%= questionName[1] %>
+                value=<%= questionContents_1[1] %>><%= questionContents_1[1] %>
         </form>
     </div>
     <div class="question">
         <div><%= question[2] %></div>
         <form name=<%= questionName[2] %>>
-            <input type="radio" name=<%= questionName[2] %> value="普通">普通
-            <input type="radio" name=<%= questionName[2] %> value="大食い">大食い
-            <input type="radio" name=<%= questionName[2] %> value="少食">少食
+            <input type="radio" name=<%= questionName[1] %>
+                value=<%= questionContents_2[0] %>><%= questionContents_2[0] %>
+            <input type="radio" name=<%= questionName[1] %>
+                value=<%= questionContents_2[1] %>><%= questionContents_2[1] %>
+            <input type="radio" name=<%= questionName[1] %>
+                value=<%= questionContents_2[2] %>><%= questionContents_2[2] %>
         </form>
     </div>
     <div class="question">
         <div><%= question[3] %></div>
         <form name=<%= questionName[3] %>>
-            <input type="radio" name=<%= questionName[3] %> value="ほとんど毎日">ほとんど毎日
-            <input type="radio" name=<%= questionName[3] %> value="たまに飲む">たまに飲む
-            <input type="radio" name=<%= questionName[3] %> value="飲まない">飲まない
+            <input type="radio" name=<%= questionName[3] %>
+                value=<%= questionContents_3[0] %>><%= questionContents_3[0] %>
+            <input type="radio" name=<%= questionName[3] %>
+                value=<%= questionContents_3[1] %>><%= questionContents_3[1] %>
+            <input type="radio" name=<%= questionName[3] %>
+                value=<%= questionContents_3[2] %>><%= questionContents_3[2] %>
         </form>
     </div>
     <div class="question">
         <div><%= question[4] %></div>
         <form name=<%= questionName[4] %>>
-            <input type="radio" name=<%= questionName[4] %> value="吸わない">吸わない
-            <input type="radio" name=<%= questionName[4] %> value="現在吸っている">現在吸っている
+            <input type="radio" name=<%= questionName[4] %>
+                value=<%= questionContents_4[0] %>><%= questionContents_4[0] %>
+            <input type="radio" name=<%= questionName[4] %>
+                value=<%= questionContents_4[0] %>><%= questionContents_4[0] %>
         </form>
     </div>
 </div>
