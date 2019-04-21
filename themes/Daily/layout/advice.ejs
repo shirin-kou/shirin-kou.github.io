@@ -1,12 +1,19 @@
+<!-- unchange -->
+<% var title = 'advice だよ'; %>
+<% var subTitle = '目標を１つ選んでください'; %>
+
+<!-- change -->
+<% var measureTime = '測定時間'; %>
+<% var adviceComment = 'アドバイスコメント'; %>
+
+
 <div class="content-area">
-    <h1>advice だよ</h1>
+    <h1><%= title %></h1>
+    <h2><%= subTitle %></h2>
+
     <div class="adviceImg">
         <img src="../source/images/weibo.svg" alt="">
     </div>
-    <div class="measureTime">
-        測定時間の表記
-    </div>
-    <div class="adviceComent">
-        アドバイスコメント
-    </div>
+    <div> <%= measureTime %> </div>
+    <div> <%= adviceComment %> </div>
 </div>

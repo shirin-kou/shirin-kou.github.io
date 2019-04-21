@@ -1,6 +1,10 @@
+<!-- unchange -->
 <% var title = 'Home'; %>
 <% var subTitle_0 = '今日の波形'; %>
 <% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
+
+<!-- change -->
+<% var measureTime = '測定時間'; %>
 <% var feature = '波形の特徴（ex.脈の拍動がいつもより大きくなっています）'; %>
 <% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
 
@@ -11,6 +15,7 @@
         <h2><%= subTitle_0 %></h2>
         <p><%= feature %></p>
         <img src="/images/wave.png" alt="" height="100">
+        <p><%= measureTime %></p>
     </div>
     <div>
         <h1><%= subTitle_1 %></h1>

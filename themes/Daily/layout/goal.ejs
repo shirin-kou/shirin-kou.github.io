@@ -1,5 +1,7 @@
 <% var title = 'Goal'; %>
 <% var subTitle = '目標を１つ選んでください'; %>
+<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','やせたい', '食事に気をつけたい', '●●を改善したい']; %>
+<% var goalImage = ['/images/github.svg', '/images/twitter.svg', '/images/github.svg','/images/twitter.svg', '/images/github.svg', '/images/twitter.svg']; %>
 
 <div class="content-area">
     <h1><%= title %></h1>
@@ -10,32 +12,32 @@
     <div id="goal">
         <div class="goalList">
             <div>
-                <img id="goal_1" src="/images/github.svg" alt="">
-                <p>やせたい</p>
+                <img src=<%= goalImage[0] %> alt="">
+                <p><%= subTitle[0] %></p>
             </div>
             <div id="goal_2">
-                <img src="/images/github.svg" alt="">
-                <p>仕事に専念したい</p>
+                <img src=<%= goalImage[1] %> alt="">
+                <p><%= subTitle[1] %></p>
             </div>
         </div>
         <div class="goalList">
             <div id="goal_3">
-                <img src="/images/github.svg" alt="">
-                <p>睡眠を改善したい</p>
+                <img src=<%= goalImage[2] %> alt="">
+                <p><%= subTitle[2] %></p>
             </div>
             <div id="goal_4">
-                <img src="/images/github.svg" alt="">
-                <p>食事に気をつけたい</p>
+                <img src=<%= goalImage[3] %> %> alt="">
+                <p><%= subTitle[3] %></p>
             </div>
         </div>
         <div class="goalList">
             <div id="goal_5">
-                <img src="/images/github.svg" alt="">
-                <p>不調を改善したい</p>
+                <img src=<%= goalImage[4] %> alt="">
+                <p><%= subTitle[4] %></p>
             </div>
             <div id="goal_6">
-                <img src="/images/github.svg" alt="">
-                <p>●●を改善したい</p>
+                <img src=<%= goalImage[5] %> alt="">
+                <p><%= subTitle[5] %></p>
             </div>
         </div>
 
