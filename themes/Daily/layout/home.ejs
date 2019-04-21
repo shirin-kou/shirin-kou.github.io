@@ -1,34 +1,28 @@
 <% var title = 'Home'; %>
-<% var subTitle = '今日の波形'; %>
+<% var subTitle_0 = '今日の波形'; %>
+<% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
+<% var feature = '波形の特徴（ex.脈の拍動がいつもより大きくなっています）'; %>
+<% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
 
 <div class="content-area">
     <h1><%= title %></h1>
 
     <div>
-        <h2><%= subTitle %></h2>
-        <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
+        <h2><%= subTitle_0 %></h2>
+        <p><%= feature %></p>
         <img src="/images/wave.png" alt="" height="100">
     </div>
     <div>
-        <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
+        <h1><%= subTitle_1 %></h1>
         <form name="checkList">
-            <input type="checkbox" name="checkList" value="質問１">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）<br>
-            <input type="checkbox" name="checkList" value="質問２">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）<br>
-            <input type="checkbox" name="checkList" value="質問３">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）
+            <input type="checkbox" name="checkList" value=<%= checkList[0] %>><%= checkList[0] %><br>
+            <input type="checkbox" name="checkList" value=<%= checkList[1] %>><%= checkList[1] %><br>
+            <input type="checkbox" name="checkList" value=<%= checkList[2] %>><%= checkList[2] %>
         </form>
-
-        <!-- <%_ const array = ['早食い、食べ物をよく噛まずに飲み込んでいませんか？', '夜遅くに油っこい食事を摂っていませんか？', '休憩を取らずに、長時間仕事をしてしまいがちではありませんか？'] _%>
-
-        <ul>
-            <% array.forEach(function(value) { %>
-
-            <li><%= value %></li>
-            <% }); %>
-        </ul> -->
     </div>
 
     <div class="">
-        <a href="https://shirin-kou.github.io/advice/">Adviceを見る</a>
+        <a href="https://shirin-kou.github.io/advice/"><input type="button" value="Adviceを見る"></a>
     </div>
 </div>
 
