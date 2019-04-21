@@ -5,18 +5,18 @@ $(function () {
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
 app.use(express.static("public"));
 
-$(document).on('click', '#goal_1 tr', function () {
-  $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-  $("#goal_1").val("");
-});
+// $(document).on('click', '#goal_1 tr', function () {
+//   $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+//   $("#goal_1").val("");
+// });
 
 //送信ボタンクリックでメッセージ送信
-// $(function () {
-//   $(document).on('click', '#goal_1 tr', function () {
-//     $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-//     $("#goal_1").val("");
+$(function () {
+  $(document).on('click', '#goal_1 tr', function () {
+    $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+    $("#goal_1").val("");
 
-//   });
+  });
   // $("#goal_1").on("click", function () {
   //   $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
   //   $("#goal_1").val("");
@@ -37,7 +37,7 @@ $(document).on('click', '#goal_1 tr', function () {
   //   $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
   //   $("#goal_5").val("");
   // });
-// });
+});
 
 // //メッセージが追加されたら自動的に表示
 // newPostRef.on('child_added', function (data) {
