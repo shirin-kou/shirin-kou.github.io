@@ -501,3 +501,18 @@ Footer
     color: #666666;
   }
 }
+.adviceButton{
+  width: 300px;
+	height: 60px;
+	background-color: #ffd61a;
+	font-weight: 600;
+	font-size: 21px;
+	border-radius: 15px;
+	margin: 0 auto;
+  text-align: center;
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+	margin-top: 40px;
+}
