@@ -1,7 +1,7 @@
 <!-- unchange -->
 <% var title = 'Goal'; %>
 <% var subTitle = '目標を１つ選んでください'; %>
-<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','やせたい', '食事に気をつけたい', '●●を改善したい']; %>
+<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','食事に気をつけたい', '不調を改善したい', '●●を改善したい']; %>
 <% var goalImage = ['/images/diet.png', '/images/work.png', '/images/sleep.png','/images/meal.png', '/images/other.png', '/images/other2.png']; %>
 
 <!-- change -->
@@ -26,12 +26,7 @@
                     <input type="image" src=<%= goalImage[1] %> value=<%= goal[1] %> height="100px"> <%= goal[1] %>
                 </td>
             </tr>
-
-
         </table>
-
-
-
         <div class="goalList">
             <div id="goal_0">
                 <input type="image" src=<%= goalImage[0] %> value=<%= goal[0] %> height="100px">
