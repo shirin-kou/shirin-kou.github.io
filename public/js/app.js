@@ -15,7 +15,6 @@ app.use(express.static("public"));
 $(function () {
   $('#goal_0').on('click', function () {
     $('#comment').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-    $("#goal").val("");
   });
 
   $("#goal_1").on("click", function () {
