@@ -2,36 +2,45 @@ $(function () {
   alert('hoge');
 });
 
+$(function () {
+  $('#comment').on('click', function () {
+    alert('hoge');
+  })
+});
+
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
 app.use(express.static("public"));
 
-//送信ボタンクリックでメッセージ送信
+//ボタンクリックでメッセージ表示
 $(function () {
   $('#goal_0').on('click', function () {
     $('#comment').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
     $("#goal").val("");
-
   });
-  // $("#goal_1").on("click", function () {
-  //   $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-  //   $("#goal_1").val("");
-  // });
-  // $("#goal_2").on("click", function () {
-  //   $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
-  //   $("#goal_2").val("");
-  // });
-  // $("#goal_3").on("click", function () {
-  //   $('#text').val("夜ぐっすり眠れるような生活アドバイスをします。がんばりましょう！");
-  //   $("#goal_3").val("");
-  // });
-  // $("#goal_4").on("click", function () {
-  //   $('#text').val("体調に合わせた食事のアドバイスをします。がんばりましょう！");
-  //   $("#goal_4").val("");
-  // });
-  // $("#goal_5").on("click", function () {
-  //   $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
-  //   $("#goal_5").val("");
-  // });
+
+  $("#goal_1").on("click", function () {
+    $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+    $("#goal_1").val("");
+  });
+
+  $("#goal_2").on("click", function () {
+    $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
+    $("#goal_2").val("");
+  });
+
+  $("#goal_3").on("click", function () {
+    $('#text').val("夜ぐっすり眠れるような生活アドバイスをします。がんばりましょう！");
+    $("#goal_3").val("");
+  });
+
+  $("#goal_4").on("click", function () {
+    $('#text').val("体調に合わせた食事のアドバイスをします。がんばりましょう！");
+    $("#goal_4").val("");
+  });
+  $("#goal_5").on("click", function () {
+    $('#text').val("疲れを溜めずに、集中力が続く生活アドバイスをします。がんばりましょう！");
+    $("#goal_5").val("");
+  });
 });
 
 // //メッセージが追加されたら自動的に表示
