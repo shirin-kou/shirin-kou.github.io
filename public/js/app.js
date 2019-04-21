@@ -2,6 +2,7 @@ $(function () {
   //処理
 });
 
+app.use(express.static("public"));
 // var newPostRef = firebase.database().ref();
 
 // // 日時を取得する関数
