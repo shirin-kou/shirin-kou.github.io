@@ -5,11 +5,6 @@ $(function () {
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
 app.use(express.static("public"));
 
-// $(document).on('click', '#goal_1 tr', function () {
-//   $('#text').val("代謝を上げるような生活アドバイスをします。がんばりましょう！");
-//   $("#goal_1").val("");
-// });
-
 //送信ボタンクリックでメッセージ送信
 $(function () {
   $('#goal_0').on('click', function () {
