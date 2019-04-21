@@ -8,7 +8,7 @@ app.use(express.static("public"));
 //送信ボタンクリックでメッセージ送信
 $(function () {
   $('#goal_0').on('click', function () {
-    $('#text').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
+    $('#comment').text("代謝を上げるような生活アドバイスをします。がんばりましょう！");
     $("#goal").val("");
 
   });
