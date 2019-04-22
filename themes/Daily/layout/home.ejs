@@ -10,11 +10,13 @@
 
 
 <!-- HTML -->
-<% var myMeta = {
+<header>
+    <% var myMeta = {
     title: 'HOME PAGEだよ',
   };
 %>
-<%- include('_partial/nav', {meta: myMeta}) %>
+    <%- include('_partial/nav', {meta: myMeta}) %>
+</header>
 
 <div class="content-area">
     <h1><%= title %></h1>
