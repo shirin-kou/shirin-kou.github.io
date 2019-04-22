@@ -1,4 +1,10 @@
 <!-- unchange -->
+<% var myMeta = {
+    title: 'HOME PAGEだよ',
+  };
+%>
+<%- include('_partial/nav', {meta: myMeta}) %>
+
 <% var title = 'Home'; %>
 <% var subTitle_0 = '今日の波形'; %>
 <% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
@@ -10,14 +16,6 @@
 
 
 <!-- HTML -->
-<header>
-    <% var myMeta = {
-    title: 'HOME PAGEだよ',
-  };
-%>
-    <%- include('_partial/nav', {meta: myMeta}) %>
-</header>
-
 <div class="content-area">
     <h1><%= title %></h1>
 
