@@ -1,5 +1,5 @@
 $(function () {
-  alert('hoge');
+  //
 });
 
 $(function () {
@@ -9,7 +9,7 @@ $(function () {
 });
 
 //express.static ミドルウェア関数に渡して、ファイル（imagesなど）を直接提供
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 //ボタンクリックでメッセージ表示
 // $(function () {
