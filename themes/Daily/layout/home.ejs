@@ -1,27 +1,15 @@
-<!-- unchange -->
-<% var myMeta = {
-    title: 'HOME だよ！！',
-    desc: 'This is my HOME page.'  };
-%>
-<%- partial('_partial/nav', {meta: myMeta}) %>
-
-<% var title = 'Home'; %>
-<% var subTitle_0 = '今日の波形'; %>
-<% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
-
-<!-- change -->
+<!-- change/firebase -->
 <% var measureTime = '測定時間'; %>
-<% var feature = '波形の特徴（ex.脈の拍動がいつもより大きくなっています）'; %>
 <% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
+<% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
 
 
 <!-- HTML -->
 <div class="content-area">
-    <h1><%= title %></h1>
 
     <div>
-        <h2><%= subTitle_0 %></h2>
-        <p><%= feature %></p>
+        <h2><%= page.subTitle_0 %></h2>
+        <p><%= page.feature %></p>
         <img src="/images/wave.png" alt="" height="100">
         <p><%= measureTime %></p>
     </div>
@@ -35,9 +23,6 @@
     </div>
 
     <div class="adviceButton">
-        <a href="https://shirin-kou.github.io/advice/"><input type="button" value="Adviceを見る"></a>
+        <a href="/advice/"><input type="button" value="Adviceを見る"></a>
     </div>
 </div>
-
-<!-- 反映されない↓
-<a href="advice.ejs">advice</a> -->

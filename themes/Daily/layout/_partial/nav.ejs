@@ -1,29 +1,12 @@
-<%
-  if (typeof meta === 'undefined') {
-    var meta = {
-      title:'default',
-      desc:'default'
-    };
-  }
-%>
-
 <header class="site-header">
   <div class="header-inside">
 
-    <!-- navigationbar / 要編集-->
-
-
     <!-- Navigation -->
     <nav class="navbar">
-      <a href="https://shirin-kou.github.io/setting/"><img
-          src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
-      <title><%= meta.title %> | site title</title>
-      <meta name="description" content="<%= meta.desc %>">
+      <a href="/setting/"><img src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
+      <h1><%= page.title %></h1>
     </nav>
 
 
   </div>
 </header>
-<!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-<script src="/js/app.js"></script> -->

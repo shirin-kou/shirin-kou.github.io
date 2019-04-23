@@ -1,6 +1,4 @@
 <!-- unchange -->
-<% var title = 'Setting'; %>
-<% var subTitle = ''; %>
 <% var link = ['https://shirin-kou.github.io/goal/', 'https://shirin-kou.github.io/question/', 'https://shirin-kou.github.io/login/']; %>
 <% var linkTitle = ['Goal', 'Question', 'Log-out']; %>
 
@@ -12,31 +10,29 @@
 
 <!-- HTML -->
 <div class="content-area">
-    <h1><%= title %></h1>
-    <h2><%= subTitle %></h2>
 
     <img src=<%= GoogleAccount_picture %> alt="">
     <p><%= GoogleAccount_ID %></p>
 
     <table>
         <tr>
-            <a href=<%= link[0] %>><%= linkTitle[0] %></a>
+            <a href="/goal/"><%= linkTitle[0] %></a>
         </tr>
         <tr>
-            <a href=<%= link[1] %>><%= linkTitle[1] %></a>
+            <a href="/question/"><%= linkTitle[1] %></a>
         </tr>
         <tr>
-            <a href=<%= link[2] %>><%= linkTitle[2] %></a>
+            <a href="/login/"><%= linkTitle[2] %></a>
         </tr>
     </table>
 
     <div>
-        <a href=<%= link[0] %>><input type="button" value=<%= linkTitle[0] %>></a>
+        <a href="/goal/"><input type="button" value=<%= linkTitle[0] %>></a>
     </div>
     <div>
-        <a href=<%= link[1] %>><input type="button" value=<%= linkTitle[1] %>></a>
+        <a href="/question/"><input type="button" value=<%= linkTitle[1] %>></a>
     </div>
     <div>
-        <a href=<%= link[2] %>><input type="button" value=<%= linkTitle[2] %>></a>
+        <a href="/login/"><input type="button" value=<%= linkTitle[2] %>></a>
     </div>
 </div>

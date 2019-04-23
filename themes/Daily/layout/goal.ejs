@@ -1,17 +1,10 @@
 <!-- unchange -->
-<% var title = 'Goal'; %>
-<% var subTitle = '目標を１つ選んでください'; %>
-<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','食事に気をつけたい', '不調を改善したい', '●●を改善したい']; %>
+å<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','食事に気をつけたい', '不調を改善したい', '●●を改善したい']; %>
 <% var goalImage = ['/images/diet.png', '/images/work.png', '/images/sleep.png','/images/meal.png', '/images/other.png', '/images/other2.png']; %>
-
-<!-- change -->
-<!-- なし -->
-
 
 <!-- HTML -->
 <div class="content-area">
-    <h1><%= title %></h1>
-    <h2><%= subTitle %></h2>
+    <h2><%= page.subTitle %></h2>
 
     <div id="comment">コメント</div>
     <div id="comment1">代謝を上げるような生活アドバイスをします。がんばりましょう！</div>
@@ -44,23 +37,3 @@
     </table>
 
 </div>
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
-        authDomain: "myakushin.firebaseapp.com",
-        databaseURL: "https://myakushin.firebaseio.com",
-        projectId: "myakushin",
-        storageBucket: "myakushin.appspot.com",
-        messagingSenderId: "537042555866"
-    };
-    firebase.initializeApp(config);
-</script> -->
-
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"
-    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-<script src="/js/app.js"></script>

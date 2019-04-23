@@ -6,28 +6,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding-left: 50px;
+  padding-left: 20px;
   padding-right: 50px;
   height: 70px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  .button-wrap {
-    display: none;
-    float: right;
-    padding-top: $nav-padding-top;
-  }
-  .menu-toggle {
-    width: 20px;
-    height: 20px;
-    background: url("../images/menu.svg") center no-repeat;
-    text-indent: -99999px;
-    overflow: hidden;
-    border: none;
-    box-shadow: none;
-    outline: none;
-    opacity: 0.25;
-  }
 }
 .header-inside {
   display: block;
@@ -37,10 +21,6 @@
 }
 .logo {
   display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  vertical-align: middle;
   a {
     display: block;
     img {

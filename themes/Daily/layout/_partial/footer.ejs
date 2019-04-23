@@ -19,3 +19,34 @@
   </div>
 
 </footer>
+
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
+    authDomain: "myakushin.firebaseapp.com",
+    databaseURL: "https://myakushin.firebaseio.com",
+    projectId: "myakushin",
+    storageBucket: "myakushin.appspot.com",
+    messagingSenderId: "537042555866"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<% if (page.firebase) { %>
+<script>
+  window.onload = function () {
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', {
+      signInOptions: [
+        // List of OAuth providers supported.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      ],
+      signInSuccessUrl: '/',
+      // Other config options...
+    });
+  }
+</script>
+<% } %>

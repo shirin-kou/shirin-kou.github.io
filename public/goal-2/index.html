@@ -3,43 +3,43 @@
 
 <!-- Head tag -->
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!--Description-->
-    
+  <!--Description-->
+  
 
-    <!--Author-->
-    
-    <meta name="author" content="SHIRIN KOU">
-    
+  <!--Author-->
+  
+  <meta name="author" content="SHIRIN KOU">
+  
 
-    <!--Open Graph Title-->
-    
-    <meta property="og:title" content="Goal-2">
-    
-    <!--Open Graph Description-->
-    
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Myakushin">
-    <!--Type page-->
-    
-    <meta property="og:type" content="article">
-    
-    <!--Page Cover-->
-    
+  <!--Open Graph Title-->
+  
+  <meta property="og:title" content="Goal-2">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Myakushin">
+  <!--Type page-->
+  
+  <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Title -->
-    
-    <title>Goal-2 - Myakushin</title>
+  <!-- Title -->
+  
+  <title>Goal-2 - Myakushin</title>
 
 
-    <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
-
-    <!-- Custom CSS/Sass -->
-    <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
 
 
 
@@ -48,38 +48,25 @@
 <body>
 
   <!-- Nav -->
-  
-
-<header class="site-header">
+  <header class="site-header">
   <div class="header-inside">
-
-    <!-- navigationbar / 要編集-->
-
 
     <!-- Navigation -->
     <nav class="navbar">
-      <a href="https://shirin-kou.github.io/setting/"><img src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
-      <title>default | site title</title>
-      <meta name="description" content="default">
+      <a href="/setting/"><img src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
+      <h1>Goal-2</h1>
     </nav>
 
 
   </div>
 </header>
-<!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-<script src="/js/app.js"></script> -->
 
-  <!-- Main Content -->
-  <!-- unchange -->
-
-
-<!-- change -->
+  <!-- Main Content layoutで指定したejsが表示される部分 -->
+  <!-- change/firebase -->
 
 
 <!-- HTML -->
 <div class="content-area">
-    <h1>Goal-2</h1>
     <h2>Goal”で選択された項目をFirabaseでひっぱってくる</h2>
 </div>
 
@@ -105,6 +92,23 @@
   </div>
 
 </footer>
+
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
+    authDomain: "myakushin.firebaseapp.com",
+    databaseURL: "https://myakushin.firebaseio.com",
+    projectId: "myakushin",
+    storageBucket: "myakushin.appspot.com",
+    messagingSenderId: "537042555866"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
 
 </body>
 
