@@ -11,20 +11,12 @@
 <!-- HTML -->
 <div class="content-area">
 
-    <img src=<%= GoogleAccount_picture %> alt="">
-    <p><%= GoogleAccount_ID %></p>
+    <div class="GoogleAccount">
+        <img src=<%= GoogleAccount_picture %> alt="">
+        <p><%= GoogleAccount_ID %></p>
+    </div>
 
-    <table>
-        <tr>
-            <a href="/goal/"><%= linkTitle[0] %></a>
-        </tr>
-        <tr>
-            <a href="/question/"><%= linkTitle[1] %></a>
-        </tr>
-        <tr>
-            <a href="/login/"><%= linkTitle[2] %></a>
-        </tr>
-    </table>
+
 
     <div>
         <a href="/goal/"><input type="button" value=<%= linkTitle[0] %>></a>
