@@ -12,6 +12,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  display: flex;
 }
 .header-inside {
   display: block;
@@ -30,8 +31,8 @@
   }
 }
 .navbar {
-  float: center;
   padding-top: $nav-padding-top;
+
   ul {
     &:after {
       content: '';
