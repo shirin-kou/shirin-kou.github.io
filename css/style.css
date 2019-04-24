@@ -172,7 +172,10 @@ th {
 
 body,
 html {
-  height: 100%; }
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
 
 /*--------------------------------------------------------------
 Reset
@@ -263,8 +266,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  font-weight: bold;
-  margin: 1.5em 0 1em; }
+  font-weight: bold; }
 
 p {
   margin: 1em 0;
@@ -364,8 +366,6 @@ dd {
   margin: 0 1.5em 1.5em; }
 
 img {
-  height: auto;
-  /* Make sure images are scaled correctly. */
   max-width: 100%;
   /* Adhere to container width. */ }
 
@@ -504,11 +504,10 @@ Common
 /*--------------------------------------------------------------
 Content
 --------------------------------------------------------------*/
-.site-content {
-  min-height: calc(100% - 274px); }
-
 .content-area {
-  padding-top: 70px; }
+  padding-top: 70px;
+  width: 1000px;
+  margin: auto; }
 
 .error404 .content-area,
 .page .content-area {
@@ -697,16 +696,37 @@ Footer
     opacity: 0.7; }
 
 .site-info {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
   text-align: center;
-  font-size: 0.750em;
-  padding-bottom: 20px;
-  padding-top: 20px;
   color: #a2a2a2; }
   .site-info .split {
     margin: 0 2px; }
   .site-info a {
     text-decoration: none;
     color: #666666; }
+
+/*--------------------------------------------------------------
+advice.ejs
+--------------------------------------------------------------*/
+.advice img {
+  max-width: 100%;
+  height: 300px;
+  margin-top: 50px; }
+
+/*--------------------------------------------------------------
+setting.ejs
+--------------------------------------------------------------*/
+.GoogleAccount {
+  max-width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .site-header {
   width: 100%;
@@ -721,7 +741,8 @@ Footer
   height: 70px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  display: flex; }
 
 .header-inside {
   display: block;
@@ -737,24 +758,23 @@ Footer
       display: block;
       height: 60px; }
 
-.navbar {
-  float: center;
-  padding-top: 25px; }
-  .navbar ul:after {
-    content: '';
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden; }
-  .navbar ul li {
-    position: relative;
-    float: left;
-    margin-left: 20px; }
-    .navbar ul li a {
-      text-decoration: none;
-      line-height: 1.5; }
-      .navbar ul li a:hover {
-        opacity: 1; }
+.navbar ul:after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden; }
+
+.navbar ul li {
+  vertical-align: middle;
+  position: relative;
+  float: left;
+  margin-left: 20px; }
+  .navbar ul li a {
+    text-decoration: none;
+    line-height: 1.5; }
+    .navbar ul li a:hover {
+      opacity: 1; }
 
 .navbar ul li:before {
   position: absolute;
@@ -771,6 +791,9 @@ Footer
 .navbar ul li:hover:before {
   width: 100%; }
 
+.navbar_title {
+  margin-top: 5px; }
+
 @media screen and (max-width: 767px) {
   .logo a img {
     height: 36px; }
@@ -779,16 +802,13 @@ Footer
     .site-content .content-area {
       padding-top: 0; }
   .site-header {
-    position: relative; }
+    width: 100%;
+    float: left; }
     .site-header .navbar {
-      display: none;
-      float: none;
-      position: absolute;
       left: 0;
       top: 70px;
       padding: 15px 0 15px 30px;
       width: 100%;
-      background: #efefef;
       border-bottom: 1px solid #dcdcdc;
       box-shadow: 0 2px 3px #dfdfdf;
       z-index: 9999; }
@@ -801,13 +821,6 @@ Footer
       display: block; }
   .post .nav-links {
     display: none; }
-  .footer-widgets .row .col-1-1,
-  .footer-widgets .row .col-1-2,
-  .footer-widgets .row .col-1-3,
-  .footer-widgets .row .col-1-4 {
-    float: none;
-    width: auto;
-    margin-bottom: 50px; }
   .archive ul.list {
     padding-left: 20px; } }
 
