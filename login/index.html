@@ -55,7 +55,7 @@
     <nav class="navbar">
       <ul>
         <li>
-          <a href="/setting/"><img src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
+          <a href><img src></a>
         </li>
         <li class="navbar_title">
           <h1>Log-in</h1>
@@ -68,8 +68,14 @@
 </header>
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <div class="content-area">
-    <div id="firebaseui-auth-container"></div>
+  <div class="content-area-login">
+    <div class="subTitle">
+        <!-- The surrounding HTML is left untouched by FirebaseUI.
+             Your app may use that space for branding, controls and other customizations.-->
+        <h1>Welcome to My Myakushin App</h1>
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    </div>
 </div>
 
   <!-- Footer -->
@@ -101,17 +107,75 @@
 
 
 <script>
+  var provider = new firebase.auth.GoogleAuthProvider();
+
   window.onload = function () {
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', {
+      signInFlow: 'popup',
       signInOptions: [
+
         // List of OAuth providers supported.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+
       ],
       signInSuccessUrl: '/',
       // Other config options...
     });
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInSuccessUrl: '/',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      ],
+      // Terms of service url.
+      tosUrl: 'https://sites.google.com/view/myakushin',
+      // Privacy policy url.
+      privacyPolicyUrl: 'https://sites.google.com/view/myakushin'
+    };
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+
   }
+
+  // // ログアウト
+  // function signOut() {
+  //   firebase.auth().signOut().then(function () {
+  //     document.getElementById('log').innerText = 'サインアウト成功';
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //     document.getElementById('log').innerText = 'サインアウト失敗';
+  //   });
+  // }
+
+  // ログイン確認
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // ログイン認証済
+      console.log('auth user', user);
+      document.getElementById('state').innerText = 'ログイン済(email: ' + user.email + ')';
+    } else {
+      // No user is signed in.
+      document.getElementById('state').innerText = '未ログイン';
+    }
+  });
+
 </script>
 
 
