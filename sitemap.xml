@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shirin-kou.github.io/190413.git/login/index.html</loc>
+    
+    <lastmod>2019-04-26T13:50:16.432Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shirin-kou.github.io/190413.git/question/index.html</loc>
     
     <lastmod>2019-04-26T10:40:42.243Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://shirin-kou.github.io/190413.git/goal/index.html</loc>
     
     <lastmod>2019-04-25T12:16:37.460Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/login/index.html</loc>
-    
-    <lastmod>2019-04-25T11:56:32.088Z</lastmod>
     
   </url>
   

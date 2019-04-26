@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Log-in">
+  <meta property="og:title" content="Welcome to My Myakushin App">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Log-in - Myakushin</title>
+  <title>Welcome to My Myakushin App - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -58,7 +58,7 @@
           <a href><img src></a>
         </li>
         <li class="navbar_title">
-          <h1>Log-in</h1>
+          <h1>Welcome to My Myakushin App</h1>
         </li>
       </ul>
     </nav>
@@ -72,9 +72,11 @@
     <div class="subTitle">
         <!-- The surrounding HTML is left untouched by FirebaseUI.
              Your app may use that space for branding, controls and other customizations.-->
-        <h1>Welcome to My Myakushin App</h1>
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
+
+        <p id="log"></p>
+        <p id="state"></p>
     </div>
 </div>
 
@@ -93,7 +95,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
-  // Initialize Firebase
+  // Firebaseの初期化
   var config = {
     apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
     authDomain: "myakushin.firebaseapp.com",
@@ -106,18 +108,29 @@
 </script>
 
 
+
+<script src="firebase-auth.js"></script>
+
 <script>
   var provider = new firebase.auth.GoogleAuthProvider();
 
   window.onload = function () {
+
+    // FirebaseUIインスタンス初期化
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
     ui.start('#firebaseui-auth-container', {
+
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
       signInFlow: 'popup',
       signInOptions: [
-
         // List of OAuth providers supported.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+        }
       ],
       signInSuccessUrl: '/',
       // Other config options...
@@ -137,39 +150,42 @@
           document.getElementById('loader').style.display = 'none';
         }
       },
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInSuccessUrl: '/',
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      ],
-      // Terms of service url.
-      tosUrl: 'https://sites.google.com/view/myakushin',
-      // Privacy policy url.
-      privacyPolicyUrl: 'https://sites.google.com/view/myakushin'
+
     };
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
+  };
+
+  // ログアウト
+  function signOut() {
+    firebase.auth().signOut().then(function () {
+      document.getElementById('log').innerText = 'サインアウト成功';
+    }).catch(function (error) {
+      console.log(error);
+      document.getElementById('log').innerText = 'サインアウト失敗';
+    });
   }
 
-  // // ログアウト
-  // function signOut() {
-  //   firebase.auth().signOut().then(function () {
-  //     document.getElementById('log').innerText = 'サインアウト成功';
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //     document.getElementById('log').innerText = 'サインアウト失敗';
-  //   });
-  // }
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
+
+  if (user != null) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+  }
 
   // ログイン確認
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('state').innerText = 'ログイン済(email: ' + user.email + ')';
+      document.getElementById('state').innerText = 'Sign in By ' + user.displayName;
     } else {
       // No user is signed in.
       document.getElementById('state').innerText = '未ログイン';
