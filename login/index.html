@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Welcome to My Myakushin App">
+  <meta property="og:title" content="Welcome to Myakushin App">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Welcome to My Myakushin App - Myakushin</title>
+  <title>Welcome to Myakushin App - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -58,11 +58,13 @@
           <a href><img src></a>
         </li>
         <li class="navbar_title">
-          <h1>Welcome to My Myakushin App</h1>
+          <h1>Welcome to Myakushin App</h1>
+        </li>
+        <li class="navbar_title_2">
+          <h1 id="state"></h1>
         </li>
       </ul>
     </nav>
-
 
   </div>
 </header>
@@ -74,21 +76,21 @@
              Your app may use that space for branding, controls and other customizations.-->
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
-
+        <input type="button" value="Log-out" onclick="signOut()">
         <p id="log"></p>
-        <p id="state"></p>
+
+        <div id="GoogleProfile">
+            <img id="img" src alt height="50px">
+            <p id="state"></p>
+        </div>
+
     </div>
 </div>
 
   <!-- Footer -->
   <!-- Footer -->
 <footer class="site-info">
-  <!-- <div class="logo">
-    <a href="/" rel="home"> -->
-  <!--  -->
-  <!-- <img src="https://img.icons8.com/ios-glyphs/30/000000/top-menu.png"> 
-    </a> -->
-  
+
 
 </footer>
 
@@ -124,12 +126,13 @@
       // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
       signInFlow: 'popup',
       signInOptions: [
-        // List of OAuth providers supported.
-        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+
+        //利用する認証機能
 
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+          forceSameDevice: false
         }
       ],
       signInSuccessUrl: '/',
@@ -157,16 +160,6 @@
 
   };
 
-  // ログアウト
-  function signOut() {
-    firebase.auth().signOut().then(function () {
-      document.getElementById('log').innerText = 'サインアウト成功';
-    }).catch(function (error) {
-      console.log(error);
-      document.getElementById('log').innerText = 'サインアウト失敗';
-    });
-  }
-
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
@@ -186,11 +179,23 @@
       // ログイン認証済
       console.log('auth user', user);
       document.getElementById('state').innerText = 'Sign in By ' + user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('img').src = user.photoURL;
     } else {
       // No user is signed in.
-      document.getElementById('state').innerText = '未ログイン';
+      document.getElementById('state').innerText = 'ログインされていません';
     }
   });
+
+  // ログアウト
+  function signOut() {
+    firebase.auth().signOut().then(function () {
+      document.getElementById('log').innerText = 'ログアウトしました';
+    }).catch(function (error) {
+      console.log(error);
+      document.getElementById('log').innerText = 'ログアウト失敗';
+    });
+  }
 
 </script>
 
