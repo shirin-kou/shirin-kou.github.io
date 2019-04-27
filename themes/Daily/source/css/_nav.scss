@@ -31,8 +31,7 @@
   }
 }
 .navbar {
-  padding-top: $nav-padding-top;
-
+  // padding-top: $nav-padding-top;
   ul {
     &:after {
       content: '';
@@ -42,6 +41,8 @@
       visibility: hidden;
     }
     li {
+          vertical-align: middle;
+
       position: relative;
       float: left;
       margin-left: 20px;
@@ -70,4 +71,12 @@
 }
 .navbar ul li:hover:before {
   width: 100%;
+}
+.navbar_title{
+  margin-top: 5px;
+}
+
+//※navbarの右端に寄せたい！
+.navbar_title_2{
+  margin: 5px 0 0 auto;
 }

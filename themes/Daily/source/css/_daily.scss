@@ -98,7 +98,7 @@ h5,
 h6 {
   clear: both;
   font-weight: bold;
-  margin: 1.5em 0 1em;
+  // margin: 1.5em 0 1em;
 }
 p {
   margin: 1em 0;
@@ -285,12 +285,37 @@ Content
 --------------------------------------------------------------*/
 .content-area {
   padding-top: $header-height;
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
-  
+  position: relative;
+  .setting-table{
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 70px;
+    font-size: 30px;
+    td{
+      padding: 30px 0 30px 0;
+    }
+    .setting-table-account{
+      width: 400px;
+      img{
+        margin:0 auto; 
+      }
 
+    }
+  }
   
 }
+.content-area-login{
+  text-align: center;
+  margin: auto;
+  width: 800px;
+  height: 500px;
+  .subTitle{
+    margin-top: 50px;
+  }
+}
+
 .error404 .content-area,
 .page .content-area {
   padding-top: 120px;
@@ -517,23 +542,168 @@ Footer
 advice.ejs
 --------------------------------------------------------------*/
 .advice {
+  text-align: center;
   img{
     max-width: 100%;
     height: 300px;
     margin-top: 50px
+  
   }
 }
-
 
 /*--------------------------------------------------------------
 setting.ejs
 --------------------------------------------------------------*/
-.GoogleAccount {
-  max-width: 100%;
-  height: 100px;
-  margin: 0 auto;
-  vertical-align: middle;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.setting-table-account{
+  text-align: center;
+  vertical-align:middle;
 }
+
+.logoutButton,
+.adviceButton-inside,
+.questionButton-inside{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+/*--------------------------------------------------------------
+login.ejs
+--------------------------------------------------------------*/
+.GoogleProfile{
+  display: flex;
+}
+
+
+/*--------------------------------------------------------------
+question.ejs
+--------------------------------------------------------------*/
+.question-area{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.radio{
+  margin: 25px 0 25px 0;
+}
+.radio00-input,
+.radio01-input,
+.radio02-input,
+.radio03-input, 
+.radio04-input {
+  display: none;
+}
+.radio00-input + label, 
+.radio01-input + label,
+.radio02-input + label,
+.radio03-input + label,
+.radio04-input + label{
+  padding-left: 20px;
+  position:relative;
+  margin-right: 20px;
+}
+.radio00-input + label::before, 
+.radio01-input + label::before, 
+.radio02-input + label::before, 
+.radio03-input + label::before, 
+.radio04-input + label::before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #999;
+  border-radius: 50%;
+}
+.radio00-input:checked + label,
+.radio01-input:checked + label,
+.radio02-input:checked + label,
+.radio03-input:checked + label, 
+.radio04-input:checked + label{
+  color: $color-main;
+  // color: #009a9a;
+}
+.radio00-input:checked + label::after,
+.radio01-input:checked + label::after,
+.radio02-input:checked + label::after,
+.radio03-input:checked + label::after,
+.radio04-input:checked + label::after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 11px;
+  height: 11px;
+  background:$color-main;
+  // background: #009a9a;
+  border-radius: 50%;
+}
+
+/*--------------------------------------------------------------
+home.ejs
+--------------------------------------------------------------*/
+.content-area-home{
+  text-align: center;
+}
+.content-area-home-2{
+  margin: auto;
+}
+.checkbox01-input{
+  display: none;
+}
+.checkbox01-parts{
+  padding-left: 20px;
+  position:relative;
+  margin-right: 20px;
+}
+.checkbox01-parts::before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+.checkbox01-input:checked + .checkbox01-parts{
+  color: $color-main;
+}
+.checkbox01-input:checked + .checkbox01-parts::after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  width: 7px;
+  height: 14px;
+  transform: rotate(40deg);
+  border-bottom: 3px solid $color-main;
+  border-right: 3px solid $color-main;
+}
+
+.adviceButton,
+.questionButton{
+  width: 200px;
+	height: 50px;
+  background-color: $color-main;
+	margin: 0 auto;
+  text-align: center;
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+  margin-top: 40px;
+  input{
+    color: white;
+    font-size:20px;
+  }
+}
+

@@ -1,37 +1,36 @@
-<!-- unchange -->
-å<% var goal = ['やせたい', '仕事に専念したい', '睡眠を改善したい','食事に気をつけたい', '不調を改善したい', '●●を改善したい']; %>
-<% var goalImage = ['/images/diet.png', '/images/work.png', '/images/sleep.png','/images/meal.png', '/images/other.png', '/images/other2.png']; %>
-
 <!-- HTML -->
 <div class="content-area">
     <h2><%= page.subTitle %></h2>
 
-    <div id="comment">コメント</div>
-    <div id="comment1">代謝を上げるような生活アドバイスをします。がんばりましょう！</div>
-
     <table id="goal">
         <tr>
             <td id="goal_0">
-                <input type="image" src=<%= goalImage[0] %> value=<%= goal[0] %> height="100px"><br><%= goal[0] %>
+                <input type="image" src=<%= page.goalImg_0 %> value=<%= page.goal_0 %>
+                    height="100px"><br><%= page.goal_0 %>
             </td>
             <td id="goal_1">
-                <input type="image" src=<%= goalImage[1] %> value=<%= goal[1] %> height="100px"><br><%= goal[1] %>
+                <input type="image" src=<%= page.goalImg_1 %> value=<%= page.goal_1 %>
+                    height="100px"><br><%= page.goal_1 %>
             </td>
         </tr>
         <tr>
-            <td id="goal_2">
-                <input type="image" src=<%= goalImage[2] %> value=<%= goal[2] %> height="100px"><br><%= goal[2] %>
+            <td id="goal_3">
+                <input type="image" src=<%= page.goalImg_3 %> value=<%= page.goal_3 %>
+                    height="100px"><br><%= page.goal_3 %>
             </td>
             <td id="goal_3">
-                <input type="image" src=<%= goalImage[3] %> value=<%= goal[3] %> height="100px"><br><%= goal[3] %>
+                <input type="image" src=<%= page.goalImg_3 %> value=<%= page.goal_3 %>
+                    height="100px"><br><%= page.goal_3 %>
             </td>
         </tr>
         <tr>
             <td id="goal_4">
-                <input type="image" src=<%= goalImage[4] %> value=<%= goal[4] %> height="100px"><br><%= goal[4] %>
+                <input type="image" src=<%= page.goalImg_4 %> value=<%= page.goal_4 %>
+                    height="100px"><br><%= page.goal_4 %>
             </td>
             <td id="goal_5">
-                <input type="image" src=<%= goalImage[5] %> value=<%= goal[5] %> height="100px"><br><%= goal[5] %>
+                <input type="image" src=<%= page.goalImg_5 %> value=<%= page.goal_5 %>
+                    height="100px"><br><%= page.goal_5 %>
             </td>
         </tr>
     </table>

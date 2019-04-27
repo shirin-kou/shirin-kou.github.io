@@ -55,29 +55,24 @@
     <nav class="navbar">
       <ul>
         <li>
-          <a href="/setting/"><img src="https://img.icons8.com/ios/30/000000/menu-filled.png"></a>
+          <a href="/setting/"><img src="/images/icons8-back.png"></a>
         </li>
-        <li>
+        <li class="navbar_title">
           <h1>Goal</h1>
+        </li>
+        <li class="navbar_title_2">
+          <h1 id="state"></h1>
         </li>
       </ul>
     </nav>
-
 
   </div>
 </header>
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- unchange -->
-å
-
-
-<!-- HTML -->
+  <!-- HTML -->
 <div class="content-area">
     <h2>目標を１つ選んでください</h2>
-
-    <div id="comment">コメント</div>
-    <div id="comment1">代謝を上げるような生活アドバイスをします。がんばりましょう！</div>
 
     <table id="goal">
         <tr>
@@ -89,8 +84,8 @@
             </td>
         </tr>
         <tr>
-            <td id="goal_2">
-                <input type="image" src="/images/sleep.png" value="睡眠を改善したい" height="100px"><br>睡眠を改善したい
+            <td id="goal_3">
+                <input type="image" src="/images/meal.png" value="食事に気をつけたい" height="100px"><br>食事に気をつけたい
             </td>
             <td id="goal_3">
                 <input type="image" src="/images/meal.png" value="食事に気をつけたい" height="100px"><br>食事に気をつけたい
@@ -111,30 +106,13 @@
   <!-- Footer -->
   <!-- Footer -->
 <footer class="site-info">
-  <!-- <p>
-    <span>
-      Myakushin &copy;
-      2019</span>
-     -->
-  <!-- <span class="split">|</span> -->
-  <!-- <span>
-      </span>
-    
-  </p> -->
-
-  <div class="logo">
-    <a href="/" rel="home">
-      <!--  -->
-      <img src="https://img.icons8.com/ios-glyphs/30/000000/top-menu.png"> 
-    </a>
-  </div>
 
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
-  // Initialize Firebase
+  // Firebaseの初期化
   var config = {
     apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
     authDomain: "myakushin.firebaseapp.com",
@@ -146,6 +124,30 @@
   firebase.initializeApp(config);
 </script>
 
+
+
+
+
+
+<script>
+  //送受信
+  // var newPostRef = firebase.database().ref();
+  var usersCollectionRef = db.collection('goals');
+  var alovelaceDocumentRef = db.collection('goals').doc('diet');
+
+  // 送信ボタンクリックでメッセージ送信
+  $("#goal_0").on("click", function () {
+    var database = firebase.database();
+    var dataRef = database.ref('/data');
+    dataRef.once("value")
+      .then(function (snapshot) {
+        document.getElementById("comment").innerHTML = snapshot.child("comment").val();
+        document.getElementById("image").innerHTML = snapshot.child("image").val();
+      });
+  });
+
+
+</script>
 
 
 </body>

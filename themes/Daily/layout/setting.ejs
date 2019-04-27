@@ -1,30 +1,26 @@
-<!-- unchange -->
-<% var link = ['https://shirin-kou.github.io/goal/', 'https://shirin-kou.github.io/question/', 'https://shirin-kou.github.io/login/']; %>
-<% var linkTitle = ['Goal', 'Question', 'Log-out']; %>
-
-<!-- change -->
-<% var GoogleAccount_picture = '/images/github.svg'; %>
-<% var GoogleAccount_ID = 'GoogleAccount_ID'; %>
-
-
-
 <!-- HTML -->
 <div class="content-area">
+    <table class="setting-table">
+        <tr>
+            <td rowspan="3" class="setting-table-account">
+                <img id="img" src="" alt="" height="100px">
+                <p id="googleDisplayName"></p>
+            </td>
+            <td>
+                <a href=<%= page.link1 %>><%= page.linkTitle1 %></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href=<%= page.link2 %>><%= page.linkTitle2 %></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href=<%= page.link3 %>><input class="logoutButton" type="button" value=<%= page.linkTitle3 %>
+                        onclick="signOut()" /></a>
+            </td>
+        </tr>
+    </table>
 
-    <div class="GoogleAccount">
-        <img src=<%= GoogleAccount_picture %> alt="">
-        <p><%= GoogleAccount_ID %></p>
-    </div>
-
-
-
-    <div>
-        <a href="/goal/"><input type="button" value=<%= linkTitle[0] %>></a>
-    </div>
-    <div>
-        <a href="/question/"><input type="button" value=<%= linkTitle[1] %>></a>
-    </div>
-    <div>
-        <a href="/login/"><input type="button" value=<%= linkTitle[2] %>></a>
-    </div>
 </div>

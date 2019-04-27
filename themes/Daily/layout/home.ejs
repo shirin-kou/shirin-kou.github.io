@@ -1,28 +1,37 @@
 <!-- change/firebase -->
-<% var measureTime = '測定時間'; %>
 <% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
-<% var subTitle_1 = 'このような状態ではありませんか？該当する状態にチェックを入れてください。'; %>
 
 
 <!-- HTML -->
 <div class="content-area">
-
-    <div>
-        <h2><%= page.subTitle_0 %></h2>
-        <p><%= page.feature %></p>
-        <img src="/images/wave.png" alt="" height="100">
-        <p><%= measureTime %></p>
-    </div>
-    <div>
-        <h1><%= subTitle_1 %></h1>
-        <form name="checkList">
-            <input type="checkbox" name="checkList" value=<%= checkList[0] %>><%= checkList[0] %><br>
-            <input type="checkbox" name="checkList" value=<%= checkList[1] %>><%= checkList[1] %><br>
-            <input type="checkbox" name="checkList" value=<%= checkList[2] %>><%= checkList[2] %>
-        </form>
+    <div class="content-area-home">
+        <div>
+            <h1><%= page.subTitle_0 %></h1>
+            <img src="/images/wave.png" alt="" height="150">
+            <p><%= page.feature %></p>
+            <p><%= page.measureTime %></p>
+        </div>
     </div>
 
-    <div class="adviceButton">
-        <a href="/advice/"><input type="button" value="Adviceを見る"></a>
+    <div class="content-area-home-2">
+        <div class="checkbox01">
+            <h2><%= page.subTitle_1 %></h2>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[0] %>>
+                <div class="checkbox01-parts"><%= checkList[0] %></div>
+            </label>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[1] %>>
+                <div class="checkbox01-parts"><%= checkList[1] %></div>
+            </label>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[2] %>>
+                <div class="checkbox01-parts"><%= checkList[2] %></div>
+            </label>
+        </div>
+        <div class="adviceButton">
+            <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
+        </div>
     </div>
+
 </div>

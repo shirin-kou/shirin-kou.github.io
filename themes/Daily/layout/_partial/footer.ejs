@@ -1,18 +1,12 @@
 <!-- Footer -->
 <footer class="site-info">
-  <!-- <div class="logo">
-    <a href="<%= url_for() %>" rel="home"> -->
-  <!-- <% if (config.logo || theme.logo) { %> -->
-  <!-- <img src="https://img.icons8.com/ios-glyphs/30/000000/top-menu.png"> <% } %>
-    </a> -->
-  </div>
 
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
-  // Initialize Firebase
+  // Firebaseの初期化
   var config = {
     apiKey: "AIzaSyCBJVggpI5YAKFnZNDfDhivNg5-DMUb3Uw",
     authDomain: "myakushin.firebaseapp.com",
@@ -24,18 +18,114 @@
   firebase.initializeApp(config);
 </script>
 
+
 <% if (page.firebase) { %>
+<script src="firebase-auth.js"></script>
+
 <script>
+  var provider = new firebase.auth.GoogleAuthProvider();
+
   window.onload = function () {
+
+    // FirebaseUIインスタンス初期化
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
     ui.start('#firebaseui-auth-container', {
+
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
       signInOptions: [
-        // List of OAuth providers supported.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        //利用する認証機能
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+          forceSameDevice: false
+        }
       ],
       signInSuccessUrl: '/',
       // Other config options...
     });
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+
+    };
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+
+  };
+
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
+
+  if (user != null) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
   }
+
+  // ログイン確認
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // ログイン認証済
+      console.log('auth user', user);
+      document.getElementById('state').innerText = 'Sign in By ' + user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('img').src = user.photoURL;
+    } else {
+      // No user is signed in.
+      document.getElementById('state').innerText = 'ログインされていません';
+    }
+  });
+
+  // ログアウト
+  function signOut() {
+    firebase.auth().signOut().then(function () {
+      document.getElementById('log').innerText = 'ログアウトしました';
+    }).catch(function (error) {
+      console.log(error);
+      document.getElementById('log').innerText = 'ログアウト失敗';
+    });
+  }
+
+</script>
+<% } %>
+
+
+<% if (page.firebase_goal) { %>
+<script>
+  //送受信
+  // var newPostRef = firebase.database().ref();
+  var usersCollectionRef = db.collection('goals');
+  var alovelaceDocumentRef = db.collection('goals').doc('diet');
+
+  // 送信ボタンクリックでメッセージ送信
+  $("#goal_0").on("click", function () {
+    var database = firebase.database();
+    var dataRef = database.ref('/data');
+    dataRef.once("value")
+      .then(function (snapshot) {
+        document.getElementById("comment").innerHTML = snapshot.child("comment").val();
+        document.getElementById("image").innerHTML = snapshot.child("image").val();
+      });
+  });
+
+
 </script>
 <% } %>
