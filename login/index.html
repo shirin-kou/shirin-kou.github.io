@@ -76,7 +76,6 @@
              Your app may use that space for branding, controls and other customizations.-->
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
-        <input type="button" value="Log-out" onclick="signOut()">
         <p id="log"></p>
 
         <div id="GoogleProfile">
@@ -90,7 +89,6 @@
   <!-- Footer -->
   <!-- Footer -->
 <footer class="site-info">
-
 
 </footer>
 
@@ -126,9 +124,7 @@
       // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
       signInFlow: 'popup',
       signInOptions: [
-
         //利用する認証機能
-
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
           signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
@@ -198,6 +194,9 @@
   }
 
 </script>
+
+
+
 
 
 </body>

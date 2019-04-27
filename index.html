@@ -78,35 +78,43 @@
 
 
 
-
-
 <!-- HTML -->
 <div class="content-area">
-
-    <div>
-        <h2>今日の波形</h2>
-        <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
-        <img src="/images/wave.png" alt height="100">
-        <p>測定時間</p>
-    </div>
-    <div>
-        <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
-        <form name="checkList">
-            <input type="checkbox" name="checkList" value="質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）<br>
-            <input type="checkbox" name="checkList" value="質問２（ex.夜遅くに油っこい食事を摂っていませんか？）">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）<br>
-            <input type="checkbox" name="checkList" value="質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）
-        </form>
+    <div class="content-area-home">
+        <div>
+            <h1>今日の波形</h1>
+            <img src="/images/wave.png" alt height="150">
+            <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
+            <p>測定時間</p>
+        </div>
     </div>
 
-    <div class="adviceButton">
-        <a href="/advice/"><input type="button" value="Adviceを見る"></a>
+    <div class="content-area-home-2">
+        <div class="checkbox01">
+            <h2>このような状態ではありませんか？該当する状態にチェックを入れてください。</h2>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）">
+                <div class="checkbox01-parts">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）</div>
+            </label>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問２（ex.夜遅くに油っこい食事を摂っていませんか？）">
+                <div class="checkbox01-parts">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）</div>
+            </label>
+            <label>
+                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）">
+                <div class="checkbox01-parts">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）</div>
+            </label>
+        </div>
+        <div class="adviceButton">
+            <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
+        </div>
     </div>
+
 </div>
 
   <!-- Footer -->
   <!-- Footer -->
 <footer class="site-info">
-
 
 </footer>
 
@@ -142,9 +150,7 @@
       // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
       signInFlow: 'popup',
       signInOptions: [
-
         //利用する認証機能
-
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
           signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
@@ -214,6 +220,9 @@
   }
 
 </script>
+
+
+
 
 
 </body>

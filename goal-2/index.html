@@ -76,12 +76,20 @@
 <!-- HTML -->
 <div class="content-area">
     <h2>Goal”で選択された項目をFirabaseでひっぱってくる</h2>
+    <p>
+        <div id="age"></div>
+    </p>
+    <p>
+        <div id="job"></div>
+    </p>
+    <p>
+        <div id="name"></div>
+    </p>
 </div>
 
   <!-- Footer -->
   <!-- Footer -->
 <footer class="site-info">
-
 
 </footer>
 
@@ -101,6 +109,29 @@
 </script>
 
 
+
+
+
+
+<script>
+  //送受信
+  // var newPostRef = firebase.database().ref();
+  var usersCollectionRef = db.collection('goals');
+  var alovelaceDocumentRef = db.collection('goals').doc('diet');
+
+  // 送信ボタンクリックでメッセージ送信
+  $("#goal_0").on("click", function () {
+    var database = firebase.database();
+    var dataRef = database.ref('/data');
+    dataRef.once("value")
+      .then(function (snapshot) {
+        document.getElementById("comment").innerHTML = snapshot.child("comment").val();
+        document.getElementById("image").innerHTML = snapshot.child("image").val();
+      });
+  });
+
+
+</script>
 
 
 </body>
