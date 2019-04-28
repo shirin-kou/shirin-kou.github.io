@@ -84,7 +84,7 @@
         </tr>
         <tr>
             <td>
-                <a href="/habit/">habit</a>
+                <a href="/habit/">Habit</a>
             </td>
         </tr>
         <tr>
@@ -129,21 +129,17 @@
     // FirebaseUIインスタンス初期化
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-    // ui.start('#firebaseui-auth-container', {
+    ui.start('#firebaseui-auth-container', {
 
-    //   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    //   signInFlow: 'popup',
-    //   signInOptions: [
-    //     //利用する認証機能
-    //     {
-    //       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    //       signInMethod: firebase.auth.GoogleAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-    //       forceSameDevice: false
-    //     }
-    //   ],
-    //   signInSuccessUrl: '/',
-    //   // Other config options...
-    // });
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInOptions: [
+        //利用する認証機能
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      ],
+      signInSuccessUrl: '/',
+      // Other config options...
+    });
 
     var uiConfig = {
       callbacks: {
@@ -159,15 +155,9 @@
           document.getElementById('loader').style.display = 'none';
         }
       },
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInOptions: [
-        //利用する認証機能
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
-      ],
-      signInSuccessUrl: '/',
+
     };
-    // The start method will wait until the DOM is loaded.
+    // // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
   };
@@ -180,17 +170,9 @@
     email = user.email;
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
-    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    user.providerData.forEach(function (profile) {
-      console.log("Sign-in provider: " + profile.providerId);
-      console.log("  Provider-specific UID: " + profile.uid);
-      console.log("  Name: " + profile.displayName);
-      console.log("  Email: " + profile.email);
-      console.log("  Photo URL: " + profile.photoURL);
-    });
-  }
+    uid = user.uid;
+  };
+
 
   // ログイン確認
   firebase.auth().onAuthStateChanged(function (user) {
@@ -203,18 +185,21 @@
     } else {
       // No user is signed in.
       document.getElementById('state').innerText = 'ログインされていません';
+      // location.href = '/login/';
     }
   });
 
   // ログアウト
   function signOut() {
     firebase.auth().signOut().then(function () {
-      document.getElementById('log').innerText = 'ログアウトしました';
+      alert('ログアウトしました');
+      // document.getElementById('log').innerText = 'ログアウトしました';
     }).catch(function (error) {
       console.log(error);
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
+
 
 </script>
 
