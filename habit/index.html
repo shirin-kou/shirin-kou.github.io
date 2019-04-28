@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Question">
+  <meta property="og:title" content="habit">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Question - Myakushin</title>
+  <title>habit - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -58,7 +58,7 @@
           <a href="/setting/"><img src="/images/icons8-back.png"></a>
         </li>
         <li class="navbar_title">
-          <h1>Question</h1>
+          <h1>habit</h1>
         </li>
         <li class="navbar_title_2">
           <h1 id="state"></h1>
@@ -81,7 +81,7 @@
 
 <!-- HTML -->
 <div class="content-area">
-    <div class="question-area">
+    <div class="habit-area">
         <h2>嗜好について教えてください</h2>
 
         <!-- test -->
@@ -134,8 +134,8 @@
             <label for="radio04-02">現在吸っている</label>
         </div>
 
-        <div class="questionButton">
-            <a href="/"><input class="questionButton-inside" type="button" value="登録"></a>
+        <div class="habitButton">
+            <a href="/" onclick="clickEvent()"><input class="habitButton-inside" type="button" value="登録"></a>
         </div>
 
     </div>
@@ -167,6 +167,35 @@
 
 
 
+
+
+
+
+<script>
+
+  function clickEvent() {
+    alert('登録されました。HOMEに戻る。');
+  }
+
+  //google email addressをLocalStrageで保存する
+  //1.Save クリックイベント
+  $("#save").on("click", function () {
+    var user_name = $("#name").val();
+    var object = {
+      user_email: user_email,
+    };
+    var json_obj = JSON.stringify(object);
+    localStorage.setItem("username", json_obj);
+  });
+
+  //3.ページ読み込み：保存データ取得表示
+  if (localStorage.getItem("username")) {
+    var obj = localStorage.getItem("username");
+    var p_obj = JSON.parse(obj);
+    $("#name").val(p_obj.user_name);
+  }
+
+</script>
 
 
 </body>
