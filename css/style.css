@@ -741,6 +741,7 @@ setting.ejs
   text-align: center;
   vertical-align: middle; }
 
+.logoutButton-loginPage-inside,
 .logoutButton,
 .adviceButton-inside,
 .habitButton-inside {
@@ -755,6 +756,18 @@ login.ejs
 --------------------------------------------------------------*/
 .GoogleProfile {
   display: flex; }
+
+.logoutButton-loginPage {
+  width: 200px;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .logoutButton-loginPage input {
+    font-size: 20px; }
 
 /*--------------------------------------------------------------
 habit.ejs
@@ -889,15 +902,38 @@ home.ejs
 /*--------------------------------------------------------------
 goal.ejs
 --------------------------------------------------------------*/
-#goal_0,
-#goal_1,
-#goal_2,
-#goal_3,
-#goal_4 {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100px;
-  height: 150px; }
+.content-area {
+  padding-top: 70px;
+  width: 900px;
+  margin: 0 auto;
+  display: inline-block; }
+  .content-area #goal_0,
+  .content-area #goal_1,
+  .content-area #goal_2,
+  .content-area #goal_3,
+  .content-area #goal_4,
+  .content-area #goal_5 {
+    display: inline-block;
+    text-align: left;
+    height: 250px;
+    width: 270px;
+    font-size: 110%; }
+    .content-area #goal_0 input,
+    .content-area #goal_1 input,
+    .content-area #goal_2 input,
+    .content-area #goal_3 input,
+    .content-area #goal_4 input,
+    .content-area #goal_5 input {
+      height: 160px;
+      padding-bottom: 10px; }
+
+.goal {
+  display: inline-block; }
+
+.subTitle-goal {
+  display: inline-block;
+  text-align: left;
+  margin: 20px 0 40px 0; }
 
 .site-header {
   width: 100%;
