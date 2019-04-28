@@ -84,11 +84,9 @@
     <div class="habit-area">
         <h2>嗜好について教えてください</h2>
 
-        <!-- test -->
         <div class="radio">
             <div>Q1, 普段どれくらい水分をとりますか？</div>
-
-            <input type="radio" name="radio00" class="radio00-input" id="radio00-01">
+            <input type="radio" name="radio00" class="radio00-input" id="radio00-01" value="よくとる">
             <label for="radio00-01">よくとる</label>
             <input type="radio" name="radio00" class="radio00-input" id="radio00-02">
             <label for="radio00-02">普通</label>
@@ -135,7 +133,8 @@
         </div>
 
         <div class="habitButton">
-            <a href="/" onclick="clickEvent()"><input class="habitButton-inside" type="button" value="登録"></a>
+            <!-- ＊HOMEに戻らなくなった -->
+            <a href="/"><input id="habitButton-inside" class="habitButton-inside" type="submit" value="登録"></a>
         </div>
 
     </div>
@@ -173,27 +172,20 @@
 
 <script>
 
-  function clickEvent() {
-    alert('登録されました。HOMEに戻る。');
+  function check() {
+    if (document.form1.radio00.length) { // 選択肢が複数ある場合
+      var i;
+      for (i = 0; (i < document.form1.radio00.length) && (i < document.form1.radio01.length) && (i < document.form1.radio02.length) && (i < document.form1.radio03.length) && (i < document.form1.radio04.length); i++) {
+        if ((document.form1.radio00[i].checked) && (document.form1.radio01[i].checked) && (document.form1.radio02[i].checked) && (document.form1.radio03[i].checked) && (document.form1.radio04[i].checked)) {
+          alert("OK!!!");
+          return false;
+        }
+      }
+      alert("NO!!!");
+      return false;
+    }
   }
 
-  //google email addressをLocalStrageで保存する
-  //1.Save クリックイベント
-  $("#save").on("click", function () {
-    var user_name = $("#name").val();
-    var object = {
-      user_email: user_email,
-    };
-    var json_obj = JSON.stringify(object);
-    localStorage.setItem("username", json_obj);
-  });
-
-  //3.ページ読み込み：保存データ取得表示
-  if (localStorage.getItem("username")) {
-    var obj = localStorage.getItem("username");
-    var p_obj = JSON.parse(obj);
-    $("#name").val(p_obj.user_name);
-  }
 
 </script>
 
