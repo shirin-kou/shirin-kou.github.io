@@ -94,36 +94,38 @@
 </script> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- HTML -->
-<div class="content-area">
+  <div class="content-area">
   <h1>Goal</h1>
   <h1 class="subTitle-goal">目標を１つ選んでください</h1>
 
-  <table id="goal">
-    <tr>
-      <td id="goal_0">
-        <input id="image_0" type="image" src="/images/diet.png" value="やせたい"><br>やせたい
-      </td>
-      <td id="goal_1">
-        <input id="image_1" type="image" src="/images/work.png" value="仕事に専念したい" height="150px"><br>仕事に専念したい
-      </td>
-      <td id="goal_3">
-        <input id="image_2" type="image" src="/images/meal.png" value="食事に気をつけたい" height="120px"><br>食事に気をつけたい
-      </td>
-    </tr>
-    <tr>
-      <td id="goal_3">
-        <input id="image_3" type="image" src="/images/meal.png" value="食事に気をつけたい" height="120px"><br>食事に気をつけたい
-      </td>
+  <form name="goalForm" id="goalForm">
 
-      <td id="goal_4">
-        <input id="image_4" type="image" src="/images/other.png" value="不調を改善したい" height="120px"><br>不調を改善したい
-      </td>
-      <td id="goal_5">
-        <input tid="image_5" ype="image" src="/images/other2.png" value="●●を改善したい" height="120px"><br>●●を改善したい
-      </td>
-    </tr>
-  </table>
+    <table id="goal">
+      <tr>
+        <td id="goal_0">
+          <input id="image_0" type="submit" name="goal0" value="1"><br>やせたい
+        </td>
+        <td id="goal_1">
+          <input id="image_1" type="image" name="goal1" src="/images/work.png" value="2"><br>仕事に専念したい
+        </td>
+        <td id="goal_3">
+          <input id="image_2" type="image" name="goal2" src="/images/meal.png" value="3" height="120px"><br>睡眠を改善したい
+        </td>
+      </tr>
+      <tr>
+        <td id="goal_3">
+          <input id="image_3" type="image" name="goal3" src="/images/meal.png" value="4" height="120px"><br>食事に気をつけたい
+        </td>
+
+        <td id="goal_4">
+          <input id="image_4" type="image" name="goal4" src="/images/other.png" value="5" height="120px"><br>不調を改善したい
+        </td>
+        <td id="goal_5">
+          <input id="image_5" type="image" name="goal5" src="/images/other2.png" value="6" height="120px"><br>●●を改善したい
+        </td>
+      </tr>
+    </table>
+  </form>
 
 </div>
 
@@ -162,6 +164,9 @@
   };
 
   // ログイン確認
+  const pattern = '/login/'
+  const isLoginPage = !!location.href.match(pattern)
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
@@ -177,8 +182,12 @@
 
     } else {
       // No user is signed in.
-      // location.href = '/login/'
-      document.getElementById('state').innerText = 'ログインされていません';
+
+      if (!isLoginPage) {
+        location.href = '/login/'
+        document.getElementById('state').innerText = 'ログインされていません'
+
+      }
     }
   });
 
@@ -191,23 +200,40 @@
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
+
 </script>
 
 
 
 
 <script>
-  var newPostRef = firebase.database().ref();
 
-  //送信ボタンクリックでメッセージ送信
-  $("#goal_0").on("click", function () {
-    var image = $('#image_0').val();
-    localStorage.setItem("image", json_obj);
-  });
+  var btn = $("#image_0");
+  var form = $("#goalForm");
+  form.on('submit', check)
 
-  if (localStorage.getItem("image")) {
-    $("#image_0").val(image);
-  }
+  $("#image_0").on("click", function () {
+
+    $('.subTitle-goal').css('color', 'red');
+    // var user = firebase.auth().currentUser
+
+    // firebase.firestore().collection('user').doc(`${user.uid}`)
+    //   .set({
+    //     goal: {
+    //       'goal00': document.goalForm.goal0.value,
+    //       // 'goal01': document.goalForm.goal1.value,
+    //       // 'goal02': document.goalForm.goal2.value,
+    //       // 'goal03': document.goalForm.goal3.value,
+    //       // 'goal04': document.goalForm.goal4.value,
+    //       // 'goal05': document.goalForm.goal5.value,
+    //     }
+    //   }, { merge: true })
+
+    alert('こい！');
+
+    location.href = "/goal-2/"
+
+  })
 
 </script>
 

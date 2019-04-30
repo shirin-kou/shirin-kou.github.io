@@ -668,7 +668,8 @@ setting.ejs
 .logoutButton-loginPage-inside,
 .logoutButton,
 .adviceButton-inside,
-.habitButton-inside {
+.habitButton-inside,
+.goalButton-inside {
   background-color: transparent;
   border: none;
   outline: none;
@@ -808,7 +809,8 @@ home.ejs
   border-right: 3px solid #FF473A; }
 
 .adviceButton,
-.habitButton {
+.habitButton,
+.goalButton {
   width: 200px;
   height: 50px;
   background-color: #FF473A;
@@ -819,7 +821,8 @@ home.ejs
   justify-content: center;
   align-items: center; }
   .adviceButton input,
-  .habitButton input {
+  .habitButton input,
+  .goalButton input {
     color: white;
     font-size: 20px; }
 
@@ -857,9 +860,8 @@ sideBar animation
     padding: 0;
     border: none; }
 
-.animation-btn:active {
-  background-color: red;
-  border-color: none; }
+.animation-btn {
+  outline: none; }
 
 /*--------------------------------------------------------------
 goal.ejs
@@ -895,6 +897,13 @@ goal.ejs
   display: inline-block;
   text-align: left;
   margin: 20px 0 40px 0; }
+
+#image_0 {
+  background: url(../images/diet.png);
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%; }
 
 .site-header {
   width: 100%;

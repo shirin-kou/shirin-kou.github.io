@@ -109,6 +109,9 @@
   <p>
     <div id="name"></div>
   </p>
+  <div class="goalButton">
+    <a href="/goal/"><input class="goalButton-inside" type="button" value="goalを変更する"></a>
+  </div>
 </div>
 
   <!-- Footer -->
@@ -146,6 +149,9 @@
   };
 
   // ログイン確認
+  const pattern = '/login/'
+  const isLoginPage = !!location.href.match(pattern)
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
@@ -161,8 +167,12 @@
 
     } else {
       // No user is signed in.
-      // location.href = '/login/'
-      document.getElementById('state').innerText = 'ログインされていません';
+
+      if (!isLoginPage) {
+        location.href = '/login/'
+        document.getElementById('state').innerText = 'ログインされていません'
+
+      }
     }
   });
 
@@ -175,23 +185,40 @@
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
+
 </script>
 
 
 
 
 <script>
-  var newPostRef = firebase.database().ref();
 
-  //送信ボタンクリックでメッセージ送信
-  $("#goal_0").on("click", function () {
-    var image = $('#image_0').val();
-    localStorage.setItem("image", json_obj);
-  });
+  var btn = $("#image_0");
+  var form = $("#goalForm");
+  form.on('submit', check)
 
-  if (localStorage.getItem("image")) {
-    $("#image_0").val(image);
-  }
+  $("#image_0").on("click", function () {
+
+    $('.subTitle-goal').css('color', 'red');
+    // var user = firebase.auth().currentUser
+
+    // firebase.firestore().collection('user').doc(`${user.uid}`)
+    //   .set({
+    //     goal: {
+    //       'goal00': document.goalForm.goal0.value,
+    //       // 'goal01': document.goalForm.goal1.value,
+    //       // 'goal02': document.goalForm.goal2.value,
+    //       // 'goal03': document.goalForm.goal3.value,
+    //       // 'goal04': document.goalForm.goal4.value,
+    //       // 'goal05': document.goalForm.goal5.value,
+    //     }
+    //   }, { merge: true })
+
+    alert('こい！');
+
+    location.href = "/goal-2/"
+
+  })
 
 </script>
 

@@ -104,49 +104,49 @@
     <form name="form1" id="habit-form">
       <div class="radio">
         <div>Q1　普段どれくらい水分をとりますか？</div>
-        <input type="radio" name="radio00" class="radio00-input" id="radio00-01" value="よくとる">
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-01" value="1">
         <label for="radio00-01">よくとる</label>
-        <input type="radio" name="radio00" class="radio00-input" id="radio00-02" value="普通">
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-02" value="2">
         <label for="radio00-02">普通</label>
-        <input type="radio" name="radio00" class="radio00-input" id="radio00-03" value="あまり取らない">
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-03" value="3">
         <label for="radio00-03">あまり取らない</label>
       </div>
 
       <div class="radio">
         <div>Q2　どちらの方が好きですか？</div>
 
-        <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value="冷たいもの">
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value="1">
         <label for="radio01-01">冷たいもの</label>
-        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value="温かいもの">
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value="2">
         <label for="radio01-02">温かいもの</label>
       </div>
 
       <div class="radio">
         <div>Q3　普段の食事量はどれくらいですか？</div>
 
-        <input type="radio" name="radio02" class="radio02-input" id="radio02-01" value="普通">
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-01" value="1">
         <label for="radio02-01">普通</label>
-        <input type="radio" name="radio02" class="radio02-input" id="radio02-02" value="大食い">
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-02" value="2">
         <label for="radio02-02">大食い</label>
-        <input type="radio" name="radio02" class="radio02-input" id="radio02-03" value="少食">
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-03" value="3">
         <label for="radio02-03">少食</label>
       </div>
 
       <div class="radio">
         <div>Q4　普段お酒はどれくらい飲みますか？</div>
 
-        <input type="radio" name="radio03" class="radio03-input" id="radio03-01" value="ほとんど毎日">
+        <input type="radio" name="radio03" class="radio03-input" id="radio03-01" value="1">
         <label for="radio03-01">ほとんど毎日</label>
-        <input type="radio" name="radio03" class="radio03-input" id="radio03-02" value="たまに飲む">
+        <input type="radio" name="radio03" class="radio03-input" id="radio03-02" value="2">
         <label for="radio03-02">たまに飲む</label>
       </div>
 
       <div class="radio">
         <div>Q5　タバコは吸いますか？</div>
 
-        <input type="radio" name="radio04" class="radio04-input" id="radio04-01" value="吸わない">
+        <input type="radio" name="radio04" class="radio04-input" id="radio04-01" value="1">
         <label for="radio04-01">吸わない</label>
-        <input type="radio" name="radio04" class="radio04-input" id="radio04-02" value="現在吸っている">
+        <input type="radio" name="radio04" class="radio04-input" id="radio04-02" value="2">
         <label for="radio04-02">現在吸っている</label>
       </div>
 
@@ -192,6 +192,9 @@
   };
 
   // ログイン確認
+  const pattern = '/login/'
+  const isLoginPage = !!location.href.match(pattern)
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
@@ -207,8 +210,12 @@
 
     } else {
       // No user is signed in.
-      // location.href = '/login/'
-      document.getElementById('state').innerText = 'ログインされていません';
+
+      if (!isLoginPage) {
+        location.href = '/login/'
+        document.getElementById('state').innerText = 'ログインされていません'
+
+      }
     }
   });
 
@@ -221,6 +228,7 @@
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
+
 </script>
 
 
@@ -249,14 +257,13 @@
 
       await firebase.firestore().collection('user').doc(`${user.uid}`)
         .set({
-          'water': 'ho',
-          'temp': 'tt',
-          'meal': 'mm',
-          'alcohol': 'aa',
-          'tobacco': 'tt',
-          'sloth': 'cute',
-          'hige': 'Good',
-          'ken': 'ken'
+          habit: {
+            'radio00': document.form1.radio00.value,
+            'radio01': document.form1.radio01.value,
+            'radio02': document.form1.radio02.value,
+            'radio03': document.form1.radio03.value,
+            'radio04': document.form1.radio04.value,
+          }
         }, { merge: true })
 
       location.href = "/"
@@ -268,23 +275,9 @@
       //無効にする
       btn.disabled = "true";
 
-
-
     }
 
   }
-
-  let radios = document.forms.mainForm.sample
-
-  // radioのchecked配列
-  let isCheckedRadios = []
-  for (let i = 0; i < radios.length; i++) {
-    isCheckedRadios.push(radios[i].checked)
-  }
-
-  const isCheckedRadio = isCheckedRadios.every(function (target) {
-    return target.checked
-  })
 
 </script>
 

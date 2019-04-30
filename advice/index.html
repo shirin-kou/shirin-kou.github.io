@@ -145,6 +145,9 @@
   };
 
   // ログイン確認
+  const pattern = '/login/'
+  const isLoginPage = !!location.href.match(pattern)
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
@@ -160,8 +163,12 @@
 
     } else {
       // No user is signed in.
-      // location.href = '/login/'
-      document.getElementById('state').innerText = 'ログインされていません';
+
+      if (!isLoginPage) {
+        location.href = '/login/'
+        document.getElementById('state').innerText = 'ログインされていません'
+
+      }
     }
   });
 
@@ -174,6 +181,7 @@
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
+
 </script>
 
 
