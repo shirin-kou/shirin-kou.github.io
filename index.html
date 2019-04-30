@@ -152,7 +152,7 @@
           <a href="/login/"><input id="logoutButton" class="logoutButton" type="button" value="Log-out" onclick="signOut()"></a>
         </li>
       </ul>
-      <button><img src="alt="""></button>
+      <button class="animation-btn"><img src="alt="""></button>
     </aside>
   </div>
 
@@ -252,13 +252,13 @@
   //   });
   // };
 
-  // ＊sideBar animation
+  // ＊SideBar animation
   $(function () {
     var duration = 500;
 
     //aside
     var $aside = $('.page-main > aside');
-    var $asidButton = $aside.find('button').on('mouseover', function () {
+    var $asidButton = $aside.find('button').on('click', function () {
       $aside.toggleClass('open');
       if ($aside.hasClass('open')) {
         $aside.stop(true).animate({

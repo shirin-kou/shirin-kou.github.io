@@ -271,7 +271,21 @@
 
 
     }
+
   }
+
+  let radios = document.forms.mainForm.sample
+
+  // radioのchecked配列
+  let isCheckedRadios = []
+  for (let i = 0; i < radios.length; i++) {
+    isCheckedRadios.push(radios[i].checked)
+  }
+
+  const isCheckedRadio = isCheckedRadios.every(function (target) {
+    return target.checked
+  })
+
 </script>
 
 
