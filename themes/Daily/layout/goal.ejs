@@ -1,38 +1,38 @@
-<!-- HTML -->
 <div class="content-area">
-    <h2><%= page.subTitle %></h2>
+  <h1><%= page.title %></h1>
+  <h1 class="subTitle-goal"><%= page.subTitle %></h1>
+
+  <form name="goalForm" id="goalForm">
 
     <table id="goal">
-        <tr>
-            <td id="goal_0">
-                <input type="image" src=<%= page.goalImg_0 %> value=<%= page.goal_0 %>
-                    height="100px"><br><%= page.goal_0 %>
-            </td>
-            <td id="goal_1">
-                <input type="image" src=<%= page.goalImg_1 %> value=<%= page.goal_1 %>
-                    height="100px"><br><%= page.goal_1 %>
-            </td>
-        </tr>
-        <tr>
-            <td id="goal_3">
-                <input type="image" src=<%= page.goalImg_3 %> value=<%= page.goal_3 %>
-                    height="100px"><br><%= page.goal_3 %>
-            </td>
-            <td id="goal_3">
-                <input type="image" src=<%= page.goalImg_3 %> value=<%= page.goal_3 %>
-                    height="100px"><br><%= page.goal_3 %>
-            </td>
-        </tr>
-        <tr>
-            <td id="goal_4">
-                <input type="image" src=<%= page.goalImg_4 %> value=<%= page.goal_4 %>
-                    height="100px"><br><%= page.goal_4 %>
-            </td>
-            <td id="goal_5">
-                <input type="image" src=<%= page.goalImg_5 %> value=<%= page.goal_5 %>
-                    height="100px"><br><%= page.goal_5 %>
-            </td>
-        </tr>
+      <tr>
+        <td id="goal_0">
+          <input id="image_0" type="submit" name="goal0" value="1"><br><%= page.goal[0] %>
+        </td>
+        <td id="goal_1">
+          <input id="image_1" type="image" name="goal1" src=<%= page.goalImg_1 %> value="2"><br><%= page.goal[1] %>
+        </td>
+        <td id="goal_3">
+          <input id="image_2" type="image" name="goal2" src=<%= page.goalImg_3 %> value="3"
+            height="120px"><br><%= page.goal[2] %>
+        </td>
+      </tr>
+      <tr>
+        <td id="goal_3">
+          <input id="image_3" type="image" name="goal3" src=<%= page.goalImg_3 %> value="4"
+            height="120px"><br><%= page.goal[3] %>
+        </td>
+
+        <td id="goal_4">
+          <input id="image_4" type="image" name="goal4" src=<%= page.goalImg_4 %> value="5"
+            height="120px"><br><%= page.goal[4] %>
+        </td>
+        <td id="goal_5">
+          <input id="image_5" type="image" name="goal5" src=<%= page.goalImg_5 %> value="6"
+            height="120px"><br><%= page.goal[5] %>
+        </td>
+      </tr>
     </table>
+  </form>
 
 </div>

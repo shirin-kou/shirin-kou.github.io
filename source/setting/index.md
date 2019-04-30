@@ -3,7 +3,7 @@ title: Setting
 layout: setting
 link: /
 linkTitle1: Goal
-linkTitle2: habit
+linkTitle2: Habit
 linkTitle3: Log-out
 link1: /goal/
 link2: /habit/

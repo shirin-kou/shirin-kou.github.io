@@ -1,37 +1,60 @@
 <!-- change/firebase -->
 <% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
 
-
 <!-- HTML -->
 <div class="content-area">
-    <div class="content-area-home">
-        <div>
-            <h1><%= page.subTitle_0 %></h1>
-            <img src="/images/wave.png" alt="" height="150">
-            <p><%= page.feature %></p>
-            <p><%= page.measureTime %></p>
-        </div>
+  <div class="content-area-home">
+    <div>
+      <h1><%= page.subTitle_0 %></h1>
+      <img src="/images/wave.png" alt="" height="150">
+      <p><%= page.feature %></p>
+      <p><%= page.measureTime %></p>
     </div>
+  </div>
 
-    <div class="content-area-home-2">
-        <div class="checkbox01">
-            <h2><%= page.subTitle_1 %></h2>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[0] %>>
-                <div class="checkbox01-parts"><%= checkList[0] %></div>
-            </label>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[1] %>>
-                <div class="checkbox01-parts"><%= checkList[1] %></div>
-            </label>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[2] %>>
-                <div class="checkbox01-parts"><%= checkList[2] %></div>
-            </label>
-        </div>
-        <div class="adviceButton">
-            <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
-        </div>
+  <div class="content-area-home-2">
+    <div class="checkbox01">
+      <h1><%= page.subTitle_1 %></h1>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[0] %>>
+        <div class="checkbox01-parts"><%= checkList[0] %></div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[1] %>>
+        <div class="checkbox01-parts"><%= checkList[1] %></div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[2] %>>
+        <div class="checkbox01-parts"><%= checkList[2] %></div>
+      </label>
     </div>
+    <div class="adviceButton">
+      <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <aside>
+      <ul>
+        <li>
+          <img id="img" src="" alt="" height="100px">
+        </li>
+        <li>
+          <p id="googleDisplayName"></p>
+        </li>
+        <li>
+          <a href=<%= page.link[0] %>><%= page.linkTitle[0] %></a>
+        </li>
+        <li>
+          <a href=<%= page.link[1] %>><%= page.linkTitle[1] %></a>
+        </li>
+        <li>
+          <a href=<%= page.link[2] %>><input id="logoutButton" class="logoutButton" type="button"
+              value=<%= page.linkTitle[2] %> onclick="signOut()" /></a>
+        </li>
+      </ul>
+      <button class="animation-btn"><img src=<%= page.image %> alt=""></button>
+    </aside>
+  </div>
 
 </div>

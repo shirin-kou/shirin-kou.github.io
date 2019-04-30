@@ -1,0 +1,45 @@
+<script>
+  //＊user毎にコレクション作成
+  // const onSuccess = (user) => {
+
+  //   firebase.firestore().collection('user').doc(`${user.uid}`)
+  //     .set({
+  //       uid: user.uid,
+  //       name,
+  //     })
+
+  //   user.updateProfile({ displayName: name });
+
+  //   console.log('userName', user);
+
+  //   firebase.analytics().logEvent('sign_up', {
+  //     sign_up_method: 'google',
+
+  //   });
+  // };
+
+  // ＊SideBar animation
+  $(function () {
+    var duration = 500;
+
+    //aside
+    var $aside = $('.page-main > aside');
+    var $asidButton = $aside.find('button').on('click', function () {
+      $aside.toggleClass('open');
+      if ($aside.hasClass('open')) {
+        $aside.stop(true).animate({
+          left: '-70px'
+        }, duration, 'easeOutBack');
+        $asidButton.find('img')
+          .attr('src', '<%= page.image1 %>');
+      } else {
+        $aside.stop(true).animate({
+          left: '-500px'
+        }, duration, 'easeInBack');
+        $asidButton.find('img')
+          .attr('src', '<%= page.image2 %>');
+      };
+    });
+  });
+
+</script>

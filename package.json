@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "hexo generate",
-    "start": "hexo s"
+    "start": "hexo s",
+    "lint": "prettier ./themes/**/*.ejs"
   },
   "hexo": {
     "version": "3.8.0"
@@ -25,5 +26,8 @@
     "hexo-renderer-sass": "^0.4.0",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.0"
   }
 }

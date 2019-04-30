@@ -44,22 +44,19 @@
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
-
-
-
 </head>
 
 <body>
 
   <!-- Nav -->
-  <header class="site-header">
+  <!-- <header class="site-header">
   <div class="header-inside">
 
-    <!-- Navigation -->
+    Navigation
     <nav class="navbar">
       <ul>
         <li>
-          <a href="/setting/"><img src="/images/icons8-menu.png"></a>
+          <a href=/goal/,/habit/,/login/><img src=></a>
         </li>
         <li class="navbar_title">
           <h1>Home</h1>
@@ -71,44 +68,93 @@
     </nav>
 
   </div>
-</header>
+</header> -->
+
+<!-- <script>
+  // ＊sideBar animation
+  $(function () {
+    var duration = 300;
+
+    //aside
+    var $aside = $('.page-main > aside');
+    var $asidButton = $aside.find('button').on('click', function () {
+      $aside.toggleClass('open');
+      if ($aside.hasClass('open')) {
+        $aside.stop(true).animate({
+          left: '-70px'
+        }, duration, 'easeOutBack');
+        $asidButton.find('img')
+          .attr('src', '');
+      } else {
+        $aside.stop(true).animate({
+          left: '-350px'
+        }, duration, 'easeInBack');
+        $asidButton.find('img')
+          .attr('src', '/images/open.png');
+      };
+    });
+  });
+
+</script> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <!-- change/firebase -->
 
 
-
 <!-- HTML -->
 <div class="content-area">
-    <div class="content-area-home">
-        <div>
-            <h1>今日の波形</h1>
-            <img src="/images/wave.png" alt height="150">
-            <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
-            <p>測定時間</p>
-        </div>
+  <div class="content-area-home">
+    <div>
+      <h1>今日の波形</h1>
+      <img src="/images/wave.png" alt height="150">
+      <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
+      <p>測定時間</p>
     </div>
+  </div>
 
-    <div class="content-area-home-2">
-        <div class="checkbox01">
-            <h2>このような状態ではありませんか？該当する状態にチェックを入れてください。</h2>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）">
-                <div class="checkbox01-parts">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）</div>
-            </label>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問２（ex.夜遅くに油っこい食事を摂っていませんか？）">
-                <div class="checkbox01-parts">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）</div>
-            </label>
-            <label>
-                <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）">
-                <div class="checkbox01-parts">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）</div>
-            </label>
-        </div>
-        <div class="adviceButton">
-            <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
-        </div>
+  <div class="content-area-home-2">
+    <div class="checkbox01">
+      <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）">
+        <div class="checkbox01-parts">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）</div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問２（ex.夜遅くに油っこい食事を摂っていませんか？）">
+        <div class="checkbox01-parts">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）</div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）">
+        <div class="checkbox01-parts">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）</div>
+      </label>
     </div>
+    <div class="adviceButton">
+      <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
+    </div>
+  </div>
+
+  <div class="page-main">
+    <aside>
+      <ul>
+        <li>
+          <img id="img" src alt height="100px">
+        </li>
+        <li>
+          <p id="googleDisplayName"></p>
+        </li>
+        <li>
+          <a href="/goal/">Goal</a>
+        </li>
+        <li>
+          <a href="/habit/">Habit</a>
+        </li>
+        <li>
+          <a href="/login/"><input id="logoutButton" class="logoutButton" type="button" value="Log-out" onclick="signOut()"></a>
+        </li>
+      </ul>
+      <button class="animation-btn"><img src="alt="""></button>
+    </aside>
+  </div>
 
 </div>
 
@@ -118,8 +164,9 @@
 
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
   // Firebaseの初期化
   var config = {
@@ -133,61 +180,7 @@
   firebase.initializeApp(config);
 </script>
 
-
-
-<script src="firebase-auth.js"></script>
-
 <script>
-  var provider = new firebase.auth.GoogleAuthProvider();
-
-  window.onload = function () {
-
-    // FirebaseUIインスタンス初期化
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-    // ui.start('#firebaseui-auth-container', {
-
-    //   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    //   signInFlow: 'popup',
-    //   signInOptions: [
-    //     //利用する認証機能
-    //     {
-    //       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    //       signInMethod: firebase.auth.GoogleAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-    //       forceSameDevice: false
-    //     }
-    //   ],
-    //   signInSuccessUrl: '/',
-    //   // Other config options...
-    // });
-
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-          // User successfully signed in.
-          // Return type determines whether we continue the redirect automatically
-          // or whether we leave that to developer to handle.
-          return true;
-        },
-        uiShown: function () {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById('loader').style.display = 'none';
-        }
-      },
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInOptions: [
-        //利用する認証機能
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
-      ],
-      signInSuccessUrl: '/',
-    };
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-
-  };
-
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
@@ -196,36 +189,41 @@
     email = user.email;
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
-    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    user.providerData.forEach(function (profile) {
-      console.log("Sign-in provider: " + profile.providerId);
-      console.log("  Provider-specific UID: " + profile.uid);
-      console.log("  Name: " + profile.displayName);
-      console.log("  Email: " + profile.email);
-      console.log("  Photo URL: " + profile.photoURL);
-    });
-  }
+    uid = user.uid;
+  };
 
   // ログイン確認
+  const pattern = '/login/'
+  const isLoginPage = !!location.href.match(pattern)
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('state').innerText = 'Sign in By ' + user.displayName;
       document.getElementById('googleDisplayName').innerText = user.displayName;
       document.getElementById('img').src = user.photoURL;
+
+      firebase.firestore().collection('user').doc(`${user.uid}`)
+        .set({
+          uid: user.uid,
+          name: user.displayName,
+        }, { merge: true })
+
     } else {
       // No user is signed in.
-      document.getElementById('state').innerText = 'ログインされていません';
+
+      if (!isLoginPage) {
+        location.href = '/login/'
+        document.getElementById('state').innerText = 'ログインされていません'
+
+      }
     }
   });
 
   // ログアウト
   function signOut() {
     firebase.auth().signOut().then(function () {
-      document.getElementById('log').innerText = 'ログアウトしました';
+      alert('ログアウトしました');
     }).catch(function (error) {
       console.log(error);
       document.getElementById('log').innerText = 'ログアウト失敗';
@@ -239,6 +237,54 @@
 
 
 
+
+
+
+<script>
+  //＊user毎にコレクション作成
+  // const onSuccess = (user) => {
+
+  //   firebase.firestore().collection('user').doc(`${user.uid}`)
+  //     .set({
+  //       uid: user.uid,
+  //       name,
+  //     })
+
+  //   user.updateProfile({ displayName: name });
+
+  //   console.log('userName', user);
+
+  //   firebase.analytics().logEvent('sign_up', {
+  //     sign_up_method: 'google',
+
+  //   });
+  // };
+
+  // ＊SideBar animation
+  $(function () {
+    var duration = 500;
+
+    //aside
+    var $aside = $('.page-main > aside');
+    var $asidButton = $aside.find('button').on('click', function () {
+      $aside.toggleClass('open');
+      if ($aside.hasClass('open')) {
+        $aside.stop(true).animate({
+          left: '-70px'
+        }, duration, 'easeOutBack');
+        $asidButton.find('img')
+          .attr('src', '/images/close.png');
+      } else {
+        $aside.stop(true).animate({
+          left: '-500px'
+        }, duration, 'easeInBack');
+        $asidButton.find('img')
+          .attr('src', '/images/open.png');
+      };
+    });
+  });
+
+</script>
 
 
 </body>

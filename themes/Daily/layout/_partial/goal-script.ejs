@@ -1,0 +1,30 @@
+<script>
+
+  var btn = $("#image_0");
+  var form = $("#goalForm");
+  form.on('submit', check)
+
+  $("#image_0").on("click", function () {
+
+    $('.subTitle-goal').css('color', 'red');
+    // var user = firebase.auth().currentUser
+
+    // firebase.firestore().collection('user').doc(`${user.uid}`)
+    //   .set({
+    //     goal: {
+    //       'goal00': document.goalForm.goal0.value,
+    //       // 'goal01': document.goalForm.goal1.value,
+    //       // 'goal02': document.goalForm.goal2.value,
+    //       // 'goal03': document.goalForm.goal3.value,
+    //       // 'goal04': document.goalForm.goal4.value,
+    //       // 'goal05': document.goalForm.goal5.value,
+    //     }
+    //   }, { merge: true })
+
+    alert('こい！');
+
+    location.href = "/goal-2/"
+
+  })
+
+</script>
