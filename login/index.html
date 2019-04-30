@@ -40,22 +40,19 @@
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
-
-
-
 </head>
 
 <body>
 
   <!-- Nav -->
-  <header class="site-header">
+  <!-- <header class="site-header">
   <div class="header-inside">
 
-    <!-- Navigation -->
+    Navigation
     <nav class="navbar">
       <ul>
         <li>
-          <a href><img src></a>
+          <a href=><img src=></a>
         </li>
         <li class="navbar_title">
           <h1>Welcome to Myakushin App</h1>
@@ -67,27 +64,52 @@
     </nav>
 
   </div>
-</header>
+</header> -->
+
+<!-- <script>
+  // ＊sideBar animation
+  $(function () {
+    var duration = 300;
+
+    //aside
+    var $aside = $('.page-main > aside');
+    var $asidButton = $aside.find('button').on('click', function () {
+      $aside.toggleClass('open');
+      if ($aside.hasClass('open')) {
+        $aside.stop(true).animate({
+          left: '-70px'
+        }, duration, 'easeOutBack');
+        $asidButton.find('img')
+          .attr('src', '');
+      } else {
+        $aside.stop(true).animate({
+          left: '-350px'
+        }, duration, 'easeInBack');
+        $asidButton.find('img')
+          .attr('src', '');
+      };
+    });
+  });
+
+</script> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area-login">
-    <div class="subTitle">
-        <!-- The surrounding HTML is left untouched by FirebaseUI.
+  <div class="subTitle">
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
              Your app may use that space for branding, controls and other customizations.-->
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
-        <p id="log"></p>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+    <p id="log"></p>
 
-        <div id="GoogleProfile">
-            <img id="img" src alt height="50px">
+    <div id="GoogleProfile">
+      <img id="img" src alt height="50px">
 
-            <p id="state"></p>
-        </div>
-        <div class="logoutButton-loginPage">
-            <a href="/login/"><input id="logoutButton" class="logoutButton-loginPage-inside" type="button" value="Log-out" onclick="signOut()"></a>
-        </div>
-
+      <p id="state"></p>
+      <p id="uid"></p>
     </div>
+
+  </div>
 </div>
 
   <!-- Footer -->
@@ -96,8 +118,9 @@
 
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
   // Firebaseの初期化
   var config = {
@@ -111,14 +134,56 @@
   firebase.initializeApp(config);
 </script>
 
+<script>
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
+
+  if (user != null) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;
+  };
+
+  // ログイン確認
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // ログイン認証済
+      console.log('auth user', user);
+      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('img').src = user.photoURL;
+
+      firebase.firestore().collection('user').doc(`${user.uid}`)
+        .set({
+          uid: user.uid,
+          name,
+        }, { merge: true })
+
+    } else {
+      // No user is signed in.
+      // location.href = '/login/'
+      document.getElementById('state').innerText = 'ログインされていません';
+    }
+  });
+
+  // ログアウト
+  function signOut() {
+    firebase.auth().signOut().then(function () {
+      alert('ログアウトしました');
+    }).catch(function (error) {
+      console.log(error);
+      document.getElementById('log').innerText = 'ログアウト失敗';
+    });
+  }
+</script>
 
 
-<script src="firebase-auth.js"></script>
-
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
   var provider = new firebase.auth.GoogleAuthProvider();
 
-  window.onload = function () {
+  $(function () {
 
     // FirebaseUIインスタンス初期化
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -154,48 +219,9 @@
     // // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
-  };
-
-  var user = firebase.auth().currentUser;
-  var name, email, photoUrl, uid, emailVerified;
-
-  if (user != null) {
-    name = user.displayName;
-    email = user.email;
-    photoUrl = user.photoURL;
-    emailVerified = user.emailVerified;
-    uid = user.uid;
-  };
-
-
-  // ログイン確認
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      // ログイン認証済
-      console.log('auth user', user);
-      document.getElementById('state').innerText = 'Sign in By ' + user.displayName;
-      document.getElementById('googleDisplayName').innerText = user.displayName;
-      document.getElementById('img').src = user.photoURL;
-    } else {
-      // No user is signed in.
-      document.getElementById('state').innerText = 'ログインされていません';
-      // location.href = '/login/';
-    }
   });
-
-  // ログアウト
-  function signOut() {
-    firebase.auth().signOut().then(function () {
-      alert('ログアウトしました');
-      // document.getElementById('log').innerText = 'ログアウトしました';
-    }).catch(function (error) {
-      console.log(error);
-      document.getElementById('log').innerText = 'ログアウト失敗';
-    });
-  }
-
-
 </script>
+
 
 
 

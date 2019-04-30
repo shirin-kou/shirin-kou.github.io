@@ -40,22 +40,19 @@
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
-
-
-
 </head>
 
 <body>
 
   <!-- Nav -->
-  <header class="site-header">
+  <!-- <header class="site-header">
   <div class="header-inside">
 
-    <!-- Navigation -->
+    Navigation
     <nav class="navbar">
       <ul>
         <li>
-          <a href="/setting/"><img src="/images/icons8-back.png"></a>
+          <a href=/setting/><img src=/images/icons8-back.png></a>
         </li>
         <li class="navbar_title">
           <h1>Habit</h1>
@@ -67,78 +64,97 @@
     </nav>
 
   </div>
-</header>
+</header> -->
+
+<!-- <script>
+  // ＊sideBar animation
+  $(function () {
+    var duration = 300;
+
+    //aside
+    var $aside = $('.page-main > aside');
+    var $asidButton = $aside.find('button').on('click', function () {
+      $aside.toggleClass('open');
+      if ($aside.hasClass('open')) {
+        $aside.stop(true).animate({
+          left: '-70px'
+        }, duration, 'easeOutBack');
+        $asidButton.find('img')
+          .attr('src', '/images/icons8-back.png');
+      } else {
+        $aside.stop(true).animate({
+          left: '-350px'
+        }, duration, 'easeInBack');
+        $asidButton.find('img')
+          .attr('src', '');
+      };
+    });
+  });
+
+</script> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   
 
-
-
-
-
-
-
-
 <!-- HTML -->
 <div class="content-area">
-    <div class="habit-area">
-        <h2>あなたのことについて教えてください</h2>
+  <div class="habit-area">
+    <h1>Habit</h1>
+    <h2>あなたのことについて教えてください</h2>
+    <form name="form1" id="habit-form">
+      <div class="radio">
+        <div>Q1　普段どれくらい水分をとりますか？</div>
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-01" value="よくとる">
+        <label for="radio00-01">よくとる</label>
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-02" value="普通">
+        <label for="radio00-02">普通</label>
+        <input type="radio" name="radio00" class="radio00-input" id="radio00-03" value="あまり取らない">
+        <label for="radio00-03">あまり取らない</label>
+      </div>
 
-        <div class="radio">
-            <div>Q1　普段どれくらい水分をとりますか？</div>
-            <input type="radio" name="radio00" class="radio00-input" id="radio00-01" value="よくとる">
-            <label for="radio00-01">よくとる</label>
-            <input type="radio" name="radio00" class="radio00-input" id="radio00-02">
-            <label for="radio00-02">普通</label>
-            <input type="radio" name="radio00" class="radio00-input" id="radio00-03">
-            <label for="radio00-03">あまり取らない</label>
-        </div>
+      <div class="radio">
+        <div>Q2　どちらの方が好きですか？</div>
 
-        <div class="radio">
-            <div>Q2　どちらの方が好きですか？</div>
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value="冷たいもの">
+        <label for="radio01-01">冷たいもの</label>
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value="温かいもの">
+        <label for="radio01-02">温かいもの</label>
+      </div>
 
-            <input type="radio" name="radio01" class="radio01-input" id="radio01-01">
-            <label for="radio01-01">冷たいもの</label>
-            <input type="radio" name="radio01" class="radio01-input" id="radio01-02">
-            <label for="radio01-02">温かいもの</label>
-        </div>
+      <div class="radio">
+        <div>Q3　普段の食事量はどれくらいですか？</div>
 
-        <div class="radio">
-            <div>Q3　普段の食事量はどれくらいですか？</div>
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-01" value="普通">
+        <label for="radio02-01">普通</label>
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-02" value="大食い">
+        <label for="radio02-02">大食い</label>
+        <input type="radio" name="radio02" class="radio02-input" id="radio02-03" value="少食">
+        <label for="radio02-03">少食</label>
+      </div>
 
-            <input type="radio" name="radio02" class="radio02-input" id="radio02-01">
-            <label for="radio02-01">普通</label>
-            <input type="radio" name="radio02" class="radio02-input" id="radio02-02">
-            <label for="radio02-02">大食い</label>
-            <input type="radio" name="radio02" class="radio02-input" id="radio02-03">
-            <label for="radio02-03">少食</label>
-        </div>
+      <div class="radio">
+        <div>Q4　普段お酒はどれくらい飲みますか？</div>
 
-        <div class="radio">
-            <div>Q4　普段お酒はどれくらい飲みますか？</div>
+        <input type="radio" name="radio03" class="radio03-input" id="radio03-01" value="ほとんど毎日">
+        <label for="radio03-01">ほとんど毎日</label>
+        <input type="radio" name="radio03" class="radio03-input" id="radio03-02" value="たまに飲む">
+        <label for="radio03-02">たまに飲む</label>
+      </div>
 
-            <input type="radio" name="radio03" class="radio03-input" id="radio03-01">
-            <label for="radio03-01">ほとんど毎日</label>
-            <input type="radio" name="radio03" class="radio03-input" id="radio03-02">
-            <label for="radio03-02">たまに飲む</label>
-        </div>
+      <div class="radio">
+        <div>Q5　タバコは吸いますか？</div>
 
-        <div class="radio">
-            <div>Q5　タバコは吸いますか？</div>
+        <input type="radio" name="radio04" class="radio04-input" id="radio04-01" value="吸わない">
+        <label for="radio04-01">吸わない</label>
+        <input type="radio" name="radio04" class="radio04-input" id="radio04-02" value="現在吸っている">
+        <label for="radio04-02">現在吸っている</label>
+      </div>
 
-            <input type="radio" name="radio04" class="radio04-input" id="radio04-01">
-            <label for="radio04-01">吸わない</label>
-            <input type="radio" name="radio04" class="radio04-input" id="radio04-02">
-            <label for="radio04-02">現在吸っている</label>
-        </div>
-
-        <div class="habitButton">
-            <!-- ＊HOMEに戻らなくなった -->
-            <a href="/"><input id="habitButton-inside" class="habitButton-inside" type="submit" value="登録"></a>
-        </div>
-
-    </div>
-
+      <div class="habitButton">
+        <input id="habitButton-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      </div>
+    </form>
+  </div>
 </div>
 
   <!-- Footer -->
@@ -147,8 +163,9 @@
 
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
   // Firebaseの初期化
   var config = {
@@ -162,7 +179,49 @@
   firebase.initializeApp(config);
 </script>
 
+<script>
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
 
+  if (user != null) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;
+  };
+
+  // ログイン確認
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // ログイン認証済
+      console.log('auth user', user);
+      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('img').src = user.photoURL;
+
+      firebase.firestore().collection('user').doc(`${user.uid}`)
+        .set({
+          uid: user.uid,
+          name,
+        }, { merge: true })
+
+    } else {
+      // No user is signed in.
+      // location.href = '/login/'
+      document.getElementById('state').innerText = 'ログインされていません';
+    }
+  });
+
+  // ログアウト
+  function signOut() {
+    firebase.auth().signOut().then(function () {
+      alert('ログアウトしました');
+    }).catch(function (error) {
+      console.log(error);
+      document.getElementById('log').innerText = 'ログアウト失敗';
+    });
+  }
+</script>
 
 
 
@@ -172,22 +231,48 @@
 
 <script>
 
-  function check() {
-    if (document.form1.radio00.length) { // 選択肢が複数ある場合
-      var i;
-      for (i = 0; (i < document.form1.radio00.length) && (i < document.form1.radio01.length) && (i < document.form1.radio02.length) && (i < document.form1.radio03.length) && (i < document.form1.radio04.length); i++) {
-        if ((document.form1.radio00[i].checked) && (document.form1.radio01[i].checked) && (document.form1.radio02[i].checked) && (document.form1.radio03[i].checked) && (document.form1.radio04[i].checked)) {
-          alert("OK!!!");
-          return false;
-        }
-      }
-      alert("NO!!!");
-      return false;
+  var btn = $("#habitButton-inside");
+  var form = $("#habit-form");
+  form.on('submit', check)
+
+  // 各radioにvalueが入っているかcheck
+  function check(e) {
+    e.preventDefault()
+    if ((document.form1.radio00.value) && (document.form1.radio01.value) && (document.form1.radio02.value) &&
+      (document.form1.radio03.value) && (document.form1.radio04.value)) {
+
+      //有効にする
+      btn.disabled = "false";
+      alert("登録しました！あなたの習慣に合わせたアドバイスをします。");
+
+
+      location.href = "/"
+
+    } else {
+
+      alert("※未選択の質問があります。");
+
+
+      var user = firebase.auth().currentUser
+      firebase.firestore().collection('user').doc(`${user.uid}`)
+        .set({
+          'water': 'hohohohohod',
+          'temp': 'tt',
+          'meal': 'mm',
+          'alcohol': 'aa',
+          'tobacco': 'tt',
+          'sloth': 'cute',
+          'hige': 'Good'
+        }, { merge: true })
+
+      //無効にする
+      btn.disabled = "true";
+
     }
   }
-
-
 </script>
+
+
 
 
 </body>
