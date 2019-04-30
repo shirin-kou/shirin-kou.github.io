@@ -203,7 +203,7 @@
       firebase.firestore().collection('user').doc(`${user.uid}`)
         .set({
           uid: user.uid,
-          name,
+          name: user.displayName,
         }, { merge: true })
 
     } else {
