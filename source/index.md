@@ -9,6 +9,6 @@ measureTime: 測定時間
 firebase_home: true
 linkTitle: ['Goal','Habit','Log-out']
 link: ['/goal/','/habit/','/login/']
-image1: /images/close.png
-image2: /images/open.png
+image1: /images/icons8-delete.png
+image2: /images/icons8-menu.png
 ---

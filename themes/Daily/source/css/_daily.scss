@@ -574,30 +574,49 @@ habit.ejs
 }
 
 /*--------------------------------------------------------------
+habit-2.ejs
+--------------------------------------------------------------*/
+// .habit2{
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+//   p{
+//   display: inline-block;
+//   }
+// }
+
+.habit-table{
+    // width: 50px
+  .habit2{
+    height: 50px;
+    width: 10px;
+  }
+}
+
+/*--------------------------------------------------------------
 home.ejs
 --------------------------------------------------------------*/
-.content-area-home{
+.content-area-home {
   text-align: center;
 }
-.content-area-home-2{
+.content-area-home-2 {
   margin: 0 auto;
   display: inline-block;
   text-align: left;
   position: relative;
 }
-.checkbox01{
+.checkbox01 {
   margin-bottom: 30px;
 }
-.checkbox01-input{
+.checkbox01-input {
   display: none;
 }
-.checkbox01-parts{
+.checkbox01-parts {
   padding-left: 20px;
   position:relative;
   margin-right: 20px;
   display: inline-block;
 }
-.checkbox01-parts::before{
+.checkbox01-parts::before {
   content: "";
   display: block;
   position: absolute;
@@ -608,10 +627,10 @@ home.ejs
   border: 1px solid #999;
   border-radius: 4px;
 }
-.checkbox01-input:checked + .checkbox01-parts{
+.checkbox01-input:checked + .checkbox01-parts {
   color: $color-main;
 }
-.checkbox01-input:checked + .checkbox01-parts::after{
+.checkbox01-input:checked + .checkbox01-parts::after {
   content: "";
   display: block;
   position: absolute;
@@ -625,7 +644,7 @@ home.ejs
 }
 .adviceButton,
 .habitButton,
-.goalButton{
+.goalButton {
   width: 200px;
 	height: 50px;
   background-color: $color-main;
@@ -635,11 +654,16 @@ home.ejs
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;	
-  input{
+  input {
     color: white;
     font-size:20px;
   }
 }
+
+.img {
+  height: 300px;
+}
+
 
 /*--------------------------------------------------------------
 sideBar animation
@@ -651,10 +675,23 @@ sideBar animation
   top:0;
   left: -500px;
   position: fixed;
+  div{
+    margin:0;
+    padding: 0;
+    top:30px;
+    left:124px;
+    position: absolute;
+    margin: 0 0 20px;
+    list-style: none;
+    height: 50px;
+    font-size:150%;
+    color: white;
+    text-align: left;
+  }
   ul{
     margin:0;
     padding: 0;
-    top:50px;
+    top:250px;
     left:114px;
     position: absolute;
   }
@@ -663,23 +700,20 @@ sideBar animation
     list-style: none;
     height: 50px;
     font-size:150%;
-    color: white;
     text-align: left;
   }
   button{
-    // background-color: $color-main;
     display: block;
     position: absolute;
-    top:150px;
+    top:0;
     left:500px;
-    width: 52px;
-    height: 132px;
+    width: 75px;
+    height: 100px;
     margin: 0;
     padding: 0;
     border: none;
+    background-color: none;
   }
-  
-
 }
 .animation-btn {
   outline: none;
@@ -692,12 +726,12 @@ goal.ejs
   padding-top: $header-height;
   margin: 0 auto;
   display: inline-block;
-  #goal_0,
-  #goal_1,
-  #goal_2,
-  #goal_3,
-  #goal_4,
-  #goal_5{
+  .goal_0,
+  .goal_1,
+  .goal_2,
+  .goal_3,
+  .goal_4,
+  .goal_5{
     display: inline-block;
     text-align: left;
     height: 250px;

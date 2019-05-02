@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Setting">
+  <meta property="og:title" content="Habit result">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Setting - Myakushin</title>
+  <title>Habit result - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -52,10 +52,10 @@
     <nav class="navbar">
       <ul>
         <li>
-          <a href=/><img src=/images/icons8-delete_sign.png></a>
+          <a href=/habit/><img src=></a>
         </li>
         <li class="navbar_title">
-          <h1>Setting</h1>
+          <h1>Habit result</h1>
         </li>
         <li class="navbar_title_2">
           <h1 id="state"></h1>
@@ -80,7 +80,7 @@
           left: '-70px'
         }, duration, 'easeOutBack');
         $asidButton.find('img')
-          .attr('src', '/images/icons8-delete_sign.png');
+          .attr('src', '');
       } else {
         $aside.stop(true).animate({
           left: '-350px'
@@ -94,30 +94,68 @@
 </script> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- HTML -->
-<div class="content-area">
-  <table class="setting-table">
-    <tr>
-      <td rowspan="3" class="setting-table-account">
-        <img id="img" src alt height="100px">
-        <p id="googleDisplayName"></p>
-      </td>
-      <td>
-        <a href="/goal/">Goal</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/habit/">Habit</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/login/"><input id="logoutButton" class="logoutButton" type="button" value="Log-out" onclick="signOut()"></a>
-      </td>
-    </tr>
-  </table>
+  
 
+<!-- HTML -->
+<div class="content-area">
+  <div class="habit-area">
+    <h1>Habit result</h1>
+    <h2></h2>
+
+    <table class="habit-table">
+      <tr class="habit2">
+        <td>水分摂取量について</td>
+        <td id="habitResult0"></td>
+      </tr>
+      <tr class="habit2">
+        <td>好みについて</td>
+        <td id="habitResult1"></td>
+      </tr>
+      <tr class="habit2">
+        <td>食事量について</td>
+        <td id="habitResult2"></td>
+      </tr>
+      <tr class="habit2">
+        <td>アルコールについて</td>
+        <td id="habitResult3"></td>
+      </tr>
+      <tr class="habit2">
+        <td>喫煙について</td>
+        <td id="habitResult4"></td>
+      </tr>
+    </table>
+
+    <!-- <div class="habit2">
+      <p>水分摂取量について</p>
+      <p id="habitResult0"></p>
+    </div>
+
+    <div class="habit2">
+      <p>好みについて</p>
+      <p id="habitResult1"></p>
+    </div>
+
+    <div class="habit2">
+      <p>食事量について</p>
+      <p id="habitResult2"></p>
+    </div>
+
+    <div class="habit2">
+      <p>アルコールについて</p>
+      <p id="habitResult3"></p>
+    </div>
+
+    <div class="habit2">
+      <p>喫煙について</p>
+      <p id="habitResult4"></p>
+    </div>
+ -->
+    <div class="habitButton">
+      <a href="/habit/">
+        <input id="habitButton-inside" class="habitButton-inside" type="button" name="submit" value="登録しなおす">
+      </a>
+    </div>
+  </div>
 </div>
 
   <!-- Footer -->
@@ -194,56 +232,37 @@
 </script>
 
 
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+
+
+
+
+
+
+
+
 <script>
-  var provider = new firebase.auth.GoogleAuthProvider();
+  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = habitRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
 
-  $(function () {
+      } else {
+        console.log('Document data:', doc.data().habit.radio00);
+        $('#habitResult0').text(doc.data().habit.radio00);
+        $('#habitResult1').text(doc.data().habit.radio01);
+        $('#habitResult2').text(doc.data().habit.radio02);
+        $('#habitResult3').text(doc.data().habit.radio03);
+        $('#habitResult4').text(doc.data().habit.radio04);
+      }
+    })
 
-    // FirebaseUIインスタンス初期化
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-    ui.start('#firebaseui-auth-container', {
-
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInOptions: [
-        //利用する認証機能
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      ],
-      signInSuccessUrl: '/',
-      // Other config options...
+    .catch(err => {
+      console.log('Error getting document:::', err);
     });
 
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-          // User successfully signed in.
-          // Return type determines whether we continue the redirect automatically
-          // or whether we leave that to developer to handle.
-          return true;
-        },
-        uiShown: function () {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById('loader').style.display = 'none';
-        }
-      },
-
-    };
-    // // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-
-  });
 </script>
-
-
-
-
-
-
-
-
 
 
 

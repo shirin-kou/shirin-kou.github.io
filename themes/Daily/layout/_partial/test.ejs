@@ -1,0 +1,21 @@
+<script>
+  //goal登録済み確認
+  // const goalPattern = '/goal-2/'
+  // const isGoalPage = !!location.href.match(goalPattern)
+
+
+
+
+  var userRef = firebase.firestore().collection('user')
+  var goalRef = userRef.doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  goalRef.get().then(docSnapshot => {
+    console.log(docSnapshot.get("goal"))
+
+  }
+  );
+
+  habitRef.get().then(querySnapshot => {
+    // ここでquerySnapshotを使ってなんかやる
+  })
+
+</script>

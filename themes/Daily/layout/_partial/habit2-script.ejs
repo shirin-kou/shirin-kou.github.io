@@ -1,0 +1,23 @@
+<script>
+  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = habitRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
+
+      } else {
+        console.log('Document data:', doc.data().habit.radio00);
+        $('#habitResult0').text(doc.data().habit.radio00);
+        $('#habitResult1').text(doc.data().habit.radio01);
+        $('#habitResult2').text(doc.data().habit.radio02);
+        $('#habitResult3').text(doc.data().habit.radio03);
+        $('#habitResult4').text(doc.data().habit.radio04);
+      }
+    })
+
+    .catch(err => {
+      console.log('Error getting document:::', err);
+    });
+
+</script>

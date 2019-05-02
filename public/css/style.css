@@ -501,7 +501,7 @@ Common
 Content
 --------------------------------------------------------------*/
 .content-area {
-  padding-top: 70px;
+  padding-top: 40px;
   width: 100%;
   margin: auto;
   position: relative;
@@ -759,6 +759,13 @@ habit.ejs
   border-radius: 50%; }
 
 /*--------------------------------------------------------------
+habit-2.ejs
+--------------------------------------------------------------*/
+.habit-table .habit2 {
+  height: 50px;
+  width: 10px; }
+
+/*--------------------------------------------------------------
 home.ejs
 --------------------------------------------------------------*/
 .content-area-home {
@@ -826,6 +833,9 @@ home.ejs
     color: white;
     font-size: 20px; }
 
+.img {
+  height: 300px; }
+
 /*--------------------------------------------------------------
 sideBar animation
 --------------------------------------------------------------*/
@@ -836,10 +846,22 @@ sideBar animation
   top: 0;
   left: -500px;
   position: fixed; }
+  .page-main > aside div {
+    margin: 0;
+    padding: 0;
+    top: 30px;
+    left: 124px;
+    position: absolute;
+    margin: 0 0 20px;
+    list-style: none;
+    height: 50px;
+    font-size: 150%;
+    color: white;
+    text-align: left; }
   .page-main > aside ul {
     margin: 0;
     padding: 0;
-    top: 50px;
+    top: 250px;
     left: 114px;
     position: absolute; }
   .page-main > aside li {
@@ -847,18 +869,18 @@ sideBar animation
     list-style: none;
     height: 50px;
     font-size: 150%;
-    color: white;
     text-align: left; }
   .page-main > aside button {
     display: block;
     position: absolute;
-    top: 150px;
+    top: 0;
     left: 500px;
-    width: 52px;
-    height: 132px;
+    width: 75px;
+    height: 100px;
     margin: 0;
     padding: 0;
-    border: none; }
+    border: none;
+    background-color: none; }
 
 .animation-btn {
   outline: none; }
@@ -867,26 +889,26 @@ sideBar animation
 goal.ejs
 --------------------------------------------------------------*/
 .content-area {
-  padding-top: 70px;
+  padding-top: 40px;
   margin: 0 auto;
   display: inline-block; }
-  .content-area #goal_0,
-  .content-area #goal_1,
-  .content-area #goal_2,
-  .content-area #goal_3,
-  .content-area #goal_4,
-  .content-area #goal_5 {
+  .content-area .goal_0,
+  .content-area .goal_1,
+  .content-area .goal_2,
+  .content-area .goal_3,
+  .content-area .goal_4,
+  .content-area .goal_5 {
     display: inline-block;
     text-align: left;
     height: 250px;
     width: 270px;
     font-size: 110%; }
-    .content-area #goal_0 input,
-    .content-area #goal_1 input,
-    .content-area #goal_2 input,
-    .content-area #goal_3 input,
-    .content-area #goal_4 input,
-    .content-area #goal_5 input {
+    .content-area .goal_0 input,
+    .content-area .goal_1 input,
+    .content-area .goal_2 input,
+    .content-area .goal_3 input,
+    .content-area .goal_4 input,
+    .content-area .goal_5 input {
       height: 160px;
       padding-bottom: 10px; }
 
@@ -933,7 +955,7 @@ goal.ejs
     display: block; }
     .logo a img {
       display: block;
-      height: 60px; }
+      height: 30px; }
 
 .navbar ul:after {
   content: '';
@@ -986,7 +1008,7 @@ goal.ejs
     float: left; }
     .site-header .navbar {
       left: 0;
-      top: 70px;
+      top: 40px;
       width: 100%;
       z-index: 9999; }
       .site-header .navbar ul li {

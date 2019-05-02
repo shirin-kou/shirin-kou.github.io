@@ -100,15 +100,9 @@
 <!-- HTML -->
 <div class="content-area">
   <h2>Goal”で選択された項目をFirabaseでひっぱってくる</h2>
-  <p>
-    <div id="age"></div>
-  </p>
-  <p>
-    <div id="job"></div>
-  </p>
-  <p>
-    <div id="name"></div>
-  </p>
+
+  <div id="goalResult"></div>
+
   <div class="goalButton">
     <a href="/goal/"><input class="goalButton-inside" type="button" value="goalを変更する"></a>
   </div>
@@ -156,7 +150,7 @@
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName + '';
       document.getElementById('img').src = user.photoURL;
 
       firebase.firestore().collection('user').doc(`${user.uid}`)
@@ -170,7 +164,6 @@
 
       if (!isLoginPage) {
         location.href = '/login/'
-        document.getElementById('state').innerText = 'ログインされていません'
 
       }
     }
@@ -193,34 +186,69 @@
 
 <script>
 
-  var btn = $("#image_0");
-  var form = $("#goalForm");
-  form.on('submit', check)
+  $('.goalImage').on("click", async function (e) {
+    e.preventDefault()
 
-  $("#image_0").on("click", function () {
+    var user = firebase.auth().currentUser
 
-    $('.subTitle-goal').css('color', 'red');
-    // var user = firebase.auth().currentUser
-
-    // firebase.firestore().collection('user').doc(`${user.uid}`)
-    //   .set({
-    //     goal: {
-    //       'goal00': document.goalForm.goal0.value,
-    //       // 'goal01': document.goalForm.goal1.value,
-    //       // 'goal02': document.goalForm.goal2.value,
-    //       // 'goal03': document.goalForm.goal3.value,
-    //       // 'goal04': document.goalForm.goal4.value,
-    //       // 'goal05': document.goalForm.goal5.value,
-    //     }
-    //   }, { merge: true })
-
-    alert('こい！');
+    // await firebase.firestore().collection('user').doc(`${user.uid}`)
+    await firebase.firestore().collection('user').doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3")
+      .set({
+        goal: this.value,
+      }, { merge: true })
 
     location.href = "/goal-2/"
 
-  })
+  });
+
+  //goal登録済み確認
+  const goalPattern = '/goal-2/'
+  const isGoalPage = !!location.href.match(goalPattern)
+
+  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = habitRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
+
+      } else {
+
+        if (!isGoalPage) {
+          // location.href = '/goal-2/'
+
+        }
+      }
+    })
+
+    .catch(err => {
+      console.log('Error getting document:', err);
+    });
 
 </script>
+
+
+
+<script>
+  var goalRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  // var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getGoalDoc = goalRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
+
+      } else {
+        console.log('Document data:', doc.data().goal);
+        $('#goalResult').text(doc.data().goal);
+      }
+    })
+
+    .catch(err => {
+      console.log('Error getting document:::', err);
+    });
+
+</script>
+
 
 
 

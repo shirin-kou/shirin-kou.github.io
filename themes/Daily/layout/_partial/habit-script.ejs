@@ -14,7 +14,7 @@
       btn.disabled = "false";
       alert("登録しました！あなたの習慣に合わせたアドバイスをします。");
 
-      var user = firebase.auth().currentUser
+      // var user = firebase.auth().currentUser
 
       await firebase.firestore().collection('user').doc(`${user.uid}`)
         .set({

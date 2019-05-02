@@ -36,7 +36,7 @@
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName + '';
       document.getElementById('img').src = user.photoURL;
 
       firebase.firestore().collection('user').doc(`${user.uid}`)
@@ -50,7 +50,6 @@
 
       if (!isLoginPage) {
         location.href = '/login/'
-        document.getElementById('state').innerText = 'ログインされていません'
 
       }
     }

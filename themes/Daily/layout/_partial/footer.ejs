@@ -13,9 +13,16 @@
 <%- partial('_partial/goal-script') %>
 <% } %>
 
+<% if (page.firebase_goal2) { %>
+<%- partial('_partial/goal2-script') %>
+<% } %>
 
 <% if (page.firebase_habit) { %>
 <%- partial('_partial/habit-script') %>
+<% } %>
+
+<% if (page.firebase_habit2) { %>
+<%- partial('_partial/habit2-script') %>
 <% } %>
 
 <% if (page.firebase_home) { %>

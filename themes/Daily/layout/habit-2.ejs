@@ -1,0 +1,63 @@
+<% var habitName = ['water','temp','meal','alcohol','tobacco']; %>
+
+<!-- HTML -->
+<div class="content-area">
+  <div class="habit-area">
+    <h1><%= page.title %></h1>
+    <h2><%= page.subTitle %></h2>
+
+    <table class="habit-table">
+      <tr class="habit2">
+        <td><%= page.habit[0] %></td>
+        <td id="habitResult0"></td>
+      </tr>
+      <tr class="habit2">
+        <td><%= page.habit[1] %></td>
+        <td id="habitResult1"></td>
+      </tr>
+      <tr class="habit2">
+        <td><%= page.habit[2] %></td>
+        <td id="habitResult2"></td>
+      </tr>
+      <tr class="habit2">
+        <td><%= page.habit[3] %></td>
+        <td id="habitResult3"></td>
+      </tr>
+      <tr class="habit2">
+        <td><%= page.habit[4] %></td>
+        <td id="habitResult4"></td>
+      </tr>
+    </table>
+
+    <!-- <div class="habit2">
+      <p><%= page.habit[0] %></p>
+      <p id="habitResult0"></p>
+    </div>
+
+    <div class="habit2">
+      <p><%= page.habit[1] %></p>
+      <p id="habitResult1"></p>
+    </div>
+
+    <div class="habit2">
+      <p><%= page.habit[2] %></p>
+      <p id="habitResult2"></p>
+    </div>
+
+    <div class="habit2">
+      <p><%= page.habit[3] %></p>
+      <p id="habitResult3"></p>
+    </div>
+
+    <div class="habit2">
+      <p><%= page.habit[4] %></p>
+      <p id="habitResult4"></p>
+    </div>
+ -->
+    <div class="habitButton">
+      <a href=<%= page.link %>>
+        <input id="habitButton-inside" class="habitButton-inside" type="button" name="submit" value="登録しなおす">
+      </a>
+    </div>
+  </div>
+</div>
