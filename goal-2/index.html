@@ -229,8 +229,8 @@
 
 
 <script>
-  var goalRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  // var goalRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
   var getGoalDoc = goalRef.get()
     .then(doc => {
       if (!doc.exists) {

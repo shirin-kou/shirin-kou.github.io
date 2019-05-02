@@ -308,8 +308,7 @@
   var user = firebase.auth().currentUser
 
   // var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var habitRef = firebase.firestore().collection("user").doc(`${uid}`);
+  var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
   var getDoc = habitRef.get()
     .then(doc => {
       if (!doc.exists) {
