@@ -90,7 +90,7 @@
           left: '-350px'
         }, duration, 'easeInBack');
         $asidButton.find('img')
-          .attr('src', '/images/open.png');
+          .attr('src', '/images/icons8-menu.png');
       };
     });
   });
@@ -135,13 +135,11 @@
 
   <div class="page-main">
     <aside>
+      <div>
+        <img id="img" src alt height="100px">
+        <p id="googleDisplayName"></p>
+      </div>
       <ul>
-        <li>
-          <img id="img" src alt height="100px">
-        </li>
-        <li>
-          <p id="googleDisplayName"></p>
-        </li>
         <li>
           <a href="/goal/">Goal</a>
         </li>
@@ -200,7 +198,7 @@
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName + '';
       document.getElementById('img').src = user.photoURL;
 
       firebase.firestore().collection('user').doc(`${user.uid}`)
@@ -214,7 +212,6 @@
 
       if (!isLoginPage) {
         location.href = '/login/'
-        document.getElementById('state').innerText = 'ログインされていません'
 
       }
     }
@@ -240,26 +237,10 @@
 
 
 
+
+
+
 <script>
-  //＊user毎にコレクション作成
-  // const onSuccess = (user) => {
-
-  //   firebase.firestore().collection('user').doc(`${user.uid}`)
-  //     .set({
-  //       uid: user.uid,
-  //       name,
-  //     })
-
-  //   user.updateProfile({ displayName: name });
-
-  //   console.log('userName', user);
-
-  //   firebase.analytics().logEvent('sign_up', {
-  //     sign_up_method: 'google',
-
-  //   });
-  // };
-
   // ＊SideBar animation
   $(function () {
     var duration = 500;
@@ -273,13 +254,13 @@
           left: '-70px'
         }, duration, 'easeOutBack');
         $asidButton.find('img')
-          .attr('src', '/images/close.png');
+          .attr('src', '/images/icons8-delete.png');
       } else {
         $aside.stop(true).animate({
           left: '-500px'
         }, duration, 'easeInBack');
         $asidButton.find('img')
-          .attr('src', '/images/open.png');
+          .attr('src', '/images/icons8-menu.png');
       };
     });
   });

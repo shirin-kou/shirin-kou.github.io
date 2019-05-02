@@ -95,38 +95,36 @@
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area">
-  <h1>Goal</h1>
-  <h1 class="subTitle-goal">目標を１つ選んでください</h1>
-
-  <form name="goalForm" id="goalForm">
-
-    <table id="goal">
-      <tr>
-        <td id="goal_0">
-          <input id="image_0" type="submit" name="goal0" value="1"><br>やせたい
-        </td>
-        <td id="goal_1">
-          <input id="image_1" type="image" name="goal1" src="/images/work.png" value="2"><br>仕事に専念したい
-        </td>
-        <td id="goal_3">
-          <input id="image_2" type="image" name="goal2" src="/images/meal.png" value="3" height="120px"><br>睡眠を改善したい
-        </td>
-      </tr>
-      <tr>
-        <td id="goal_3">
-          <input id="image_3" type="image" name="goal3" src="/images/meal.png" value="4" height="120px"><br>食事に気をつけたい
-        </td>
-
-        <td id="goal_4">
-          <input id="image_4" type="image" name="goal4" src="/images/other.png" value="5" height="120px"><br>不調を改善したい
-        </td>
-        <td id="goal_5">
-          <input id="image_5" type="image" name="goal5" src="/images/other2.png" value="6" height="120px"><br>●●を改善したい
-        </td>
-      </tr>
-    </table>
-  </form>
-
+  <div class="goal-area">
+    <h1>Goal</h1>
+    <h1 class="subTitle-goal">目標を１つ選んでください</h1>
+    <form name="form2" id="goal-form">
+      <table class="goal">
+        <tr>
+          <td class="goal_0">
+            <input class="goalImage" type="image" name="goal0" src="/images/diet.png" value="やせたい"><br>やせたい
+          </td>
+          <td class="goal_1">
+            <input class="goalImage" type="image" name="goal1" src="/images/work.png" value="仕事に専念したい"><br>仕事に専念したい
+          </td>
+          <td class="goal_2">
+            <input class="goalImage" type="image" name="goal2" src="/images/sleep.png" value="睡眠を改善したい"><br>睡眠を改善したい
+          </td>
+        </tr>
+        <tr>
+          <td class="goal_3">
+            <input class="goalImage" type="image" name="goal3" src="/images/meal.png" value="食事に気をつけたい"><br>食事に気をつけたい
+          </td>
+          <td class="goal_4">
+            <input class="goalImage" type="image" name="goal4" src="/images/other.png" value="不調を改善したい"><br>不調を改善したい
+          </td>
+          <td class="goal_5">
+            <input class="goalImage" type="image" name="goal5" src="/images/other2.png" value="●●を改善したい"><br>●●を改善したい
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
 
   <!-- Footer -->
@@ -171,7 +169,7 @@
     if (user) {
       // ログイン認証済
       console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName;
+      document.getElementById('googleDisplayName').innerText = user.displayName + '';
       document.getElementById('img').src = user.photoURL;
 
       firebase.firestore().collection('user').doc(`${user.uid}`)
@@ -185,7 +183,6 @@
 
       if (!isLoginPage) {
         location.href = '/login/'
-        document.getElementById('state').innerText = 'ログインされていません'
 
       }
     }
@@ -208,34 +205,49 @@
 
 <script>
 
-  var btn = $("#image_0");
-  var form = $("#goalForm");
-  form.on('submit', check)
+  $('.goalImage').on("click", async function (e) {
+    e.preventDefault()
 
-  $("#image_0").on("click", function () {
+    var user = firebase.auth().currentUser
 
-    $('.subTitle-goal').css('color', 'red');
-    // var user = firebase.auth().currentUser
-
-    // firebase.firestore().collection('user').doc(`${user.uid}`)
-    //   .set({
-    //     goal: {
-    //       'goal00': document.goalForm.goal0.value,
-    //       // 'goal01': document.goalForm.goal1.value,
-    //       // 'goal02': document.goalForm.goal2.value,
-    //       // 'goal03': document.goalForm.goal3.value,
-    //       // 'goal04': document.goalForm.goal4.value,
-    //       // 'goal05': document.goalForm.goal5.value,
-    //     }
-    //   }, { merge: true })
-
-    alert('こい！');
+    // await firebase.firestore().collection('user').doc(`${user.uid}`)
+    await firebase.firestore().collection('user').doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3")
+      .set({
+        goal: this.value,
+      }, { merge: true })
 
     location.href = "/goal-2/"
 
-  })
+  });
+
+  //goal登録済み確認
+  const goalPattern = '/goal-2/'
+  const isGoalPage = !!location.href.match(goalPattern)
+
+  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = habitRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
+
+      } else {
+
+        if (!isGoalPage) {
+          // location.href = '/goal-2/'
+
+        }
+      }
+    })
+
+    .catch(err => {
+      console.log('Error getting document:', err);
+    });
 
 </script>
+
+
+
 
 
 
