@@ -124,6 +124,11 @@
         </tr>
       </table>
     </form>
+    <div class="goalButton">
+      <a href="/goal-2/">
+        <input id="goalButton-inside" class="goalButton-inside" type="button" value="現在の設定">
+      </a>
+    </div>
   </div>
 </div>
 
@@ -210,8 +215,7 @@
 
     var user = firebase.auth().currentUser
 
-    // await firebase.firestore().collection('user').doc(`${user.uid}`)
-    await firebase.firestore().collection('user').doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3")
+    await firebase.firestore().collection('user').doc(`${user.uid}`)
       .set({
         goal: this.value,
       }, { merge: true })
@@ -224,9 +228,8 @@
   const goalPattern = '/goal-2/'
   const isGoalPage = !!location.href.match(goalPattern)
 
-  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getDoc = habitRef.get()
+  var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = goalRef.get()
     .then(doc => {
       if (!doc.exists) {
         console.log('No such document!');
@@ -234,14 +237,10 @@
       } else {
 
         if (!isGoalPage) {
-          // location.href = '/goal-2/'
+          location.href = '/goal-2/'
 
         }
       }
-    })
-
-    .catch(err => {
-      console.log('Error getting document:', err);
     });
 
 </script>

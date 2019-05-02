@@ -117,7 +117,7 @@
 
         <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value="冷たいもの">
         <label for="radio01-01">冷たいもの</label>
-        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value>
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value="温かいもの">
         <label for="radio01-02">温かいもの</label>
       </div>
 
@@ -152,6 +152,11 @@
 
       <div class="habitButton">
         <input id="habitButton-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      </div>
+      <div class="habitButton">
+        <a href="/habit-2/">
+          <input id="habitButton-inside" class="habitButton-inside" type="button" name="submit" value="現在の設定">
+        </a>
       </div>
     </form>
   </div>
@@ -244,16 +249,17 @@
   form.on('submit', check)
 
   // 各radioにvalueが入っているかcheck
+  // 入ってたらfirestoreにデータ保存
   async function check(e) {
     e.preventDefault()
     if ((document.form1.radio00.value) && (document.form1.radio01.value) && (document.form1.radio02.value) &&
       (document.form1.radio03.value) && (document.form1.radio04.value)) {
 
-      //有効にする
+      //submit buttonを有効にする
       btn.disabled = "false";
       alert("登録しました！あなたの習慣に合わせたアドバイスをします。");
 
-      // var user = firebase.auth().currentUser
+      var user = firebase.auth().currentUser
 
       await firebase.firestore().collection('user').doc(`${user.uid}`)
         .set({
@@ -266,18 +272,59 @@
           }
         }, { merge: true })
 
-      location.href = "/"
+      location.href = "/habit-2/"
 
     } else {
 
       alert("※未選択の質問があります。");
-
-      //無効にする
+      //submit buttonを無効にする
       btn.disabled = "true";
-
     }
-
   }
+
+
+  // habit登録済みか確認
+  // 登録されていたら/habit-2/へ接続
+  const habitPattern = '/habit-2/'
+  const isHabitPage = !!location.href.match(habitPattern)
+
+  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3").collection('habit');
+  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  var getDoc = habitRef.get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('No such document!');
+
+      } else {
+
+        if (!isHabitPage) {
+          location.href = '/habit-2/'
+
+        }
+      }
+    })
+
+  // async function check(e) {
+  //   e.preventDefault()
+
+  //   var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  //   // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  //   var getDoc = await habitRef.get()
+  //     .then(doc => {
+  //       if (!doc.exists) {
+  //         console.log('No such document!');
+
+  //       } else {
+  //         location.href = '/habit-2/'
+
+  //         // if (!isHabitPage) {
+  //         //   location.href = '/habit-2/'
+
+  //         // }
+  //       }
+  //     })
+  // };
+
 
 </script>
 
