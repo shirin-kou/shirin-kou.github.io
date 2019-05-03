@@ -101,7 +101,10 @@
 <div class="content-area">
   <h2>Goal</h2>
 
-  <div id="goalResult"></div>
+  <div class="goalResult">
+    <div id="goalResultText"></div>
+    <img id="goalimage" src alt height="300px">
+  </div>
 
   <div class="goalButton">
     <input id="goalButton-inside" class="goalButton-inside" type="button" value="内容を変更・削除">
@@ -199,6 +202,7 @@
     await firebase.firestore().collection('user').doc(`${user.uid}`)
       .set({
         goal: this.value,
+        goalImg: this.src,
       }, { merge: true })
 
     location.href = "/goal-2/"
@@ -209,58 +213,51 @@
   const goalPattern = '/goal-2/'
   const isGoalPage = !!location.href.match(goalPattern)
 
-  var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getDoc = goalRef.get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('No such document!');
-
-      } else {
-
-        if (!isGoalPage) {
-          location.href = '/goal-2/'
-
-        }
-      }
-    });
-
 </script>
 
 
 
 <script>
-  var goalRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getGoalDoc = goalRef.get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('No such document!');
 
-      } else {
-        console.log('Document data:', doc.data().goal);
-        $('#goalResult').text(doc.data().goal);
-      }
-    })
 
-    .catch(err => {
-      console.log('Error getting document:::', err);
-    });
 
-  //delete goal-field
-  var userRef = firebase.firestore().collection('user').doc('Hq3QlNZhc2ZizmszVe96lN6bvgA3');
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
 
-  $('#goalButton-inside').on("click", async function (e) {
-    e.preventDefault()
+      // goal-fieldがあるかcheck
+      // ある場合、選択した内容を＠Goal-2で表示
+      // ない場合、現在の設定 ＠Goalを非表示＊未解決
+      var getDoc = goalRef.get()
+        .then(doc => {
+          if (!doc.exists) {
+            console.log('No such document!');
+            $('#goal2Button').hide();
 
-    // Remove the 'goal' field from the document
-    var removeGoal = await userRef.update({
-      goal: firebase.firestore.FieldValue.delete()
-    });
+          } else {
+            console.log('Document data:', doc.data().goal);
+            console.log('Document imageData:', doc.data().goalImg);
 
-    location.href = '/goal/'
+            $('#goalimage').attr("src", doc.data().goalImg);
+            $('#goalResultText').text(doc.data().goal);
 
+          }
+        })
+
+      //delete goal-field
+      $('#goalButton-inside').on("click", async function (e) {
+        e.preventDefault()
+
+        // Remove the 'goal' field from the document
+        var removeGoal = await goalRef.update({
+          goal: firebase.firestore.FieldValue.delete()
+        });
+
+        location.href = '/goal/'
+
+      });
+    }
   });
-
 
 </script>
 
