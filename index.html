@@ -73,12 +73,10 @@
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area">
   <div class="content-area-home">
-    <div>
-      <h1>今日の波形</h1>
-      <img id="waveImg" src alt height="150">
-      <p id="feature"></p>
-      <p>測定時間</p>
-    </div>
+    <h1>今日の波形</h1>
+    <img id="waveImg" src alt height="150">
+    <p id="feature"></p>
+    <p>測定時間</p>
   </div>
 
   <div class="content-area-home-2">
@@ -86,22 +84,32 @@
       <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
 
       <!-- patternごとに異なる -->
-      <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
-        <div id="question0" class="checkbox01-parts"></div>
-      </label>
-      <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
-        <div id="question1" class="checkbox01-parts"></div>
-      </label>
-      <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
-        <div id="question2" class="checkbox01-parts"></div>
-      </label>
-      <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
-        <div id="question3" class="checkbox01-parts"></div>
-      </label>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+            <div id="question0" class="checkbox01-parts"></div>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+            <div id="question1" class="checkbox01-parts"></div>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+            <div id="question2" class="checkbox01-parts"></div>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+            <div id="question3" class="checkbox01-parts"></div>
+          </label>
+        </li>
+      </ul>
     </div>
 
     <div class="adviceButton">
@@ -267,15 +275,23 @@
             })
 
           //波の画像 ＊未解決
-          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = waveImg.get()
-            .then(doc => {
-              $('#waveImg').attr("src", doc.data().waveImg);
-            })
+          // var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
+          // var getDoc = waveImg.get()
+          //   .then(doc => {
+          //     $('#waveImg').attr("src", doc.data().waveImg);
+          //   })
 
         })
     }
   })
+
+  //
+  var conditionRef = firebase.firestore().collection("class").doc("pattern1");
+  var getDoc = conditionRef.get()
+    .then(doc => {
+      $('#condition').text(doc.data().condition);
+    })
+  console.log(conditon)
 
 </script>
 

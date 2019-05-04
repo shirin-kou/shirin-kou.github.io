@@ -74,7 +74,12 @@
 
     <p> 測定時間 </p>
 
-    <div id="meal">
+    <div class="condition">
+      <h1>現在のコンディション</h1>
+      <p id="condition"></p>
+    </div>
+
+    <div id="advice">
       <h1 id="mealAdviceTitle"></h1>
       <h1 id="workAdviceTitle"></h1>
       <h1 id="dietAdviceTitle"></h1>
@@ -221,12 +226,24 @@
 
 <script>
 
+  //現在のコンディション
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var conditionRef = firebase.firestore().collection("class").doc("pattern1");
+      var getDoc = conditionRef.get()
+        .then(doc => {
+          $('#condition').text(doc.data().condition);
+        })
+      console.log(conditon)
+    }
+  });
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var adviceRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-
       var getDoc = adviceRef.get()
         .then(doc => {
+
           //食事に気をつけたい＆冷たいもの
           if (doc.data().habit.radio01 == "冷たいもの" && doc.data().goal == "食事に気をつけたい") {
             console.log('cold');
@@ -278,6 +295,8 @@
         })
     }
   });
+
+
 
 
 </script>

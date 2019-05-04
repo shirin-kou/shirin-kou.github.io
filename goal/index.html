@@ -68,9 +68,11 @@
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area">
-  <div class="goal-area">
+  <div class="content-area-goal">
     <h1>Goal</h1>
-    <h1 class="subTitle-goal">目標を１つ選んでください</h1>
+  </div>
+  <div class="content-area-goal-2">
+    <h2 class="subTitle-goal">目標を１つ選んでください</h2>
     <form name="form2" id="goal-form">
       <table class="goal">
         <tr>
@@ -96,13 +98,13 @@
           </td>
         </tr>
       </table>
+      <div id="goalButton-inside" class="goalButton" style="display:none">
+        <a href="/goal-2/">
+          <input class="goalButton-inside" type="button" value="現在の設定">
+        </a>
+      </div>
     </form>
     <!-- 現在の設定 -->
-    <div id="goalButton-inside" class="goalButton" style="display:none">
-      <a href="/goal-2/">
-        <input class="goalButton-inside" type="button" value="現在の設定">
-      </a>
-    </div>
   </div>
 </div>
 
