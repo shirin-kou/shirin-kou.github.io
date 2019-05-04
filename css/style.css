@@ -660,8 +660,8 @@ advice.ejs
 
 .condition {
   margin: 10px 0 10px 0;
-  max-width: 100%;
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   display: inline-block; }
   .condition p {
     text-align: left; }
