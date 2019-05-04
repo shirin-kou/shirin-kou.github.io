@@ -120,7 +120,7 @@
   <div class="page-main">
     <aside>
       <div>
-        <img id="waveImg" src alt height="300px">
+        <img id="img" src alt height="100px">
         <p id="googleDisplayName"></p>
       </div>
       <ul>
@@ -275,7 +275,7 @@
             })
 
           //波の画像 ＊未解決
-          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
+          var waveImgRef = firebase.firestore().collection("class").doc("pattern2");
           var getDoc = waveImgRef.get()
             .then(doc => {
               $('#waveImg').attr("src", doc.data().waveImg);
