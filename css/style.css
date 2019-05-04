@@ -762,9 +762,21 @@ habit.ejs
 /*--------------------------------------------------------------
 habit-2.ejs
 --------------------------------------------------------------*/
-.habit-table .habit2 {
-  height: 50px;
-  width: 10px; }
+.content-area-habit2 {
+  text-align: center; }
+
+.content-area-habit2-2 {
+  margin: 0 auto;
+  display: inline-block;
+  text-align: left; }
+  .content-area-habit2-2 table {
+    max-width: 500px;
+    width: 100%;
+    text-align: left; }
+  .content-area-habit2-2 td {
+    height: 50px;
+    width: 250px;
+    vertical-align: middle; }
 
 /*--------------------------------------------------------------
 home.ejs
@@ -775,8 +787,7 @@ home.ejs
 .content-area-home-2 {
   margin: 0 auto;
   display: inline-block;
-  text-align: left;
-  position: relative; }
+  text-align: left; }
 
 .checkbox01 {
   margin-bottom: 30px; }
