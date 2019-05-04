@@ -97,10 +97,11 @@
         <td id="habitResult4"></td>
       </tr>
     </table>
-
+    <!-- 内容を変更・削除 -->
     <div class="habitButton">
-      <input id="habitButton-inside" class="habitButton-inside" type="button" value="内容を変更・削除">
+      <input id="habitButton-delete" class="habitButton-inside" type="button" value="内容を変更・削除">
     </div>
+    <!-- HOMEに戻る -->
     <div class="habitButton">
       <a href="/">
         <input class="habitButton-inside" type="button" value="HOME">
@@ -191,7 +192,7 @@
 
 <script>
 
-  var btn = $("#habitButton-inside");
+  var btn = $("#habitButton2-inside");
   var form = $("#habit-form");
   form.on('submit', check)
 
@@ -232,24 +233,24 @@
 
   // habit登録済みか確認
   // 登録されていたら/habit-2/へ接続
-  const habitPattern = '/habit-2/'
-  const isHabitPage = !!location.href.match(habitPattern)
+  // const habitPattern = '/habit-2/'
+  // const isHabitPage = !!location.href.match(habitPattern)
 
-  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3").collection('habit');
-  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getDoc = habitRef.get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('No such document!');
+  // var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3").collection('habit');
+  // // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  // var getDoc = habitRef.get()
+  //   .then(doc => {
+  //     if (!doc.exists) {
+  //       console.log('No such document!');
 
-      } else {
+  //     } else {
 
-        if (!isHabitPage) {
-          location.href = '/habit-2/'
+  //       if (!isHabitPage) {
+  //         location.href = '/habit-2/'
 
-        }
-      }
-    })
+  //       }
+  //     }
+  //   })
 
   // async function check(e) {
   //   e.preventDefault()
@@ -288,22 +289,25 @@
       // ない場合、現在の設定 ＠habitを非表示＊未解決
       var getDoc = habitRef.get()
         .then(doc => {
-          if (!doc.exists) {
-            console.log('No such document!');
-            $('#habit2Button').hide();
+          if (!doc.data().habit) {
+            console.log('No such habit document!');
 
           } else {
-            console.log('Document data:', doc.data().habit.radio00);
+            console.log('Document data:', doc.data().habit);
             $('#habitResult0').text(doc.data().habit.radio00);
             $('#habitResult1').text(doc.data().habit.radio01);
             $('#habitResult2').text(doc.data().habit.radio02);
             $('#habitResult3').text(doc.data().habit.radio03);
             $('#habitResult4').text(doc.data().habit.radio04);
+
+            //現在の設定を表示
+            $("#habitButton-inside").show();
+
           }
         })
 
       //delete habit-field
-      $('#habitButton-inside').on("click", async function (e) {
+      $('#habitButton-delete').on("click", async function (e) {
         e.preventDefault()
 
         // Remove the 'habit' field from the document
@@ -318,6 +322,8 @@
   });
 
 </script>
+
+
 
 
 

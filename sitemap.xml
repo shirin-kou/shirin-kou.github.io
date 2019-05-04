@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shirin-kou.github.io/190413.git/advice/index.html</loc>
+    
+    <lastmod>2019-05-04T04:11:58.658Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://shirin-kou.github.io/190413.git/habit/index.html</loc>
+    
+    <lastmod>2019-05-03T16:29:21.383Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://shirin-kou.github.io/190413.git/login/index.html</loc>
     
     <lastmod>2019-05-03T04:21:22.189Z</lastmod>
@@ -40,20 +54,6 @@
     <loc>https://shirin-kou.github.io/190413.git/goal-2/index.html</loc>
     
     <lastmod>2019-05-01T12:49:17.675Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/habit/index.html</loc>
-    
-    <lastmod>2019-04-30T01:45:04.994Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://shirin-kou.github.io/190413.git/advice/index.html</loc>
-    
-    <lastmod>2019-04-27T12:10:14.421Z</lastmod>
     
   </url>
   

@@ -67,19 +67,22 @@
 </header> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- change/firebase -->
-
-
-
-
-<!-- HTML -->
-<div class="content-area">
+  <div class="content-area">
   <div class="advice">
     <h1>Advice</h1>
-    <img src="/images/diet.png" alt>
+    <img id="adviceImage" src alt height="300px">
 
     <p> 測定時間 </p>
-    <p> アドバイスコメント </p>
+
+    <div id="meal">
+      <h1 id="mealAdviceTitle"></h1>
+      <h1 id="workAdviceTitle"></h1>
+      <h1 id="dietAdviceTitle"></h1>
+      <p id="adviceResult0"></p>
+      <p id="adviceResult1"></p>
+      <p id="adviceResult2"></p>
+    </div>
+
   </div>
 </div>
 
@@ -161,11 +164,123 @@
 
 
 
+<script>
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      // goal-fieldがあるかcheck
+      // ある場合、選択した内容を＠Goal-2で表示
+      // ない場合、"現在の設定" ＠Goalを非表示
+      var getDoc = goalRef.get()
+        .then(doc => {
+          if (!doc.data().goal) {
+            console.log('No such goal document!');
+
+          } else {
+            console.log('Document data:', doc.data().goal);
+            console.log('Document imageData:', doc.data().goalImg);
+
+            $('#goalimage').attr("src", doc.data().goalImg);
+            $('#goalResultText').text(doc.data().goal);
+            //adviceにもImageを表示
+            $('#adviceImage').attr("src", doc.data().goalImg);
+
+            //現在の設定を表示
+            $('#goalButton-inside').show();
+
+          }
+        })
+
+      //delete goal-field
+      $('#goalButton-delete').on("click", async function (e) {
+        e.preventDefault()
+
+        // Remove the 'goal' field from the document
+        var removeGoal = await goalRef.update({
+          goal: firebase.firestore.FieldValue.delete(),
+          goalImg: firebase.firestore.FieldValue.delete()
+        });
+
+        location.href = '/goal/'
+
+      });
+    }
+  });
+
+</script>
 
 
 
 
 
+
+
+
+
+<script>
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var adviceRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      var getDoc = adviceRef.get()
+        .then(doc => {
+          //食事に気をつけたい＆冷たいもの
+          if (doc.data().habit.radio01 == "冷たいもの" && doc.data().goal == "食事に気をつけたい") {
+            console.log('cold');
+            var adviceRef = firebase.firestore().collection("class").doc("pattern1");
+            var getDoc = adviceRef.get()
+              .then(doc => {
+                $('#mealAdviceTitle').text("おすすめの食材");
+                $('#adviceResult0').text(doc.data().mealCold.a);
+                $('#adviceResult1').text(doc.data().mealCold.b);
+                $('#adviceResult2').text(doc.data().mealCold.c);
+              })
+          }
+          //食事に気をつけたい＆冷たいもの 
+          if (doc.data().habit.radio01 == "温かいもの" && doc.data().goal == "食事に気をつけたい") {
+            console.log('hot');
+            var adviceRef = firebase.firestore().collection("class").doc("pattern1");
+            var getDoc = adviceRef.get()
+              .then(doc => {
+                $('#mealAdviceTitle').text("おすすめの食材");
+                $('#adviceResult0').text(doc.data().mealHot.a);
+                $('#adviceResult1').text(doc.data().mealHot.b);
+                $('#adviceResult2').text(doc.data().mealHot.c);
+              })
+          }
+          //仕事に専念したい
+          if (doc.data().goal == "仕事に専念したい") {
+            console.log('work');
+            var adviceRef = firebase.firestore().collection("class").doc("pattern1");
+            var getDoc = adviceRef.get()
+              .then(doc => {
+                $('#workAdviceTitle').text("おすすめ対策");
+                $('#adviceResult0').text(doc.data().advice.a);
+                $('#adviceResult1').text(doc.data().advice.b);
+                $('#adviceResult2').text(doc.data().advice.c);
+              })
+          }
+          //やせたい
+          if (doc.data().goal == "やせたい") {
+            console.log('diet');
+            var adviceRef = firebase.firestore().collection("class").doc("pattern1");
+            var getDoc = adviceRef.get()
+              .then(doc => {
+                $('#workAdviceTitle').text("おすすめ対策");
+                $('#adviceResult0').text(doc.data().advice.a);
+                $('#adviceResult1').text(doc.data().advice.b);
+                $('#adviceResult2').text(doc.data().advice.c);
+              })
+          }
+        })
+    }
+  });
+
+
+</script>
 
 
 </body>

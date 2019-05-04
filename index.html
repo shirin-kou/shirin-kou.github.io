@@ -71,16 +71,12 @@
 </header> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- change/firebase -->
-
-
-<!-- HTML -->
-<div class="content-area">
+  <div class="content-area">
   <div class="content-area-home">
     <div>
       <h1>今日の波形</h1>
-      <img src="/images/wave.png" alt height="150">
-      <p>波形の特徴（ex.脈の拍動がいつもより大きくなっています）</p>
+      <img id="waveImg" src alt height="150">
+      <p id="feature"></p>
       <p>測定時間</p>
     </div>
   </div>
@@ -88,19 +84,26 @@
   <div class="content-area-home-2">
     <div class="checkbox01">
       <h1>このような状態ではありませんか？該当する状態にチェックを入れてください。</h1>
+
+      <!-- patternごとに異なる -->
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）">
-        <div class="checkbox01-parts">質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）</div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question0" class="checkbox01-parts"></div>
       </label>
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問２（ex.夜遅くに油っこい食事を摂っていませんか？）">
-        <div class="checkbox01-parts">質問２（ex.夜遅くに油っこい食事を摂っていませんか？）</div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question1" class="checkbox01-parts"></div>
       </label>
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value="質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）">
-        <div class="checkbox01-parts">質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）</div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question2" class="checkbox01-parts"></div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question3" class="checkbox01-parts"></div>
       </label>
     </div>
+
     <div class="adviceButton">
       <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
     </div>
@@ -214,7 +217,7 @@
 
 
 <script>
-  // ＊SideBar animation
+  // SideBar animation
   $(function () {
     var duration = 500;
 
@@ -238,7 +241,45 @@
     });
   });
 
+  // Question
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var questionRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      var getDoc = questionRef.get()
+        .then(doc => {
+
+          //質問、チェック項目
+          var questionRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = questionRef.get()
+            .then(doc => {
+              $('#question0').text(doc.data().question.a);
+              $('#question1').text(doc.data().question.b);
+              $('#question2').text(doc.data().question.c);
+              $('#question3').text(doc.data().question.d);
+            })
+
+          //波の特徴
+          var featureRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = featureRef.get()
+            .then(doc => {
+              $('#feature').text(doc.data().feature);
+            })
+
+          //波の画像 ＊未解決
+          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = waveImg.get()
+            .then(doc => {
+              $('#waveImg').attr("src", doc.data().waveImg);
+            })
+
+        })
+    }
+  })
+
 </script>
+
+
 
 
 </body>
