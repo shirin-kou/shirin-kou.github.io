@@ -9,5 +9,4 @@ link1: /goal/
 link2: /habit/
 link3: /login/
 image: /images/icons8-delete_sign.png
-firebase: true
 ---

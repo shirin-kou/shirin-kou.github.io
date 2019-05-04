@@ -1,13 +1,23 @@
 <!-- change/firebase -->
-<% var subTitle = 'Goal”で選択された項目をFirabaseでひっぱってくる'; %>
+<% var subTitle = 'Goal' %>
 
 <!-- HTML -->
 <div class="content-area">
   <h2><%= subTitle %></h2>
 
-  <div id="goalResult"></div>
+  <div class="goalResult">
+    <div id="goalResultText"></div>
+    <img id="goalimage" src="" alt="" height="300px">
+  </div>
 
+  <!-- 内容を変更・削除 -->
   <div class="goalButton">
-    <a href="/goal/"><input class="goalButton-inside" type="button" value="goalを変更する"></a>
+    <input id="goalButton-delete" class="goalButton-inside" type="button" value="内容を変更・削除">
+  </div>
+  <!-- HOMEに戻る -->
+  <div class="goalButton">
+    <a href="/">
+      <input class="goalButton-inside" type="button" value="HOME">
+    </a>
   </div>
 </div>

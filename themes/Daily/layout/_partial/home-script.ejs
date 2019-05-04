@@ -1,5 +1,5 @@
 <script>
-  // ＊SideBar animation
+  // SideBar animation
   $(function () {
     var duration = 500;
 
@@ -22,5 +22,41 @@
       };
     });
   });
+
+  // Question
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var questionRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      var getDoc = questionRef.get()
+        .then(doc => {
+
+          //質問、チェック項目
+          var questionRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = questionRef.get()
+            .then(doc => {
+              $('#question0').text(doc.data().question.a);
+              $('#question1').text(doc.data().question.b);
+              $('#question2').text(doc.data().question.c);
+              $('#question3').text(doc.data().question.d);
+            })
+
+          //波の特徴
+          var featureRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = featureRef.get()
+            .then(doc => {
+              $('#feature').text(doc.data().feature);
+            })
+
+          //波の画像 ＊未解決
+          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = waveImg.get()
+            .then(doc => {
+              $('#waveImg').attr("src", doc.data().waveImg);
+            })
+
+        })
+    }
+  })
 
 </script>

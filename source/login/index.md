@@ -1,7 +1,5 @@
 ---
-title: Welcome to Myakushin App
+title: Welcome to Myakushin
 layout: login
-linkTitle3: Log-out
-link3: /login/
 firebase: true
 ---

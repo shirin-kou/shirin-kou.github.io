@@ -1,15 +1,18 @@
-<!-- change/firebase -->
-<% var adviceImage = '/images/diet.png'; %>
-<% var adviceComment = 'アドバイスコメント'; %>
-
-
-<!-- HTML -->
 <div class="content-area">
   <div class="advice">
     <h1><%= page.title %></h1>
-    <img src=<%= adviceImage %> alt="">
+    <img id="adviceImage" src="" alt="" height="300px">
 
     <p> <%= page.measureTime %> </p>
-    <p> <%= adviceComment %> </p>
+
+    <div id="meal">
+      <h1 id="mealAdviceTitle"></h1>
+      <h1 id="workAdviceTitle"></h1>
+      <h1 id="dietAdviceTitle"></h1>
+      <p id="adviceResult0"></p>
+      <p id="adviceResult1"></p>
+      <p id="adviceResult2"></p>
+    </div>
+
   </div>
 </div>

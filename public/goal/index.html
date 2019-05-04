@@ -66,33 +66,6 @@
   </div>
 </header> -->
 
-<!-- <script>
-  // ＊sideBar animation
-  $(function () {
-    var duration = 300;
-
-    //aside
-    var $aside = $('.page-main > aside');
-    var $asidButton = $aside.find('button').on('click', function () {
-      $aside.toggleClass('open');
-      if ($aside.hasClass('open')) {
-        $aside.stop(true).animate({
-          left: '-70px'
-        }, duration, 'easeOutBack');
-        $asidButton.find('img')
-          .attr('src', '/images/icons8-back.png');
-      } else {
-        $aside.stop(true).animate({
-          left: '-350px'
-        }, duration, 'easeInBack');
-        $asidButton.find('img')
-          .attr('src', '');
-      };
-    });
-  });
-
-</script> -->
-
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area">
   <div class="goal-area">
@@ -124,6 +97,12 @@
         </tr>
       </table>
     </form>
+    <!-- 現在の設定 -->
+    <div id="goalButton-inside" class="goalButton" style="display:none">
+      <a href="/goal-2/">
+        <input class="goalButton-inside" type="button" value="現在の設定">
+      </a>
+    </div>
   </div>
 </div>
 
@@ -210,10 +189,10 @@
 
     var user = firebase.auth().currentUser
 
-    // await firebase.firestore().collection('user').doc(`${user.uid}`)
-    await firebase.firestore().collection('user').doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3")
+    await firebase.firestore().collection('user').doc(`${user.uid}`)
       .set({
         goal: this.value,
+        goalImg: this.src,
       }, { merge: true })
 
     location.href = "/goal-2/"
@@ -224,25 +203,54 @@
   const goalPattern = '/goal-2/'
   const isGoalPage = !!location.href.match(goalPattern)
 
-  var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getDoc = habitRef.get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('No such document!');
+</script>
 
-      } else {
 
-        if (!isGoalPage) {
-          // location.href = '/goal-2/'
 
-        }
-      }
-    })
+<script>
 
-    .catch(err => {
-      console.log('Error getting document:', err);
-    });
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      // goal-fieldがあるかcheck
+      // ある場合、選択した内容を＠Goal-2で表示
+      // ない場合、"現在の設定" ＠Goalを非表示
+      var getDoc = goalRef.get()
+        .then(doc => {
+          if (!doc.data().goal) {
+            console.log('No such goal document!');
+
+          } else {
+            console.log('Document data:', doc.data().goal);
+            console.log('Document imageData:', doc.data().goalImg);
+
+            $('#goalimage').attr("src", doc.data().goalImg);
+            $('#goalResultText').text(doc.data().goal);
+            //adviceにもImageを表示
+            $('#adviceImage').attr("src", doc.data().goalImg);
+
+            //現在の設定を表示
+            $('#goalButton-inside').show();
+
+          }
+        })
+
+      //delete goal-field
+      $('#goalButton-delete').on("click", async function (e) {
+        e.preventDefault()
+
+        // Remove the 'goal' field from the document
+        var removeGoal = await goalRef.update({
+          goal: firebase.firestore.FieldValue.delete(),
+          goalImg: firebase.firestore.FieldValue.delete()
+        });
+
+        location.href = '/goal/'
+
+      });
+    }
+  });
 
 </script>
 

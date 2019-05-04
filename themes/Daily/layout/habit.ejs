@@ -21,7 +21,7 @@
 
         <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value=<%= page.habitContents_1[0] %>>
         <label for="radio01-01"><%= page.habitContents_1[0] %></label>
-        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value=<%= page.habitContents_1[2] %>>
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value=<%= page.habitContents_1[1] %>>
         <label for="radio01-02"><%= page.habitContents_1[1] %></label>
       </div>
 
@@ -53,9 +53,15 @@
         <input type="radio" name="radio04" class="radio04-input" id="radio04-02" value=<%= page.habitContents_4[1] %>>
         <label for="radio04-02"><%= page.habitContents_4[1] %></label>
       </div>
-
-      <div class="habitButton">
-        <input id="habitButton-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      <!-- 登録ボタン -->
+      <div id="habit2Button" class="habitButton">
+        <input id="habitButton2-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      </div>
+      <!-- 現在の設定 -->
+      <div id="habitButton-inside" class="habitButton" style="display:none">
+        <a href="/habit-2/">
+          <input class="habitButton-inside" type="button" value="現在の設定">
+        </a>
       </div>
     </form>
   </div>

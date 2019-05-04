@@ -11,4 +11,5 @@ habitContents_2: ['普通','大食い','少食']
 habitContents_3: ['ほとんど毎日','たまに飲む']
 habitContents_4: ['吸わない','現在吸っている']
 firebase_habit: true
+firebase_habit2: true
 ---

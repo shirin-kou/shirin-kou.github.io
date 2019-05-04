@@ -1,13 +1,9 @@
-<!-- change/firebase -->
-<% var checkList = ['質問１（ex.早食い、食べ物をよく噛まずに飲み込んでいませんか？）','質問２（ex.夜遅くに油っこい食事を摂っていませんか？）','質問３（ex.休憩を取らずに、長時間仕事をしてしまいがちではありませんか？）']; %>
-
-<!-- HTML -->
 <div class="content-area">
   <div class="content-area-home">
     <div>
       <h1><%= page.subTitle_0 %></h1>
-      <img src="/images/wave.png" alt="" height="150">
-      <p><%= page.feature %></p>
+      <img id="waveImg" src="" alt="" height="150">
+      <p id="feature"></p>
       <p><%= page.measureTime %></p>
     </div>
   </div>
@@ -15,19 +11,26 @@
   <div class="content-area-home-2">
     <div class="checkbox01">
       <h1><%= page.subTitle_1 %></h1>
+
+      <!-- patternごとに異なる -->
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[0] %>>
-        <div class="checkbox01-parts"><%= checkList[0] %></div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question0" class="checkbox01-parts"></div>
       </label>
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[1] %>>
-        <div class="checkbox01-parts"><%= checkList[1] %></div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question1" class="checkbox01-parts"></div>
       </label>
       <label>
-        <input type="checkbox" name="checkbox01[]" class="checkbox01-input" value=<%= checkList[2] %>>
-        <div class="checkbox01-parts"><%= checkList[2] %></div>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question2" class="checkbox01-parts"></div>
+      </label>
+      <label>
+        <input type="checkbox" name="checkbox01[]" class="checkbox01-input">
+        <div id="question3" class="checkbox01-parts"></div>
       </label>
     </div>
+
     <div class="adviceButton">
       <a href="/advice/"><input class="adviceButton-inside" type="button" value="Adviceを見る"></a>
     </div>
@@ -51,7 +54,7 @@
               value=<%= page.linkTitle[2] %> onclick="signOut()" /></a>
         </li>
       </ul>
-      <button class="animation-btn"><img src=<%= page.image %> alt=""></button>
+      <button class="animation-btn"><img src=<%= page.image2 %> alt=""></button>
     </aside>
   </div>
 

@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Welcome to Myakushin App">
+  <meta property="og:title" content="Welcome to Myakushin">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Welcome to Myakushin App - Myakushin</title>
+  <title>Welcome to Myakushin - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -55,7 +55,7 @@
           <a href=><img src=></a>
         </li>
         <li class="navbar_title">
-          <h1>Welcome to Myakushin App</h1>
+          <h1>Welcome to Myakushin</h1>
         </li>
         <li class="navbar_title_2">
           <h1 id="state"></h1>
@@ -66,49 +66,20 @@
   </div>
 </header> -->
 
-<!-- <script>
-  // ＊sideBar animation
-  $(function () {
-    var duration = 300;
-
-    //aside
-    var $aside = $('.page-main > aside');
-    var $asidButton = $aside.find('button').on('click', function () {
-      $aside.toggleClass('open');
-      if ($aside.hasClass('open')) {
-        $aside.stop(true).animate({
-          left: '-70px'
-        }, duration, 'easeOutBack');
-        $asidButton.find('img')
-          .attr('src', '');
-      } else {
-        $aside.stop(true).animate({
-          left: '-350px'
-        }, duration, 'easeInBack');
-        $asidButton.find('img')
-          .attr('src', '');
-      };
-    });
-  });
-
-</script> -->
-
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <div class="content-area-login">
-  <div class="subTitle">
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
-             Your app may use that space for branding, controls and other customizations.-->
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-    <p id="log"></p>
+  <div class="content-area">
+    <div class="subTitle">
+      <h1>Welcome to Myakushin</h1>
 
-    <div id="GoogleProfile">
-      <img id="img" src alt height="50px">
-
+      <div id="firebaseui-auth-container"></div>
+      <div id="loader">Loading...</div>
+      <p id="log"></p>
       <p id="state"></p>
       <p id="uid"></p>
-    </div>
 
+
+    </div>
   </div>
 </div>
 
@@ -228,6 +199,8 @@
 
   });
 </script>
+
+
 
 
 

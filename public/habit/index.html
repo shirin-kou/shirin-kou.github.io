@@ -66,33 +66,6 @@
   </div>
 </header> -->
 
-<!-- <script>
-  // ＊sideBar animation
-  $(function () {
-    var duration = 300;
-
-    //aside
-    var $aside = $('.page-main > aside');
-    var $asidButton = $aside.find('button').on('click', function () {
-      $aside.toggleClass('open');
-      if ($aside.hasClass('open')) {
-        $aside.stop(true).animate({
-          left: '-70px'
-        }, duration, 'easeOutBack');
-        $asidButton.find('img')
-          .attr('src', '/images/icons8-back.png');
-      } else {
-        $aside.stop(true).animate({
-          left: '-350px'
-        }, duration, 'easeInBack');
-        $asidButton.find('img')
-          .attr('src', '');
-      };
-    });
-  });
-
-</script> -->
-
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   
 
@@ -117,7 +90,7 @@
 
         <input type="radio" name="radio01" class="radio01-input" id="radio01-01" value="冷たいもの">
         <label for="radio01-01">冷たいもの</label>
-        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value>
+        <input type="radio" name="radio01" class="radio01-input" id="radio01-02" value="温かいもの">
         <label for="radio01-02">温かいもの</label>
       </div>
 
@@ -149,9 +122,15 @@
         <input type="radio" name="radio04" class="radio04-input" id="radio04-02" value="現在吸っている">
         <label for="radio04-02">現在吸っている</label>
       </div>
-
-      <div class="habitButton">
-        <input id="habitButton-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      <!-- 登録ボタン -->
+      <div id="habit2Button" class="habitButton">
+        <input id="habitButton2-inside" class="habitButton-inside" type="submit" name="submit" value="登録">
+      </div>
+      <!-- 現在の設定 -->
+      <div id="habitButton-inside" class="habitButton" style="display:none">
+        <a href="/habit-2/">
+          <input class="habitButton-inside" type="button" value="現在の設定">
+        </a>
       </div>
     </form>
   </div>
@@ -239,21 +218,22 @@
 
 <script>
 
-  var btn = $("#habitButton-inside");
+  var btn = $("#habitButton2-inside");
   var form = $("#habit-form");
   form.on('submit', check)
 
   // 各radioにvalueが入っているかcheck
+  // 入ってたらfirestoreにデータ保存
   async function check(e) {
     e.preventDefault()
     if ((document.form1.radio00.value) && (document.form1.radio01.value) && (document.form1.radio02.value) &&
       (document.form1.radio03.value) && (document.form1.radio04.value)) {
 
-      //有効にする
+      //submit buttonを有効にする
       btn.disabled = "false";
       alert("登録しました！あなたの習慣に合わせたアドバイスをします。");
 
-      // var user = firebase.auth().currentUser
+      var user = firebase.auth().currentUser
 
       await firebase.firestore().collection('user').doc(`${user.uid}`)
         .set({
@@ -266,18 +246,106 @@
           }
         }, { merge: true })
 
-      location.href = "/"
+      location.href = "/habit-2/"
 
     } else {
 
       alert("※未選択の質問があります。");
-
-      //無効にする
+      //submit buttonを無効にする
       btn.disabled = "true";
-
     }
-
   }
+
+
+  // habit登録済みか確認
+  // 登録されていたら/habit-2/へ接続
+  // const habitPattern = '/habit-2/'
+  // const isHabitPage = !!location.href.match(habitPattern)
+
+  // var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3").collection('habit');
+  // // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  // var getDoc = habitRef.get()
+  //   .then(doc => {
+  //     if (!doc.exists) {
+  //       console.log('No such document!');
+
+  //     } else {
+
+  //       if (!isHabitPage) {
+  //         location.href = '/habit-2/'
+
+  //       }
+  //     }
+  //   })
+
+  // async function check(e) {
+  //   e.preventDefault()
+
+  //   var habitRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
+  //   // var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+  //   var getDoc = await habitRef.get()
+  //     .then(doc => {
+  //       if (!doc.exists) {
+  //         console.log('No such document!');
+
+  //       } else {
+  //         location.href = '/habit-2/'
+
+  //         // if (!isHabitPage) {
+  //         //   location.href = '/habit-2/'
+
+  //         // }
+  //       }
+  //     })
+  // };
+
+
+</script>
+
+
+
+<script>
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var habitRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+
+      // habit-fieldがあるかcheck
+      // ある場合、選択した内容を＠habit-2で表示
+      // ない場合、現在の設定 ＠habitを非表示＊未解決
+      var getDoc = habitRef.get()
+        .then(doc => {
+          if (!doc.data().habit) {
+            console.log('No such habit document!');
+
+          } else {
+            console.log('Document data:', doc.data().habit);
+            $('#habitResult0').text(doc.data().habit.radio00);
+            $('#habitResult1').text(doc.data().habit.radio01);
+            $('#habitResult2').text(doc.data().habit.radio02);
+            $('#habitResult3').text(doc.data().habit.radio03);
+            $('#habitResult4').text(doc.data().habit.radio04);
+
+            //現在の設定を表示
+            $("#habitButton-inside").show();
+
+          }
+        })
+
+      //delete habit-field
+      $('#habitButton-delete').on("click", async function (e) {
+        e.preventDefault()
+
+        // Remove the 'habit' field from the document
+        var removeHabit = await habitRef.update({
+          habit: firebase.firestore.FieldValue.delete()
+        });
+
+        location.href = '/habit/'
+
+      });
+    }
+  });
 
 </script>
 

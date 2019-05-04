@@ -1,19 +1,46 @@
 <script>
-  var goalRef = firebase.firestore().collection("user").doc("Hq3QlNZhc2ZizmszVe96lN6bvgA3");
-  // var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-  var getGoalDoc = goalRef.get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('No such document!');
 
-      } else {
-        console.log('Document data:', doc.data().goal);
-        $('#goalResult').text(doc.data().goal);
-      }
-    })
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
 
-    .catch(err => {
-      console.log('Error getting document:::', err);
-    });
+      // goal-fieldがあるかcheck
+      // ある場合、選択した内容を＠Goal-2で表示
+      // ない場合、"現在の設定" ＠Goalを非表示
+      var getDoc = goalRef.get()
+        .then(doc => {
+          if (!doc.data().goal) {
+            console.log('No such goal document!');
+
+          } else {
+            console.log('Document data:', doc.data().goal);
+            console.log('Document imageData:', doc.data().goalImg);
+
+            $('#goalimage').attr("src", doc.data().goalImg);
+            $('#goalResultText').text(doc.data().goal);
+            //adviceにもImageを表示
+            $('#adviceImage').attr("src", doc.data().goalImg);
+
+            //現在の設定を表示
+            $('#goalButton-inside').show();
+
+          }
+        })
+
+      //delete goal-field
+      $('#goalButton-delete').on("click", async function (e) {
+        e.preventDefault()
+
+        // Remove the 'goal' field from the document
+        var removeGoal = await goalRef.update({
+          goal: firebase.firestore.FieldValue.delete(),
+          goalImg: firebase.firestore.FieldValue.delete()
+        });
+
+        location.href = '/goal/'
+
+      });
+    }
+  });
 
 </script>
