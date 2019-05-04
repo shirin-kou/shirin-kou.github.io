@@ -76,7 +76,10 @@
 
     <div class="condition">
       <h1>現在のコンディション</h1>
-      <p id="condition"></p>
+      <p id="condition0"></p>
+      <p id="condition1"></p>
+      <p id="condition2"></p>
+
     </div>
 
     <div id="advice">
@@ -229,10 +232,12 @@
   //現在のコンディション
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      var conditionRef = firebase.firestore().collection("class").doc("pattern1");
+      var conditionRef = firebase.firestore().collection("class").doc("pattern2");
       var getDoc = conditionRef.get()
         .then(doc => {
-          $('#condition').text(doc.data().condition);
+          $('#condition0').text(doc.data().condition.a);
+          $('#condition1').text(doc.data().condition.b);
+          $('#condition2').text(doc.data().condition.c);
         })
       console.log(conditon)
     }
