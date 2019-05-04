@@ -854,10 +854,10 @@ sideBar animation
 --------------------------------------------------------------*/
 .page-main > aside {
   background-color: #FF473A;
-  width: 500px;
+  width: 350px;
   height: 100%;
   top: 0;
-  left: -500px;
+  left: -350px;
   position: fixed; }
   .page-main > aside div {
     margin: 0;
@@ -887,7 +887,7 @@ sideBar animation
     display: block;
     position: absolute;
     top: 0;
-    left: 500px;
+    left: 350px;
     width: 75px;
     height: 100px;
     margin: 0;
