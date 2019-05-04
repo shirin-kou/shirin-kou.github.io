@@ -120,7 +120,7 @@
   <div class="page-main">
     <aside>
       <div>
-        <img id="img" src alt height="100px">
+        <img id="waveImg" src alt height="300px">
         <p id="googleDisplayName"></p>
       </div>
       <ul>
@@ -275,23 +275,15 @@
             })
 
           //波の画像 ＊未解決
-          // var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
-          // var getDoc = waveImg.get()
-          //   .then(doc => {
-          //     $('#waveImg').attr("src", doc.data().waveImg);
-          //   })
+          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
+          var getDoc = waveImgRef.get()
+            .then(doc => {
+              $('#waveImg').attr("src", doc.data().waveImg);
+            })
 
         })
     }
   })
-
-  //
-  var conditionRef = firebase.firestore().collection("class").doc("pattern1");
-  var getDoc = conditionRef.get()
-    .then(doc => {
-      $('#condition').text(doc.data().condition);
-    })
-  console.log(conditon)
 
 </script>
 
