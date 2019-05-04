@@ -660,6 +660,7 @@ advice.ejs
 
 .condition {
   margin: 10px 0 10px 0;
+  max-width: 100%;
   width: 800px;
   display: inline-block; }
   .condition p {
@@ -854,10 +855,10 @@ sideBar animation
 --------------------------------------------------------------*/
 .page-main > aside {
   background-color: #FF473A;
-  width: 350px;
+  width: 500px;
   height: 100%;
   top: 0;
-  left: -350px;
+  left: -500px;
   position: fixed; }
   .page-main > aside div {
     margin: 0;
@@ -887,7 +888,7 @@ sideBar animation
     display: block;
     position: absolute;
     top: 0;
-    left: 350px;
+    left: 500px;
     width: 75px;
     height: 100px;
     margin: 0;
@@ -1048,9 +1049,7 @@ goal-2.ejs
   .post .nav-links {
     display: none; }
   .archive ul.list {
-    padding-left: 20px; }
-  .page-main {
-    width: 70%; } }
+    padding-left: 20px; } }
 
 @media screen and (max-width: 320px) {
   .container {
@@ -1063,6 +1062,4 @@ goal-2.ejs
     padding-right: 20px; }
   .footer-widgets .inside-wrapper {
     padding-left: 5px;
-    padding-right: 5px; }
-  .page-main {
-    width: 70%; } }
+    padding-right: 5px; } }
