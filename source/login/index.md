@@ -1,5 +1,5 @@
 ---
-title: Welcome to Myakushin
+title: ミャクシン
 layout: login
 firebase: true
 ---

@@ -1,11 +1,25 @@
 <script>
 
+  //現在のコンディション
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var conditionRef = firebase.firestore().collection("class").doc("pattern2");
+      var getDoc = conditionRef.get()
+        .then(doc => {
+          $('#condition0').text(doc.data().condition.a);
+          $('#condition1').text(doc.data().condition.b);
+          $('#condition2').text(doc.data().condition.c);
+        })
+      console.log(condition)
+    }
+  });
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var adviceRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-
       var getDoc = adviceRef.get()
         .then(doc => {
+
           //食事に気をつけたい＆冷たいもの
           if (doc.data().habit.radio01 == "冷たいもの" && doc.data().goal == "食事に気をつけたい") {
             console.log('cold');
@@ -54,9 +68,23 @@
                 $('#adviceResult2').text(doc.data().advice.c);
               })
           }
+          //不調を改善したい
+          if (doc.data().goal == "不調を改善したい") {
+            console.log('diet');
+            var adviceRef = firebase.firestore().collection("class").doc("pattern1");
+            var getDoc = adviceRef.get()
+              .then(doc => {
+                $('#workAdviceTitle').text("おすすめ対策");
+                $('#adviceResult0').text(doc.data().advice.a);
+                $('#adviceResult1').text(doc.data().advice.b);
+                $('#adviceResult2').text(doc.data().advice.c);
+              })
+          }
         })
     }
   });
+
+
 
 
 </script>

@@ -2,32 +2,35 @@
 
 <!-- HTML -->
 <div class="content-area">
-  <div class="habit-area">
+  <div class="content-area-habit2">
     <h1><%= page.title %></h1>
-    <h2><%= page.subTitle %></h2>
+  </div>
 
-    <table class="habit-table">
-      <tr class="habit2">
+  <div class="content-area-habit2-2">
+    <table>
+      <tr>
         <td><%= page.habit[0] %></td>
         <td id="habitResult0"></td>
       </tr>
-      <tr class="habit2">
+      <tr>
         <td><%= page.habit[1] %></td>
         <td id="habitResult1"></td>
       </tr>
-      <tr class="habit2">
+      <tr>
         <td><%= page.habit[2] %></td>
         <td id="habitResult2"></td>
       </tr>
-      <tr class="habit2">
+      <tr>
         <td><%= page.habit[3] %></td>
         <td id="habitResult3"></td>
       </tr>
-      <tr class="habit2">
+      <tr>
         <td><%= page.habit[4] %></td>
         <td id="habitResult4"></td>
       </tr>
     </table>
+  </div>
+  <div>
     <!-- 内容を変更・削除 -->
     <div class="habitButton">
       <input id="habitButton-delete" class="habitButton-inside" type="button" value="内容を変更・削除">

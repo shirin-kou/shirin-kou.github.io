@@ -3,6 +3,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
   integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
+
 <script>
   // Firebaseの初期化
   var config = {
@@ -65,4 +67,9 @@
     });
   }
 
-</script>
+  //#userInfoをおしたらlogoutがでてくる
+  $('#userInfo').on("click", function () {
+
+    $('#logoutButton').show();
+
+  });

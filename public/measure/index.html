@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-  <meta property="og:title" content="Goal-2">
+  <meta property="og:title" content="measure">
   
   <!--Open Graph Description-->
   
@@ -33,11 +33,13 @@
 
   <!-- Title -->
   
-  <title>Goal-2 - Myakushin</title>
+  <title>measure - Myakushin</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
+  <!-- slide swipper -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -46,50 +48,44 @@
 
   <!-- Nav -->
   <!-- <header class="site-header">
-  <div class="header-inside">
 
-    Navigation
-    <nav class="navbar">
-      <ul>
-        <li>
-          <a href=><img src=></a>
-        </li>
-        <li class="navbar_title">
-          <h1>Goal-2</h1>
-        </li>
-        <li class="navbar_title_2">
-          <h1 id="state"></h1>
-        </li>
-      </ul>
-    </nav>
+  <nav class="navbar">
 
-  </div>
+    googleName,Img,タップしたらlog-out Buttonがでてくる
+    <div id="userInfo">
+      <img id="img" src="" alt="">
+      <p id="googleDisplayName"></p>
+    </div>
+
+    <div>
+      <a href="/login/"></a><input id="logoutButton" class="logoutButton" type="button" style="display:none"
+        onclick="signOut()" /></a>
+    </div>
+
+  </nav>
+
 </header> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <!-- change/firebase -->
+  <header class="site-header">
 
+  <nav class="navbar">
 
-<!-- HTML -->
-<div class="content-area">
-  <h2>Goal</h2>
+    <!-- googleName,Img -->
+    <img id="img" src alt>
+    <p id="googleDisplayName"></p>
 
-  <div class="goalResult">
-    <div id="goalResultText"></div>
-    <img id="goalimage" src alt height="300px">
+  </nav>
+
+</header>
+
+<body class="measureBody">
+
+  <div class="content-area">
+    測定中
   </div>
 
-  <!-- 内容を変更・削除 -->
-  <div class="goalButton">
-    <input id="goalButton-delete" class="goalButton-inside" type="button" value="内容を変更・削除">
-  </div>
-  <!-- HOMEに戻る -->
-  <div class="goalButton">
-    <a href="/">
-      <input class="goalButton-inside" type="button" value="HOME">
-    </a>
-  </div>
-</div>
+</body>
 
   <!-- Footer -->
   <!-- Footer -->
@@ -100,6 +96,8 @@
 <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
+
 <script>
   // Firebaseの初期化
   var config = {
@@ -162,86 +160,56 @@
     });
   }
 
-</script>
+  //#userInfoをおしたらlogoutがでてくる
+  $('#userInfo').on("click", function () {
+
+    $('#logoutButton').show();
+
+  });</script>
 
 
-
-
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <script>
+  var provider = new firebase.auth.GoogleAuthProvider();
 
-  $('.goalImage').on("click", async function (e) {
-    e.preventDefault()
+  $(function () {
 
-    var user = firebase.auth().currentUser
+    // FirebaseUIインスタンス初期化
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-    await firebase.firestore().collection('user').doc(`${user.uid}`)
-      .set({
-        goal: this.value,
-        goalImg: this.src,
-      }, { merge: true })
+    ui.start('#firebaseui-auth-container', {
 
-    location.href = "/goal-2/"
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInOptions: [
+        //利用する認証機能
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      ],
+      signInSuccessUrl: '/',
+      // Other config options...
+    });
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+
+    };
+    // // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
 
   });
-
-  //goal登録済み確認
-  const goalPattern = '/goal-2/'
-  const isGoalPage = !!location.href.match(goalPattern)
-
 </script>
-
-
-
-<script>
-
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var goalRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-
-      // goal-fieldがあるかcheck
-      // ある場合、選択した内容を＠Goal-2で表示
-      // ない場合、"現在の設定" ＠Goalを非表示
-      var getDoc = goalRef.get()
-        .then(doc => {
-          if (!doc.data().goal) {
-            console.log('No such goal document!');
-
-          } else {
-            console.log('Document data:', doc.data().goal);
-            console.log('Document imageData:', doc.data().goalImg);
-
-            $('#goalimage').attr("src", doc.data().goalImg);
-            $('#goalResultText').text(doc.data().goal);
-            //adviceにもImageを表示
-            $('#adviceImage').attr("src", doc.data().goalImg);
-
-            //現在の設定を表示
-            $('#goalButton-inside').show();
-
-          }
-        })
-
-      //delete goal-field
-      $('#goalButton-delete').on("click", async function (e) {
-        e.preventDefault()
-
-        // Remove the 'goal' field from the document
-        var removeGoal = await goalRef.update({
-          goal: firebase.firestore.FieldValue.delete(),
-          goalImg: firebase.firestore.FieldValue.delete()
-        });
-
-        location.href = '/goal/'
-
-      });
-    }
-  });
-
-</script>
-
-
-
-
 
 
 

@@ -1,37 +1,24 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 <script>
-  // SideBar animation
-  $(function () {
-    var duration = 500;
 
-    //aside
-    var $aside = $('.page-main > aside');
-    var $asidButton = $aside.find('button').on('click', function () {
-      $aside.toggleClass('open');
-      if ($aside.hasClass('open')) {
-        $aside.stop(true).animate({
-          left: '-70px'
-        }, duration, 'easeOutBack');
-        $asidButton.find('img')
-          .attr('src', '<%= page.image1 %>');
-      } else {
-        $aside.stop(true).animate({
-          left: '-500px'
-        }, duration, 'easeInBack');
-        $asidButton.find('img')
-          .attr('src', '<%= page.image2 %>');
-      };
-    });
-  });
-
-  // Question
+  // pattern
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      var questionRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-
-      var getDoc = questionRef.get()
+      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`);
+      var getDoc = patternRef.get()
         .then(doc => {
+          if (doc.data().pattern == "pattern0") {
+            console.log('正常だよ');
+            $('.swiper-container').hide();
 
-          //質問、チェック項目
+          } else {
+            console.log("気をつけなはれや")
+            $('.homeBody').css("background-color", "#D25621");
+            $('.adviceButton-inside').css("color", "#D25621");
+
+          }
+
+          //質問、チェック項目（doc/pattern要変更）
           var questionRef = firebase.firestore().collection("class").doc("pattern1");
           var getDoc = questionRef.get()
             .then(doc => {
@@ -39,18 +26,26 @@
               $('#question1').text(doc.data().question.b);
               $('#question2').text(doc.data().question.c);
               $('#question3').text(doc.data().question.d);
+              $('#condition0').text(doc.data().condition.a);
+              $('#condition1').text(doc.data().condition.b);
+              $('#condition2').text(doc.data().condition.c);
+              $('#condition3').text(doc.data().condition.d);
+              $('#advice0').text(doc.data().advice.a);
+              $('#advice1').text(doc.data().advice.b);
+              $('#advice2').text(doc.data().advice.c);
+              $('#advice3').text(doc.data().advice.d);
             })
 
-          //波の特徴
+          //波の特徴（doc/pattern要変更）
           var featureRef = firebase.firestore().collection("class").doc("pattern1");
           var getDoc = featureRef.get()
             .then(doc => {
               $('#feature').text(doc.data().feature);
             })
 
-          //波の画像 ＊未解決
-          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = waveImg.get()
+          //波の画像（doc/pattern要変更）
+          var waveImgRef = firebase.firestore().collection("class").doc("pattern2");
+          var getDoc = waveImgRef.get()
             .then(doc => {
               $('#waveImg').attr("src", doc.data().waveImg);
             })
@@ -59,4 +54,41 @@
     }
   })
 
+  //jQueryで続きを読むボタンを付ける
+  var itemHeights = []; //
+  $(function () {
+    $(".grad-item").each(function () { //ターゲット(縮めるアイテム)
+      var thisHeight = $(this).height(); //ターゲットの高さを取得
+      itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
+      $(this).addClass("is-hide"); //CSSで指定した高さにする
+    });
+
+
+    $(".grad-trigger").click(function () {
+      var index = $(this).index(".grad-trigger"); //トリガーが何個目か
+      var addHeight = itemHeights[index]; //個数に対応する高さを取得
+      $(this).fadeOut().addClass("is-show").prev().animate({ height: addHeight }, 200).removeClass("is-hide"); //高さを元に戻す
+    });
+
+  });
+
+  //slide機能を付ける
+  var mySwiper = new Swiper('.swiper-container', {
+    loop: true,
+    slidesPerView: 2,
+    spaceBetween: 10,
+    centeredSlides: true,
+    pagination: '.swiper-pagination',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev'
+  })
+
+
+  $(".swiper-button-next").click(function () {
+    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
+  });
+
+  $(".swiper-button-prev").click(function () {
+    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
+  });
 </script>

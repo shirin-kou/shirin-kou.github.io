@@ -38,6 +38,8 @@
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
+  <!-- slide swipper -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -46,52 +48,51 @@
 
   <!-- Nav -->
   <!-- <header class="site-header">
-  <div class="header-inside">
 
-    Navigation
-    <nav class="navbar">
-      <ul>
-        <li>
-          <a href=/><img src=/images/icons8-delete_sign.png></a>
-        </li>
-        <li class="navbar_title">
-          <h1>Setting</h1>
-        </li>
-        <li class="navbar_title_2">
-          <h1 id="state"></h1>
-        </li>
-      </ul>
-    </nav>
+  <nav class="navbar">
 
-  </div>
+    googleName,Img,タップしたらlog-out Buttonがでてくる
+    <div id="userInfo">
+      <img id="img" src="" alt="">
+      <p id="googleDisplayName"></p>
+    </div>
+
+    <div>
+      <a href="/login/"></a><input id="logoutButton" class="logoutButton" type="button" style="display:none"
+        onclick="signOut()" /></a>
+    </div>
+
+  </nav>
+
 </header> -->
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <!-- HTML -->
-<div class="content-area">
+<!-- <div class="content-area">
   <table class="setting-table">
     <tr>
       <td rowspan="3" class="setting-table-account">
-        <img id="img" src alt height="100px">
+        <img id="img" src="" alt="" height="100px">
         <p id="googleDisplayName"></p>
       </td>
       <td>
-        <a href="/goal/">Goal</a>
+        <a href=/goal/>Goal</a>
       </td>
     </tr>
     <tr>
       <td>
-        <a href="/habit/">Habit</a>
+        <a href=/habit/>Habit</a>
       </td>
     </tr>
     <tr>
       <td>
-        <a href="/login/"><input id="logoutButton" class="logoutButton" type="button" value="Log-out" onclick="signOut()"></a>
+        <a href=/login/><input id="logoutButton" class="logoutButton" type="button"
+            value=Log-out onclick="signOut()" /></a>
       </td>
     </tr>
   </table>
 
-</div>
+</div> -->
 
   <!-- Footer -->
   <!-- Footer -->
@@ -102,6 +103,8 @@
 <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
+
 <script>
   // Firebaseの初期化
   var config = {
@@ -164,15 +167,12 @@
     });
   }
 
-</script>
+  //#userInfoをおしたらlogoutがでてくる
+  $('#userInfo').on("click", function () {
 
+    $('#logoutButton').show();
 
-
-
-
-
-
-
+  });</script>
 
 
 

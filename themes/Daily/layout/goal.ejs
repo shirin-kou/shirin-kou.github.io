@@ -1,7 +1,9 @@
 <div class="content-area">
-  <div class="goal-area">
+  <div class="content-area-goal">
     <h1><%= page.title %></h1>
-    <h1 class="subTitle-goal"><%= page.subTitle %></h1>
+  </div>
+  <div class="content-area-goal-2">
+    <h2 class="subTitle-goal"><%= page.subTitle %></h2>
     <form name="form2" id="goal-form">
       <table class="goal">
         <tr>
@@ -13,32 +15,34 @@
             <input class="goalImage" type="image" name="goal1" src=<%= page.goalImg_1 %>
               value=<%= page.goal[1] %>><br><%= page.goal[1] %>
           </td>
-          <td class="goal_2">
-            <input class="goalImage" type="image" name="goal2" src=<%= page.goalImg_2 %>
-              value=<%= page.goal[2] %>><br><%= page.goal[2] %>
+          <td class="goal_4">
+            <input class="goalImage" type="image" name="goal4" src=<%= page.goalImg_4 %>
+              value=<%= page.goal[4] %>><br><%= page.goal[4] %>
           </td>
-        </tr>
-        <tr>
           <td class="goal_3">
             <input class="goalImage" type="image" name="goal3" src=<%= page.goalImg_3 %>
               value=<%= page.goal[3] %>><br><%= page.goal[3] %>
           </td>
-          <td class="goal_4">
-            <input class="goalImage" type="image" name="goal4" src=<%= page.goalImg_4 %>
-              value=<%= page.goal[4] %>><br><%= page.goal[4] %>
+
+        </tr>
+        <!-- <tr>
+          <td class="goal_2">
+            <input class="goalImage" type="image" name="goal2" src=<%= page.goalImg_2 %>
+              value=<%= page.goal[2] %>><br><%= page.goal[2] %>
           </td>
           <td class="goal_5">
             <input class="goalImage" type="image" name="goal5" src=<%= page.goalImg_5 %>
               value=<%= page.goal[5] %>><br><%= page.goal[5] %>
           </td>
-        </tr>
+        </tr> -->
       </table>
+
+      <!-- 現在の設定 -->
+      <div id="goalButton-inside" class="goalButton" style="display:none">
+        <a href="/goal-2/">
+          <input class="goalButton-inside" type="button" value="現在の設定">
+        </a>
+      </div>
     </form>
-    <!-- 現在の設定 -->
-    <div id="goalButton-inside" class="goalButton" style="display:none">
-      <a href="/goal-2/">
-        <input class="goalButton-inside" type="button" value="現在の設定">
-      </a>
-    </div>
   </div>
 </div>

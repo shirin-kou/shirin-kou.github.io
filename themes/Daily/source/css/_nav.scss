@@ -1,8 +1,5 @@
 .site-header {
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #dcdcdc;
-  z-index: 30;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,70 +10,16 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: flex;
+    float: right;
+
 }
-.header-inside {
-  display: block;
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-.logo {
-  display: block;
-  a {
-    display: block;
-    img {
-      display: block;
-      height: $header-height - 10px;
-    }
-  }
-}
+
 .navbar {
-  // padding-top: $nav-padding-top;
-  ul {
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
-      height: 0;
-      visibility: hidden;
-    }
-    li {
-          vertical-align: middle;
+    margin-right: 10px;
 
-      position: relative;
-      float: left;
-      margin-left: 20px;
-      a {
-        text-decoration: none;
-        line-height: 1.5;
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
+  img {
+    border-radius: 25px;  
+    height: 50px;
+    width: 50px;
   }
-}
-
-.navbar ul li:before {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  content: "";
-  width: 0%;
-  height: 1px;
-  background: #7e7e7e;
-  display: block;
-  -webkit-transition: width 0.25s ease;
-  transition: width 0.25s ease;
-}
-.navbar ul li:hover:before {
-  width: 100%;
-}
-.navbar_title{
-  margin-top: 5px;
-}
-
-//※navbarの右端に寄せたい！
-.navbar_title_2{
-  margin: 5px 0 0 auto;
 }
