@@ -47,24 +47,21 @@
 <body>
 
   <!-- Nav -->
-  <!-- <header class="site-header">
+  <header class="site-header">
 
   <nav class="navbar">
 
-    googleName,Img,タップしたらlog-out Buttonがでてくる
     <div id="userInfo">
-      <img id="img" src="" alt="">
-      <p id="googleDisplayName"></p>
+      <p><img id="img" src alt><span id="googleDisplayName"></span></p>
     </div>
 
-    <div>
-      <a href="/login/"></a><input id="logoutButton" class="logoutButton" type="button" style="display:none"
-        onclick="signOut()" /></a>
+    <div id="logoutButton" style="display:none">
+      <a href="/login/"><input type="button" class="logoutButton" value="ログアウト" onclick="signOut()"></a>
     </div>
 
   </nav>
 
-</header> -->
+</header>
 
   <!-- Main Content layoutで指定したejsが表示される部分 -->
   <body class="loginBody">
@@ -86,12 +83,7 @@
 </body>
 
   <!-- Footer -->
-  <!-- Footer -->
-<footer class="site-info">
-
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 
@@ -136,6 +128,7 @@
         .set({
           uid: user.uid,
           name: user.displayName,
+          sensorData: "",
         }, { merge: true })
 
     } else {
@@ -162,8 +155,22 @@
   $('#userInfo').on("click", function () {
 
     $('#logoutButton').show();
+    $('#img').css("opacity", "0.5");
+    $('#googleDisplayName').css("opacity", "0.5");
 
-  });</script>
+
+
+  });
+
+  // $(document).on('click touchend', function (e) {
+  //   if (!$(e.target).closest('#logoutButton').length) {
+  //     // フェードやスライドなどの処理方法を記述;
+  //     $('#logoutButton').fadeOut();
+
+  //   }
+  // });
+
+</script>
 
 
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
@@ -208,6 +215,8 @@
 
   });
 </script>
+
+
 
 
 

@@ -68,7 +68,6 @@ sub,
 sup {
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline; }
 
 sup {
@@ -169,34 +168,16 @@ table {
 
 body,
 html {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  color: white;
-  position: relative; }
+  color: white; }
 
 .homeBody,
 .loginBody {
   background-color: #18A080; }
 
-/*--------------------------------------------------------------
-Reset
---------------------------------------------------------------*/
 a,
-abbr,
-acronym,
-address,
-applet,
-big,
-blockquote,
 body,
-caption,
-cite,
-code,
-dd,
-del,
-dfn,
 div,
 dl,
 dt,
@@ -208,10 +189,6 @@ h1,
 h2,
 html,
 iframe,
-ins,
-kbd,
-label,
-legend,
 li,
 object,
 ol,
@@ -345,41 +322,8 @@ em {
   font-style: italic; }
 
 /*--------------------------------------------------------------
-Links
+login.ejs
 --------------------------------------------------------------*/
-a {
-  color: #3a3a3a;
-  text-decoration: none; }
-
-a:visited {
-  color: #3a3a3a; }
-
-a:active,
-a:focus,
-a:hover {
-  color: #3a3a3a;
-  opacity: 0.8; }
-
-/*--------------------------------------------------------------
-Content
---------------------------------------------------------------*/
-.content-area {
-  padding-top: 20px;
-  width: 100%;
-  position: relative;
-  text-align: center; }
-  .content-area .setting-table {
-    width: 700px;
-    margin: 0 auto;
-    margin-top: 70px;
-    font-size: 30px; }
-    .content-area .setting-table td {
-      padding: 30px 0 30px 0; }
-    .content-area .setting-table .setting-table-account {
-      width: 400px; }
-      .content-area .setting-table .setting-table-account img {
-        margin: 0 auto; }
-
 .content-area-login {
   text-align: center;
   margin: auto;
@@ -388,171 +332,6 @@ Content
   .content-area-login .subTitle {
     margin-top: 50px; }
 
-.error404 .content-area,
-.page .content-area {
-  padding-top: 120px; }
-
-.odd {
-  background: #f5f5f5;
-  position: relative; }
-
-.even {
-  background: white;
-  position: relative; }
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding-left: 50px;
-  padding-right: 50px; }
-
-.inside-wrapper {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0 50px; }
-
-.attachment-post-thumbnail {
-  margin: 0 auto 35px;
-  transition: opacity 0.7s;
-  display: block; }
-  .attachment-post-thumbnail:hover {
-    opacity: 0.7; }
-
-.entry-title {
-  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
-  letter-spacing: 0.2em;
-  color: #000;
-  text-align: center;
-  margin-bottom: 27px;
-  font-weight: 700;
-  font-size: 1.25em; }
-  .entry-title a {
-    color: #000;
-    font-weight: 700;
-    text-decoration: none; }
-  .entry-title:after {
-    content: "";
-    height: 2px;
-    width: 50px;
-    background: black;
-    display: block;
-    margin: 20px auto 0; }
-  .entry-title:hover {
-    opacity: 0.7; }
-
-.home .entry-content {
-  margin: 1.5em 0; }
-  .home .entry-content p {
-    text-align: center; }
-
-.posted-on {
-  text-align: center;
-  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
-  font-size: 0.688em;
-  text-transform: uppercase;
-  letter-spacing: 0.2em; }
-
-.tags-links {
-  text-align: center;
-  font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
-  font-size: 0.800em;
-  font-style: normal;
-  margin-bottom: 30px; }
-  .tags-links a {
-    margin: 0 5px;
-    font-style: italic; }
-
-.pager {
-  padding: 1.5em 0; }
-  .pager:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0; }
-  .pager:hover .meta-arraw {
-    opacity: 0.8; }
-  .pager .previous {
-    float: right;
-    text-align: right;
-    width: 50%; }
-  .pager .next {
-    float: left;
-    width: 50%; }
-  .pager a {
-    text-decoration: none;
-    color: #3a3a3a;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
-    font-size: 0.750em; }
-
-.meta-arraw {
-  width: 10px;
-  height: 17px;
-  background: url("../images/arrow-left.svg") no-repeat;
-  display: inline-block;
-  margin-bottom: -4px;
-  margin-right: 5px;
-  opacity: 0.3;
-  transition: opacity 0.5s ease; }
-
-.meta-arraw-left {
-  background: url("../images/arrow-left.svg") no-repeat; }
-
-.meta-arraw-right {
-  background: url("../images/arrow-right.svg") no-repeat; }
-
-/*--------------------------------------------------------------
-Comment
---------------------------------------------------------------*/
-#comment {
-  margin-top: 70px; }
-
-/*--------------------------------------------------------------
-advice.ejs
---------------------------------------------------------------*/
-.advice {
-  text-align: center; }
-  .advice img {
-    max-width: 100%;
-    height: 300px;
-    margin-top: 30px; }
-
-.condition {
-  margin: 10px 0 10px 0;
-  max-width: 800px;
-  width: 100%;
-  display: inline-block; }
-  .condition p {
-    text-align: left; }
-
-.adviceImage {
-  height: 180px;
-  /* ※縦横を同値に */ }
-
-/*--------------------------------------------------------------
-setting.ejs
---------------------------------------------------------------*/
-.setting-table-account {
-  text-align: center;
-  vertical-align: middle; }
-
-.logoutButton-loginPage-inside,
-.logoutButton,
-.adviceButton-inside,
-.habitButton-inside,
-.goalButton-inside {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 0;
-  appearance: none; }
-
-/*--------------------------------------------------------------
-login.ejs
---------------------------------------------------------------*/
 .GoogleProfile {
   display: flex; }
 
@@ -564,78 +343,71 @@ login.ejs
 /*--------------------------------------------------------------
 home.ejs
 --------------------------------------------------------------*/
+.content-area {
+  padding-top: 20px;
+  position: relative;
+  top: 70px;
+  max-width: 500px;
+  height: 100%;
+  margin: 0 auto; }
+
 .content-area-home {
-  text-align: center;
-  position: relative; }
-  .content-area-home .measureTime {
-    top: 80%;
-    left: 50%; }
+  text-align: center; }
 
-.content-area-home-2 {
-  margin: 0 auto;
-  display: inline-block;
-  text-align: left; }
+#waveImg {
+  border-radius: 50%; }
 
-.logoutButton {
-  width: 150px;
-  height: 50px;
-  background-color: white; }
+#feature {
+  padding: 40px;
+  top: 70%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  font-size: 120%; }
 
-.adviceButton,
-.habitButton,
-.goalButton {
+.measureTime {
+  top: 50.5%;
+  right: 51%; }
+
+/*--------------------------------------------------------------
+button
+--------------------------------------------------------------*/
+.measureButton {
   width: 200px;
   height: 50px;
   background-color: rgba(255, 255, 255, 0.8);
   margin: auto;
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px; }
-  .adviceButton input,
-  .habitButton input,
-  .goalButton input {
+  justify-content: center; }
+  .measureButton input {
     color: #18A080;
     font-size: 20px; }
 
-.img {
-  height: 300px; }
+.logoutButton-loginPage-inside,
+.logoutButton,
+.measureButton-inside {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  appearance: none; }
 
 /*--------------------------------------------------------------
-Content
+@Home-swiper
 --------------------------------------------------------------*/
-.measureBody {
-  background-color: #222222;
-  min-width: 300px;
-  /*中央配置するボックスの横幅*/
-  min-height: 400px;
-  /*中央配置するボックスの縦幅*/
-  margin: 0;
-  padding: 0; }
-  .measureBody div {
-    font-size: 40px;
-    font-family: 'Gotham SSm A', 'Gotham SSm B', '小塚ゴシック Pr6N', 'Kozuka Gothic Pr6N', sans-serif;
-    margin: -200px 0 0 -300px;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    width: 600px;
-    height: 400px; }
-
-.swiper-slide {
-  position: relative; }
+.swiper-container {
+  position: relative;
+  bottom: 0p;
+  width: 100%; }
 
 .swiper-slide + .swiper-slide {
   margin-top: 20px; }
 
 .grad-trigger {
-  font-size: 80%;
+  font-size: 0.8rem;
   /*ボタンのスタイルはご自由にどうぞ*/ }
 
 .grad-item {
-  position: relative;
   overflow: hidden;
   padding: 10px 10px 10px 10px;
   height: 100%; }
@@ -649,7 +421,6 @@ Content
 
 .grad-item::before {
   display: block;
-  position: absolute;
   bottom: 0;
   left: 0;
   content: "";
@@ -662,9 +433,6 @@ Content
 .grad-trigger.is-show + .grad-item::before {
   display: none; }
 
-.swiper-container {
-  width: 100%; }
-
 .swiper-slide {
   width: 200px;
   height: 200px;
@@ -674,26 +442,43 @@ Content
   border-radius: 4px 4px 4px 4px;
   text-align: center; }
 
-.site-header {
-  width: 100%;
+/*--------------------------------------------------------------
+measure.ejs
+--------------------------------------------------------------*/
+.measureBody {
+  background-color: #222222; }
+  .measureBody .content-area-measure {
+    height: 100%;
+    top: 50%;
+    text-align: middle;
+    margin: 0 auto;
+    font-size: 2.5rem; }
+
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
-  padding-left: 20px;
-  padding-right: 50px;
   height: 70px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: flex;
-  float: right; }
+  display: flex; }
 
-.navbar {
-  margin-right: 10px; }
-  .navbar img {
-    border-radius: 25px;
-    height: 50px;
-    width: 50px; }
+#userInfo {
+  position: relative; }
+  #userInfo img {
+    vertical-align: middle;
+    border-radius: 50%;
+    height: 50px; }
+  #userInfo p {
+    margin: 0.5rem; }
+
+#logoutButton {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.8); }
+
+.logoutButton {
+  width: 120px;
+  height: 50px; }
 
 @media screen and (max-width: 767px) {
   .logo a img {
@@ -707,7 +492,6 @@ Content
     float: left; }
     .site-header .navbar {
       left: 0;
-      top: 20px;
       width: 100%;
       z-index: 9999; }
       .site-header .navbar ul li {
