@@ -73,16 +73,17 @@
   <div class="content-area">
     <div class="content-area-home">
       <img id="waveImg" src alt height="150" width="150">
+      <!-- <canvas id="myChart"></canvas> -->
+
       <p id="feature"></p>
     </div>
     <div class="measure">
       <div class="measureButton">
-        <input class="measureButton-inside" type="button" value="測定を始める">
-        <!-- <a href="/measure/"><input class="measureButton-inside" type="button" value="測定を始める"></a> -->
+        <a href="/measure/" class="measureButton-inside">測定を始める</a>
       </div>
-      <p class="measureTime">前回測定：</p>
-    </div>
+      <p>前回測定：<span class="measureTime"></span></p>
 
+    </div>
   </div>
 
   <!-- Slider main container -->
@@ -183,7 +184,6 @@
         .set({
           uid: user.uid,
           name: user.displayName,
-          sensorData: "",
         }, { merge: true })
 
     } else {
@@ -222,60 +222,78 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 <script>
 
-  // pattern
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-      var getDoc = patternRef.get()
-        .then(doc => {
-          if (doc.data().pattern == "pattern0") {
-            console.log('正常だよ');
-            $('.swiper-container').hide();
-
-          } else {
-            console.log("気をつけなはれや")
-            $('.homeBody').css("background-color", "#D25621");
-            $('.measureButton-inside').css("color", "#D25621");
-
-          }
-
-          //質問、チェック項目（doc/pattern要変更）
-          var questionRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = questionRef.get()
-            .then(doc => {
-              $('#question0').text(doc.data().question.a);
-              $('#question1').text(doc.data().question.b);
-              $('#question2').text(doc.data().question.c);
-              $('#question3').text(doc.data().question.d);
-              $('#condition0').text(doc.data().condition.a);
-              $('#condition1').text(doc.data().condition.b);
-              $('#condition2').text(doc.data().condition.c);
-              $('#condition3').text(doc.data().condition.d);
-              $('#advice0').text(doc.data().advice.a);
-              $('#advice1').text(doc.data().advice.b);
-              $('#advice2').text(doc.data().advice.c);
-              $('#advice3').text(doc.data().advice.d);
-            })
-
-          //波の特徴（doc/pattern要変更）
-          var featureRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = featureRef.get()
-            .then(doc => {
-              $('#feature').text(doc.data().feature);
-            })
-
-          //波の画像（doc/pattern要変更）
-          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = waveImgRef.get()
-            .then(doc => {
-              $('#waveImg').attr("src", doc.data().waveImg);
-            })
-
+      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("pattern").orderBy('ts', 'desc').limit(1);
+      var getPatternDoc = patternRef.get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data().pattern);
+            var pattern = doc.data().pattern
+            var questionRef = firebase.firestore().collection("class").doc(pattern);
+            var getDoc = questionRef.get()
+              .then(doc => {
+                //質問、チェック項目
+                $('#question0').text(doc.data().question.a);
+                $('#question1').text(doc.data().question.b);
+                $('#question2').text(doc.data().question.c);
+                $('#question3').text(doc.data().question.d);
+                $('#condition0').text(doc.data().condition.a);
+                $('#condition1').text(doc.data().condition.b);
+                $('#condition2').text(doc.data().condition.c);
+                $('#condition3').text(doc.data().condition.d);
+                $('#advice0').text(doc.data().advice.a);
+                $('#advice1').text(doc.data().advice.b);
+                $('#advice2').text(doc.data().advice.c);
+                $('#advice3').text(doc.data().advice.d);
+                //波の特徴
+                $('#feature').text(doc.data().feature);
+                //波の画像
+                $('#waveImg').attr("src", doc.data().waveImg);
+              })
+            if (doc.data().pattern == "pattern0") {
+              $('.swiper-container').hide();
+            } else {
+              $('.homeBody').css("background-color", "#D25621");
+              $('.measureButton-inside').css("color", "#D25621");
+            }
+          });
         })
-    }
-  })
+        .catch(err => {
+          console.log('Error getting document', err);
+        });
 
-  //jQueryで続きを読むボタンを付ける
+      //カニくんの画像が来るか確認
+      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").orderBy('ts', 'desc').limit(1);
+      var getPatternDoc = patternRef.get()
+        .then(snapshot => {
+          $('#waveImg').attr("src", doc.data().image);
+        });
+
+      // 前回測定時間を表記
+      var measureTimePastRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("measureTime").orderBy('ts', 'desc').limit(1);
+      var getTimeDoc = measureTimePastRef.get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data().ts);
+            var d = new Date(doc.data().ts);
+            var year = d.getFullYear();
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+            var hour = (d.getHours() < 10) ? '0' + d.getHours() : d.getHours();
+            var min = (d.getMinutes() < 10) ? '0' + d.getMinutes() : d.getMinutes();
+            var sec = (d.getSeconds() < 10) ? '0' + d.getSeconds() : d.getSeconds();
+            console.log(year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec);
+            $('.measureTime').text(year + '-' + month + '-' + day + ' ' + hour + ':' + min);
+          });
+        })
+        .catch(err => {
+          console.log('Error getting document', err);
+        });
+    }
+  });
+
+  // jQueryで続きを読むボタンを付ける
   var itemHeights = []; //
   $(function () {
     $(".grad-item").each(function () { //ターゲット(縮めるアイテム)
@@ -283,7 +301,6 @@
       itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
       $(this).addClass("is-hide"); //CSSで指定した高さにする
     });
-
 
     $(".grad-trigger").click(function () {
       var index = $(this).index(".grad-trigger"); //トリガーが何個目か
@@ -313,111 +330,50 @@
   });
 </script>
 
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var sensorRef = firebase.firestore().collection("user/guest1/sensor").orderBy('ts', 'desc').limit(1);
+  var getsensorDoc = sensorRef.get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data().sensor);
 
-  $(".measureButton").click(function (e) {
-    e.preventDefault();
-    location.href = "/measure/";
+        var sensorData = doc.data().sensor
+        console.log(sensorData);
 
+        var num = sensorData;
+        var result = []; //出力用変数の空文字宣言
+        for (var i = num.length - 3; i > 0; i -= 3) {
+          result = [] + num.substr(i, 3) + result;
+        }
 
-  });
+        result = num.substr(0, i + 3) + result;
+        console.log(result);
 
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
-<script>
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7'],
+            datasets: [{
+              label: 'apples',
+              data: sensorData,
+              backgroundColor: "rgba(153,255,51,0.4)"
 
-  // pattern
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`);
-      var getDoc = patternRef.get()
-        .then(doc => {
-          if (doc.data().pattern == "pattern0") {
-            console.log('正常だよ');
-            $('.swiper-container').hide();
-
-          } else {
-            console.log("気をつけなはれや")
-            $('.homeBody').css("background-color", "#D25621");
-            $('.measureButton-inside').css("color", "#D25621");
-
+            }]
           }
+        });
 
-          //質問、チェック項目（doc/pattern要変更）
-          var questionRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = questionRef.get()
-            .then(doc => {
-              $('#question0').text(doc.data().question.a);
-              $('#question1').text(doc.data().question.b);
-              $('#question2').text(doc.data().question.c);
-              $('#question3').text(doc.data().question.d);
-              $('#condition0').text(doc.data().condition.a);
-              $('#condition1').text(doc.data().condition.b);
-              $('#condition2').text(doc.data().condition.c);
-              $('#condition3').text(doc.data().condition.d);
-              $('#advice0').text(doc.data().advice.a);
-              $('#advice1').text(doc.data().advice.b);
-              $('#advice2').text(doc.data().advice.c);
-              $('#advice3').text(doc.data().advice.d);
-            })
-
-          //波の特徴（doc/pattern要変更）
-          var featureRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = featureRef.get()
-            .then(doc => {
-              $('#feature').text(doc.data().feature);
-            })
-
-          //波の画像（doc/pattern要変更）
-          var waveImgRef = firebase.firestore().collection("class").doc("pattern1");
-          var getDoc = waveImgRef.get()
-            .then(doc => {
-              $('#waveImg').attr("src", doc.data().waveImg);
-            })
-
-        })
-    }
-  })
-
-  //jQueryで続きを読むボタンを付ける
-  var itemHeights = []; //
-  $(function () {
-    $(".grad-item").each(function () { //ターゲット(縮めるアイテム)
-      var thisHeight = $(this).height(); //ターゲットの高さを取得
-      itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
-      $(this).addClass("is-hide"); //CSSで指定した高さにする
+      });
+    })
+    .catch(err => {
+      console.log('Error getting document', err);
     });
 
 
-    $(".grad-trigger").click(function () {
-      var index = $(this).index(".grad-trigger"); //トリガーが何個目か
-      var addHeight = itemHeights[index]; //個数に対応する高さを取得
-      $(this).fadeOut().addClass("is-show").prev().animate({ height: addHeight }, 200).removeClass("is-hide"); //高さを元に戻す
-    });
 
-  });
-
-  //slide機能を付ける
-  var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 2,
-    spaceBetween: 10,
-    centeredSlides: true,
-    pagination: '.swiper-pagination',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev'
-  })
-
-  $(".swiper-button-next").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
-  });
-
-  $(".swiper-button-prev").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
-  });
 </script>
+
 
 
 
