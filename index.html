@@ -76,7 +76,7 @@
       <p id="feature"></p>
     </div>
 
-    <!-- <canvas id="myChart"></canvas> -->
+    <canvas id="myChart"></canvas>
 
     <div class="measure">
       <div class="measureButton">
@@ -334,49 +334,48 @@
   });
 </script>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var sensorRef = firebase.firestore().collection("user/guest1/sensor").orderBy('ts', 'desc').limit(1);
-  var getsensorDoc = sensorRef.get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data().sensor);
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var sensorRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").orderBy('ts', 'desc').limit(1);
+      var getsensorDoc = sensorRef.get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data().sensor);
+            var sensorData = doc.data().sensor
+            console.log(sensorData);
+            var num = sensorData;
+            var result = ""; //出力用変数の空文字宣言
 
-        var sensorData = doc.data().sensor
-        console.log(sensorData);
+            for (var i = num.length - 3; i > 0; i -= 3) {
+              result = "," + num.substr(i, 3) + result;
+            }
+            result = num.substr(0, i + 3) + result;
+            console.log(result);
 
-        var num = sensorData;
-        var result = []; //出力用変数の空文字宣言
-        for (var i = num.length - 3; i > 0; i -= 3) {
-          result = [] + num.substr(i, 3) + result;
-        }
 
-        result = num.substr(0, i + 3) + result;
-        console.log(result);
-
-        var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7'],
-            datasets: [{
-              label: 'apples',
-              data: sensorData,
-              backgroundColor: "rgba(153,255,51,0.4)"
-
-            }]
-          }
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7'],
+                datasets: [{
+                  label: 'apples',
+                  data: sensorData,
+                  backgroundColor: "rgba(153,255,51,0.4)"
+                }]
+              }
+            });
+          });
+        })
+        .catch(err => {
+          console.log('Error getting document', err);
         });
+    };
+  });
 
-      });
-    })
-    .catch(err => {
-      console.log('Error getting document', err);
-    }); -->
-
-
-
-
+</script>
 
 
 
