@@ -72,11 +72,12 @@
 
   <div class="content-area">
     <div class="content-area-home">
-      <img id="waveImg" src alt height="150" width="150">
-      <!-- <canvas id="myChart"></canvas> -->
-
+      <img id="waveImg" src alt height="300" width="300">
       <p id="feature"></p>
     </div>
+
+    <!-- <canvas id="myChart"></canvas> -->
+
     <div class="measure">
       <div class="measureButton">
         <a href="/measure/" class="measureButton-inside">測定を始める</a>
@@ -234,6 +235,10 @@
             var getDoc = questionRef.get()
               .then(doc => {
                 //質問、チェック項目
+                //波の特徴
+                $('#feature').text(doc.data().feature);
+                console.log(doc.data().feature)
+
                 $('#question0').text(doc.data().question.a);
                 $('#question1').text(doc.data().question.b);
                 $('#question2').text(doc.data().question.c);
@@ -246,10 +251,6 @@
                 $('#advice1').text(doc.data().advice.b);
                 $('#advice2').text(doc.data().advice.c);
                 $('#advice3').text(doc.data().advice.d);
-                //波の特徴
-                $('#feature').text(doc.data().feature);
-                //波の画像
-                $('#waveImg').attr("src", doc.data().waveImg);
               })
             if (doc.data().pattern == "pattern0") {
               $('.swiper-container').hide();
@@ -267,7 +268,10 @@
       var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").orderBy('ts', 'desc').limit(1);
       var getPatternDoc = patternRef.get()
         .then(snapshot => {
-          $('#waveImg').attr("src", doc.data().image);
+          snapshot.forEach(doc => {
+            var patternImg = doc.data().image
+            $('#waveImg').attr("src", patternImg);
+          });
         });
 
       // 前回測定時間を表記
@@ -330,7 +334,7 @@
   });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
   var ctx = document.getElementById('myChart').getContext('2d');
   var sensorRef = firebase.firestore().collection("user/guest1/sensor").orderBy('ts', 'desc').limit(1);
@@ -368,11 +372,11 @@
     })
     .catch(err => {
       console.log('Error getting document', err);
-    });
+    }); -->
 
 
 
-</script>
+
 
 
 

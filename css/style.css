@@ -354,16 +354,14 @@ home.ejs
 .content-area-home {
   text-align: center; }
 
-#waveImg {
-  border-radius: 50%; }
-
 #feature {
   padding: 40px;
   top: 70%;
   right: 0;
   left: 0;
   margin: auto;
-  font-size: 120%; }
+  font-size: 120%;
+  color: white; }
 
 .measureTime {
   top: 50.5%;
