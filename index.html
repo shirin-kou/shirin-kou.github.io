@@ -76,7 +76,7 @@
       <p id="feature"></p>
     </div>
 
-    <canvas id="myChart"></canvas>
+    <!-- <canvas id="myChart"></canvas> -->
 
     <div class="measure">
       <div class="measureButton">
@@ -336,6 +336,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -347,6 +348,10 @@
             var sensorData = doc.data().sensor
             console.log(sensorData);
             var num = sensorData;
+
+            const sensorData = [];
+            const array2 = new Array();
+
             var result = ""; //出力用変数の空文字宣言
 
             for (var i = num.length - 3; i > 0; i -= 3) {
@@ -354,8 +359,6 @@
             }
             result = num.substr(0, i + 3) + result;
             console.log(result);
-
-
             var myChart = new Chart(ctx, {
               type: 'line',
               data: {
