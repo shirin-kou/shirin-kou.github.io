@@ -182,18 +182,19 @@
               }
             });
           });
+
         // 解析終了時に、波形とpatternをHOME画面に移動
         function onKaiseki() {
-          var didStart = false;
-          var timeInMs = Date.now();
-          firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").where(timeInMs, "<=", "ts")
+          var kaisekiTime = new Date().getTime()
+          console.log(kaisekiTime)
+          var addDoc = firebase.firestore().collection("user").doc(`${user.uid}`).collection("kaisekiTime").add({
+            ts: kaisekiTime
+          }).then(ref => { });
+          firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").where("ts", ">=", kaisekiTime)
             .onSnapshot(function (snapshot) {
               snapshot.docChanges().forEach(function (change) {
                 if (change.type === "added") {
-                  if (!didStart) {
-                    location.href = '/'
-                    didStart = true
-                  }
+                  location.href = '/'
                 }
               });
             });
