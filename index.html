@@ -237,8 +237,6 @@
                 //質問、チェック項目
                 //波の特徴
                 $('#feature').text(doc.data().feature);
-                console.log(doc.data().feature)
-
                 $('#question0').text(doc.data().question.a);
                 $('#question1').text(doc.data().question.b);
                 $('#question2').text(doc.data().question.c);
@@ -336,45 +334,40 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
-
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var ctx = document.getElementById('myChart').getContext('2d');
-      var sensorRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").orderBy('ts', 'desc').limit(1);
+      var sensorRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").orderBy('ts', 'desc').limit(3);
+      var sensorSplitDatas = []
       var getsensorDoc = sensorRef.get()
         .then(snapshot => {
           snapshot.forEach(doc => {
             console.log(doc.id, '=>', doc.data().sensor);
             var sensorData = doc.data().sensor
             console.log(sensorData);
-
-            // sensorDataSplit Array宣言
-            const sensorDataSplit = [];
-
-            //  ループ内では、sensorDataのiからiプラス3までを取得して、sensorDataSplitArrayにプッシュ。
-            for (var i = 0; i > sensorData.length; i + 3) {
-              const sensorDataThree = sensorDataSplitArray.push(sensorData.substring(i, i + 3));
-              console.log('sensorDataThree', sensorDataThree)
+            // chart.jsに描画するデータを3桁ごとに区切って配列に入れる
+            for (let i = 0; i < sensorData.length; i += 3) {
+              sensorSplitDatas.push(sensorData.substring(i, i + 3))
             }
-            console.log(sensorDataSplit)
-
-            var myChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['', '', '', '', '', '', ''],
-                datasets: [{
-                  label: 'apples',
-                  data: sensorDataSplit,
-                  backgroundColor: "rgba(153,255,51,0.4)"
-                }]
-              }
-            });
+          });
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              // by bitter-cocoa
+              labels: [...Array(sensorSplitDatas.length)].map(() => ''),
+              datasets: [{
+                label: '脈波形',
+                data: sensorSplitDatas,
+                backgroundColor: "rgba(153,255,51,0.4)"
+              }]
+            }
           });
         })
         .catch(err => {
           console.log('Error getting document', err);
         });
     };
+
   });
 
 </script>

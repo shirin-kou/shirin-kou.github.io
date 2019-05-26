@@ -186,7 +186,6 @@
         // 解析終了時に、波形とpatternをHOME画面に移動
         function onKaiseki() {
           var kaisekiTime = new Date().getTime()
-          console.log(kaisekiTime)
           var addDoc = firebase.firestore().collection("user").doc(`${user.uid}`).collection("kaisekiTime").add({
             ts: kaisekiTime
           }).then(ref => { });
@@ -198,6 +197,7 @@
                 }
               });
             });
+
           // by kani
           var request = new XMLHttpRequest();
           request.open('GET', 'https://asia-northeast1-cloud-functions-test-241007.cloudfunctions.net/function-1', true);
