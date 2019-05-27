@@ -2,27 +2,28 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 70px;
   display: flex;
 }
 
 #userInfo {
   position: relative;
   img {
-    vertical-align:middle;
+    vertical-align: middle;
     border-radius: 50%; 
-    height: 50px;
+    height: 30px;
   }
-  p {
-    margin: 0.5rem;
-  }
+  padding: 0.75rem;
 }
 
 #logoutButton {
   position: absolute;
   top: 40px;
-  left: 20px;
-  background-color: $color-main4;;
+  left: 10px;
+  background-color: #fff;
+  border-radius: 3px;
+  &.isHide {
+    display: none;
+  }
 }
 
 .logoutButton {

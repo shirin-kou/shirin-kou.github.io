@@ -1,13 +1,5 @@
-body,
-html {
-  display: flex;
-  flex-direction: column;
-  color: white;
-}
-
-.homeBody,
-.loginBody {
-  background-color: $color-main;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 a,
@@ -47,11 +39,38 @@ ul {
   font-size: 100%;
   font-style: inherit;
   font-weight: inherit;
-  margin: 10px;
   outline: 0;
   padding: 0;
   vertical-align: baseline;
 }
+
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin: 0;
+}
+
+.loginHTML {
+  height: 100%;
+} 
+
+.loginBody {
+  background-color: $color-main;
+  height: 100%;
+}
+
+.homeBody {
+  background-color: $color-main;
+}
+
+#googleDisplayName {
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
+
 
 /*--------------------------------------------------------------
 Typography
@@ -156,13 +175,13 @@ login.ejs
 --------------------------------------------------------------*/
 //@login
 .content-area-login{
+  height: 100%;
   text-align: center;
   margin: auto;
-  width: 800px;
-  height: 500px;
-  .subTitle{
-    margin-top: 50px;
-  }
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .GoogleProfile{
@@ -170,7 +189,7 @@ login.ejs
 }
 
 .loginTitle {
-  font-size: 84px;
+  font-size: 3rem;
   color: white;
   font-family: 'Gotham SSm A', 'Gotham SSm B', '小塚ゴシック Pr6N', 'Kozuka Gothic Pr6N', sans-serif;
 }
@@ -180,11 +199,7 @@ home.ejs
 --------------------------------------------------------------*/
 //@home-->include waveImg, feature, measureTime, measureButton
 .content-area {
-  padding-top: $header-height;
-  position: relative;
-  top: 70px;
-  max-width: 500px;
-  height: 100%;
+  padding-top: 5rem;
   margin: 0 auto;
 }
 
@@ -198,27 +213,16 @@ home.ejs
 // }
 
 #feature {
-  padding: 20px;
-  top: 70%;
-  right: 0;
-  left: 0;
-  margin: auto;
+  margin: 2rem auto 2rem;
   font-size: 120%;
   color: white;
 }
 
-.measureTime {
-  top: 50.5%;
-  right: 51%;
-}
-
 .measureTimeTotal {
-  margin-top: 10px;
+  color: $color-main4;
   text-align: center;
-  // margin: auto;
-  p {
-      margin: 2em 0;
-  }
+  margin: 0;
+  margin-top: 0.5rem;
 }
 // #myChart {
 //   background-color: white;
@@ -229,14 +233,17 @@ button
 --------------------------------------------------------------*/
 .measureButton {
   width: 200px;
-	height: 50px;
+  height: 50px;
+  line-height: 50px;
   background-color: $color-main4;
-	margin:  auto;
-  display: flex;
-	justify-content: center;
-  input {
+	margin: 0 auto;
+  color: $color-main;
+  border-radius: 3px;
+  text-align: center;
+  a {
     color: $color-main;
-    font-size:20px;
+    font-size: 16px;
+    font-weight: 700;
   }
 }
 
@@ -258,12 +265,9 @@ button
 //include question, condition, advice
 .swiper-container {
   position: relative;
-  bottom: 0p;
   width: 100%;
-}
-
-.swiper-slide + .swiper-slide {
-  margin-top: 20px;
+  margin: 2rem 0;
+  opacity: 0;
 }
 
 .grad-trigger {
@@ -274,28 +278,46 @@ button
 .grad-item {
   position: relative;
   overflow: hidden;
-  padding: 10px 10px 10px 10px;
+  padding: 1rem;
   height: 100%;
+  font-size: 0.875rem;
+  text-align: left;
+ }
+
+ .swiper-slide.is-hide::before {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  content: "";
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.95) 80%, white 100%);
+  border-radius: 3px;
 }
 
-.grad-item.is-hide {
-  height: 50px; /*隠した後の高さ*/
+.swiper-slide.is-hide {
+  height: 100px; /*隠した後の高さ*/
+  
 }
 
 .grad-item p + p {
   margin-top: 1em;
 }
 
-.grad-item::before {
-  position: absolute;
-  display: block;
-  bottom: 0;
-  left: 0;
-  content: "";
-  width: 100%;
-  height: 20px; /*グラデーションで隠す高さ*/
-  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
-  background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+.slide-question {
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.slide-condition {
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+.slide-advice {
+  font-weight: bold;
 }
 
 .grad-trigger.is-show + .grad-item::before {
@@ -303,13 +325,33 @@ button
 }
 
 .swiper-slide {
-  width: 200px;
-  height: 200px;
-  background-color: $color-main4;
+  background-color: #fff;
   color: $color-main2;
   margin: 0 auto;
   border-radius: 4px 4px 4px 4px;
   text-align: center;
+}
+
+.swiper-wrapper {
+  margin: 0;
+}
+
+.swiper-pagination.swiper-pagination-bullets {
+  margin: 0;
+  top: calc(100% + 0.5rem);
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: $color-main4;
+}
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23fff'%2F%3E%3C%2Fsvg%3E")
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23fff'%2F%3E%3C%2Fsvg%3E")
 }
 
 /*--------------------------------------------------------------

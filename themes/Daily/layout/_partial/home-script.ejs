@@ -1,133 +1,183 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 <script>
-
-  firebase.auth().onAuthStateChanged(function (user) {
+  var userId = "6UyRV9E6gWeSM2tTlkWibmhNl8h2";
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("pattern").orderBy('ts', 'desc').limit(1);
-      var getPatternDoc = patternRef.get()
+      var patternRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("pattern")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getPatternDoc = patternRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().pattern);
-            var pattern = doc.data().pattern
-            var questionRef = firebase.firestore().collection("class").doc(pattern);
-            var getDoc = questionRef.get()
-              .then(doc => {
-                //質問、チェック項目
-                //波の特徴
-                $('#feature').text(doc.data().feature);
-                $('#question0').text(doc.data().question.a);
-                $('#question1').text(doc.data().question.b);
-                $('#question2').text(doc.data().question.c);
-                $('#question3').text(doc.data().question.d);
-                $('#condition0').text(doc.data().condition.a);
-                $('#condition1').text(doc.data().condition.b);
-                $('#condition2').text(doc.data().condition.c);
-                $('#condition3').text(doc.data().condition.d);
-                $('#advice0').text(doc.data().advice.a);
-                $('#advice1').text(doc.data().advice.b);
-                $('#advice2').text(doc.data().advice.c);
-                $('#advice3').text(doc.data().advice.d);
-              })
+            console.log(doc.id, "=>", doc.data().pattern);
+            var pattern = doc.data().pattern;
+            var questionRef = firebase
+              .firestore()
+              .collection("class")
+              .doc(pattern);
+            var getDoc = questionRef.get().then(doc => {
+              //質問、チェック項目
+              //波の特徴
+              $("#feature").text(doc.data().feature);
+              $("#question0").text(doc.data().question.a);
+              $("#question1").text(doc.data().question.b);
+              $("#question2").text(doc.data().question.c);
+              $("#question3").text(doc.data().question.d);
+              $("#condition0").text(doc.data().condition.a);
+              $("#condition1").text(doc.data().condition.b);
+              $("#condition2").text(doc.data().condition.c);
+              $("#condition3").text(doc.data().condition.d);
+              $("#advice0").text(doc.data().advice.a);
+              $("#advice1").text(doc.data().advice.b);
+              $("#advice2").text(doc.data().advice.c);
+              $("#advice3").text(doc.data().advice.d);
+            });
+            //slide機能を付ける
+            var mySwiper = new Swiper(".swiper-container", {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+              centeredSlides: true,
+              pagination: ".swiper-pagination",
+              nextButton: ".swiper-button-next",
+              prevButton: ".swiper-button-prev"
+            });
             if (doc.data().pattern == "pattern0") {
-              $('.swiper-container').hide();
+              $(".swiper-container").hide();
             } else {
-              $('.homeBody').css("background-color", "#D25621");
-              $('.measureButton-inside').css("color", "#D25621");
+              $(".homeBody").css("background-color", "#D25621");
+              $(".measureButton-inside").css("color", "#D25621");
             }
+
+            setTimeout(function() {
+              var itemHeights = [];
+              $(".swiper-slide").each(function() {
+                //ターゲット(縮めるアイテム)
+                var thisHeight = $(this).height(); //ターゲットの高さを取得
+                itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
+                $(this).addClass("is-hide"); //CSSで指定した高さにする
+              });
+              $(".swiper-slide").click(function() {
+                var index = $(this).index(".swiper-slide"); //トリガーが何個目か
+                var addHeight = itemHeights[index]; //個数に対応する高さを取得
+                if ($(this).hasClass("is-hide")) {
+                  $(this)
+                    .animate({ height: addHeight }, 180)
+                    .removeClass("is-hide"); //高さを元に戻す
+                } else {
+                  $(this)
+                    .animate({ height: 100 }, 180)
+                    .addClass("is-hide"); //高さを元に戻す
+                }
+              });
+              $(".swiper-container").css({
+                opacity: 1
+              });
+            }, 750);
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
 
       //カニくんの画像が来るか確認
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").orderBy('ts', 'desc').limit(1);
-      var getPatternDoc = patternRef.get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            var patternImg = doc.data().image
-            $('#waveImg').attr("src", patternImg);
-          });
+      var patternRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("image")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getPatternDoc = patternRef.get().then(snapshot => {
+        snapshot.forEach(doc => {
+          var patternImg = doc.data().image;
+          $("#waveImg").attr("src", patternImg);
         });
+      });
 
       // 前回測定時間を表記
-      var measureTimePastRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("measureTime").orderBy('ts', 'desc').limit(1);
-      var getTimeDoc = measureTimePastRef.get()
+      var measureTimePastRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("measureTime")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getTimeDoc = measureTimePastRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().ts);
+            console.log(doc.id, "=>", doc.data().ts);
             var d = new Date(doc.data().ts);
             var year = d.getFullYear();
             var month = d.getMonth() + 1;
             var day = d.getDate();
-            var hour = (d.getHours() < 10) ? '0' + d.getHours() : d.getHours();
-            var min = (d.getMinutes() < 10) ? '0' + d.getMinutes() : d.getMinutes();
-            var sec = (d.getSeconds() < 10) ? '0' + d.getSeconds() : d.getSeconds();
-            console.log(year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec);
-            $('.measureTime').text(year + '-' + month + '-' + day + ' ' + hour + ':' + min);
+            var hour = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
+            var min =
+              d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
+            var sec =
+              d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
+            console.log(
+              year +
+                "-" +
+                month +
+                "-" +
+                day +
+                " " +
+                hour +
+                ":" +
+                min +
+                ":" +
+                sec
+            );
+            $(".measureTime").text(
+              year + "-" + month + "-" + day + " " + hour + ":" + min
+            );
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
     }
-  });
-
-  // jQueryで続きを読むボタンを付ける
-  var itemHeights = []; //
-  $(function () {
-    $(".grad-item").each(function () { //ターゲット(縮めるアイテム)
-      var thisHeight = $(this).height(); //ターゲットの高さを取得
-      itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
-      $(this).addClass("is-hide"); //CSSで指定した高さにする
-    });
-    $(".grad-trigger").click(function () {
-      var index = $(this).index(".grad-trigger"); //トリガーが何個目か
-      var addHeight = itemHeights[index]; //個数に対応する高さを取得
-      $(this).fadeOut().addClass("is-show").prev().animate({ height: addHeight }, 200).removeClass("is-hide"); //高さを元に戻す
-    });
-
-  });
-  //slide機能を付ける
-  var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 2,
-    spaceBetween: 10,
-    centeredSlides: true,
-    pagination: '.swiper-pagination',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev'
-  })
-  $(".swiper-button-next").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
-  });
-  $(".swiper-button-prev").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
   });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var sensorRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").orderBy('ts', 'desc').limit(2);
-      var sensorSplitDatas = []
-      var getsensorDoc = sensorRef.get()
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var sensorRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("sensor")
+        .orderBy("ts", "desc")
+        .limit(2);
+      var sensorSplitDatas = [];
+      var getsensorDoc = sensorRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().sensor);
-            var sensorData = doc.data().sensor
+            console.log(doc.id, "=>", doc.data().sensor);
+            var sensorData = doc.data().sensor;
             console.log(sensorData);
             // chart.jsに描画するデータを3桁ごとに区切って配列に入れる
             for (let i = 0; i < 16; i += 3) {
-              console.log(i)
-              sensorSplitDatas.push(sensorData.substring(i, i + 3))
+              console.log(i);
+              sensorSplitDatas.push(sensorData.substring(i, i + 3));
             }
           });
           var myChart = new Chart(ctx, {
-            type: 'line',
+            type: "line",
             options: {
+              legend: {
+                display: false
+              },
               // ChartJSの点を非表示
               elements: {
                 point: {
@@ -136,44 +186,50 @@
               },
               // 縦線を非表示
               scales: {
-                xAxes: [{
-                  display: true,
-                  stacked: false,
-                  gridLines: {
-                    display: false
+                xAxes: [
+                  {
+                    display: false,
+                    stacked: false,
+                    gridLines: {
+                      display: false
+                    }
                   }
-                }],
-                yAxes: [{
-                  gridLines: {
-                    drawBorder: false
-                  },
-                  // // 縦軸max,min固定
-                  // ticks: {
-                  //   beginAtZero: true,
-                  //   min: 550,
-                  //   max: 650
-                  // }
-                }]
+                ],
+                yAxes: [
+                  {
+                    display: false
+                    // gridLines: {
+                    //   display: false,
+                    //   drawBorder: false
+                    // }
+                    // // 縦軸max,min固定
+                    // ticks: {
+                    //   beginAtZero: true,
+                    //   min: 550,
+                    //   max: 650
+                    // }
+                  }
+                ]
               }
             },
             data: {
               // sensorSplitDatasの配列の数だけlabelを付ける
-              labels: [...Array(sensorSplitDatas.length)].map(() => ''),
-              datasets: [{
-                label: '脈波形',
-                data: sensorSplitDatas,
-                borderColor: "rgba(255, 255, 255, 0.8)",
-                fill: false,
-                lineTension: 0 // lineを直線にする方法
-              }]
+              labels: [...Array(sensorSplitDatas.length)].map(() => ""),
+              datasets: [
+                {
+                  label: "脈波形",
+                  data: sensorSplitDatas,
+                  borderColor: "rgba(255, 255, 255, 0.8)",
+                  fill: false,
+                  lineTension: 0 // lineを直線にする方法
+                }
+              ]
             }
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
-    };
-
+    }
   });
-
 </script>

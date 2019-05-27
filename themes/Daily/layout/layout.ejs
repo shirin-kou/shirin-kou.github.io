@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="<%= config.language ? config.language : 'en' %>">
+<% if (page.firebase_login) { %>
+<html lang="<%= config.language ? config.language : 'en' %>" class="loginHTML">
+  <% } else { %>
+  <html lang="<%= config.language ? config.language : 'en' %>"></html>
+  <% } %>
 
-<!-- Head tag -->
-<%- partial('_partial/head') %>
+  <!-- Head tag -->
+  <%- partial('_partial/head') %>
 
-<body>
+  <body>
+    <!-- Nav -->
+    <%- partial('_partial/nav') %>
 
-  <!-- Nav -->
-  <%- partial('_partial/nav') %>
+    <!-- Main Content layoutで指定したejsが表示される部分 -->
+    <%- body %>
 
-  <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <%- body %>
-
-  <!-- Footer -->
-  <%- partial('_partial/footer') %>
-
-</body>
-
+    <!-- Footer -->
+    <%- partial('_partial/footer') %>
+  </body>
 </html>

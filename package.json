@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "hexo generate",
-    "start": "hexo s",
+    "start": "hexo s -i 192.168.100.115",
     "lint": "prettier ./themes/**/*.ejs"
   },
   "hexo": {

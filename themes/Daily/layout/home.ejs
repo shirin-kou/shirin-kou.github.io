@@ -1,8 +1,7 @@
 <body class="homeBody">
-
   <div class="content-area">
     <div class="content-area-home">
-      <canvas id="myChart" width="300" height="200"></canvas>
+      <canvas id="myChart" width="300" height="100"></canvas>
       <!-- <img id="waveImg" src="" alt="" height="200" width="200"> -->
       <p id="feature"></p>
     </div>
@@ -11,7 +10,7 @@
         <a href="/measure/" class="measureButton-inside">測定を始める</a>
       </div>
       <div class="measureTimeTotal">
-        <p>前回測定：<span class="measureTime"></span></p>
+        前回測定：<span class="measureTime">まだ測定していません</span>
       </div>
     </div>
   </div>
@@ -20,37 +19,33 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question0"></p>
-          <p id="condition0"></p>
-          <p id="advice0"></p>
+      <div class="swiper-slide" id="slide1">
+        <div class="grad-item" id="slidecontent1">
+          <div class="slide-question" id="question0"></div>
+          <div class="slide-condition" id="condition0"></div>
+          <div class="slide-advice" id="advice0"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question1"></p>
-          <p id="condition1"></p>
-          <p id="advice1"></p>
+      <div class="swiper-slide" id="slide2">
+        <div class="grad-item" id="slidecontent2">
+          <div class="slide-question" id="question1"></div>
+          <div class="slide-condition" id="condition1"></div>
+          <div class="slide-advice" id="advice1"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question2"></p>
-          <p id="condition2"></p>
-          <p id="advice2"></p>
+      <div class="swiper-slide" id="slide3">
+        <div class="grad-item" id="slidecontent3">
+          <div class="slide-question" id="question2"></div>
+          <div class="slide-condition" id="condition2"></div>
+          <div class="slide-advice" id="advice2"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question3"></p>
-          <p id="condition3"></p>
-          <p id="advice3"></p>
+      <div class="swiper-slide" id="slide3">
+        <div class="grad-item" id="slidecontent4">
+          <div class="slide-question" id="question3"></div>
+          <div class="slide-condition" id="condition3"></div>
+          <div class="slide-advice" id="advice3"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
     </div>
     <!-- If we need pagination -->
