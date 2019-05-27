@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+  <html lang="en"></html>
+  
+
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -48,102 +50,87 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-
-  <!-- Nav -->
-  <header class="site-header">
-
+  <body>
+    <!-- Nav -->
+    <header class="site-header">
   <nav class="navbar">
-
     <div id="userInfo">
-      <p><img id="img" src alt><span id="googleDisplayName"></span></p>
+      <div>
+        <img id="img" src alt><span id="googleDisplayName"></span>
+      </div>
     </div>
 
-    <div id="logoutButton" style="display:none">
+    <div id="logoutButton" class="isHide">
       <a href="/login/"><input type="button" class="logoutButton" value="ログアウト" onclick="signOut()"></a>
     </div>
-
   </nav>
-
 </header>
 
-  <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <body class="homeBody">
 
+    <!-- Main Content layoutで指定したejsが表示される部分 -->
+    <body class="homeBody">
   <div class="content-area">
     <div class="content-area-home">
-      <img id="waveImg" src alt height="200" width="200">
+      <canvas id="myChart" width="300" height="100"></canvas>
+      <!-- <img id="waveImg" src="" alt="" height="200" width="200"> -->
       <p id="feature"></p>
     </div>
-
-    <canvas id="myChart"></canvas>
-
     <div class="measure">
       <div class="measureButton">
         <a href="/measure/" class="measureButton-inside">測定を始める</a>
       </div>
-      <p>前回測定：<span class="measureTime"></span></p>
-
+      <div class="measureTimeTotal">
+        前回測定：<span class="measureTime">まだ測定していません</span>
+      </div>
     </div>
   </div>
-
   <!-- Slider main container -->
   <div class="swiper-container">
     <!-- Additional required wrapper -->
-
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide">
-
-        <div class="grad-item">
-          <p id="question0"></p>
-          <p id="condition0"></p>
-          <p id="advice0"></p>
+      <div class="swiper-slide" id="slide1">
+        <div class="grad-item" id="slidecontent1">
+          <div class="slide-question" id="question0"></div>
+          <div class="slide-condition" id="condition0"></div>
+          <div class="slide-advice" id="advice0"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
-
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question1"></p>
-          <p id="condition1"></p>
-          <p id="advice1"></p>
+      <div class="swiper-slide" id="slide2">
+        <div class="grad-item" id="slidecontent2">
+          <div class="slide-question" id="question1"></div>
+          <div class="slide-condition" id="condition1"></div>
+          <div class="slide-advice" id="advice1"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question2"></p>
-          <p id="condition2"></p>
-          <p id="advice2"></p>
+      <div class="swiper-slide" id="slide3">
+        <div class="grad-item" id="slidecontent3">
+          <div class="slide-question" id="question2"></div>
+          <div class="slide-condition" id="condition2"></div>
+          <div class="slide-advice" id="advice2"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
-      <div class="swiper-slide">
-        <div class="grad-item">
-          <p id="question3"></p>
-          <p id="condition3"></p>
-          <p id="advice3"></p>
+      <div class="swiper-slide" id="slide3">
+        <div class="grad-item" id="slidecontent4">
+          <div class="slide-question" id="question3"></div>
+          <div class="slide-condition" id="condition3"></div>
+          <div class="slide-advice" id="advice3"></div>
         </div>
-        <span class="grad-trigger">アドバイスを読む</span>
       </div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
-
     <!-- If we need navigation buttons -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-
   </div>
-
 </body>
 
-  <!-- Footer -->
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+    <!-- Footer -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-
 
 <script>
   // Firebaseの初期化
@@ -168,208 +155,299 @@
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
     uid = user.uid;
-  };
+  }
 
   // ログイン確認
-  const pattern = '/login/'
-  const isLoginPage = !!location.href.match(pattern)
+  const pattern = "/login/";
+  const isLoginPage = !!location.href.match(pattern);
 
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // ログイン認証済
-      console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName + '';
-      document.getElementById('img').src = user.photoURL;
+      console.log("auth user", user);
+      document.getElementById("googleDisplayName").innerText =
+        user.displayName + "";
+      document.getElementById("img").src = user.photoURL;
 
-      firebase.firestore().collection('user').doc(`${user.uid}`)
-        .set({
-          uid: user.uid,
-          name: user.displayName,
-        }, { merge: true })
-
+      firebase
+        .firestore()
+        .collection("user")
+        .doc(`${user.uid}`)
+        .set(
+          {
+            uid: user.uid,
+            name: user.displayName
+          },
+          { merge: true }
+        );
     } else {
       // No user is signed in.
       if (!isLoginPage) {
-        location.href = '/login/'
-
+        location.href = "/login/";
       }
     }
   });
-
   // ログアウト
   function signOut() {
-    firebase.auth().signOut().then(function () {
-      alert('ログアウトしました');
-    }).catch(function (error) {
-      console.log(error);
-      document.getElementById('log').innerText = 'ログアウト失敗';
-    });
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        alert("ログアウトしました");
+      })
+      .catch(function(error) {
+        console.log(error);
+        document.getElementById("log").innerText = "ログアウト失敗";
+      });
   }
-
   //#userInfoをおしたらlogoutがでてくる
-  $('#userInfo').on("click", function () {
-
-    $('#logoutButton').show();
-    $('#img').css("opacity", "0.5");
-    $('#googleDisplayName').css("opacity", "0.5");
-
+  $("#userInfo").on("click", function() {
+    if ($("#logoutButton").hasClass("isHide")) {
+      $("#logoutButton").removeClass("isHide");
+    } else {
+      $("#logoutButton").addClass("isHide");
+    }
   });
-
 </script>
+
 
 
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 <script>
-
-  firebase.auth().onAuthStateChanged(function (user) {
+  var userId = "6UyRV9E6gWeSM2tTlkWibmhNl8h2";
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("pattern").orderBy('ts', 'desc').limit(1);
-      var getPatternDoc = patternRef.get()
+      var patternRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("pattern")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getPatternDoc = patternRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().pattern);
-            var pattern = doc.data().pattern
-            var questionRef = firebase.firestore().collection("class").doc(pattern);
-            var getDoc = questionRef.get()
-              .then(doc => {
-                //質問、チェック項目
-                //波の特徴
-                $('#feature').text(doc.data().feature);
-                $('#question0').text(doc.data().question.a);
-                $('#question1').text(doc.data().question.b);
-                $('#question2').text(doc.data().question.c);
-                $('#question3').text(doc.data().question.d);
-                $('#condition0').text(doc.data().condition.a);
-                $('#condition1').text(doc.data().condition.b);
-                $('#condition2').text(doc.data().condition.c);
-                $('#condition3').text(doc.data().condition.d);
-                $('#advice0').text(doc.data().advice.a);
-                $('#advice1').text(doc.data().advice.b);
-                $('#advice2').text(doc.data().advice.c);
-                $('#advice3').text(doc.data().advice.d);
-              })
+            console.log(doc.id, "=>", doc.data().pattern);
+            var pattern = doc.data().pattern;
+            var questionRef = firebase
+              .firestore()
+              .collection("class")
+              .doc(pattern);
+            var getDoc = questionRef.get().then(doc => {
+              //質問、チェック項目
+              //波の特徴
+              $("#feature").text(doc.data().feature);
+              $("#question0").text(doc.data().question.a);
+              $("#question1").text(doc.data().question.b);
+              $("#question2").text(doc.data().question.c);
+              $("#question3").text(doc.data().question.d);
+              $("#condition0").text(doc.data().condition.a);
+              $("#condition1").text(doc.data().condition.b);
+              $("#condition2").text(doc.data().condition.c);
+              $("#condition3").text(doc.data().condition.d);
+              $("#advice0").text(doc.data().advice.a);
+              $("#advice1").text(doc.data().advice.b);
+              $("#advice2").text(doc.data().advice.c);
+              $("#advice3").text(doc.data().advice.d);
+            });
+            //slide機能を付ける
+            var mySwiper = new Swiper(".swiper-container", {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+              centeredSlides: true,
+              pagination: ".swiper-pagination",
+              nextButton: ".swiper-button-next",
+              prevButton: ".swiper-button-prev"
+            });
             if (doc.data().pattern == "pattern0") {
-              $('.swiper-container').hide();
+              $(".swiper-container").hide();
             } else {
-              $('.homeBody').css("background-color", "#D25621");
-              $('.measureButton-inside').css("color", "#D25621");
+              $(".homeBody").css("background-color", "#D25621");
+              $(".measureButton-inside").css("color", "#D25621");
             }
+
+            setTimeout(function() {
+              var itemHeights = [];
+              $(".swiper-slide").each(function() {
+                //ターゲット(縮めるアイテム)
+                var thisHeight = $(this).height(); //ターゲットの高さを取得
+                itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
+                $(this).addClass("is-hide"); //CSSで指定した高さにする
+              });
+              $(".swiper-slide").click(function() {
+                var index = $(this).index(".swiper-slide"); //トリガーが何個目か
+                var addHeight = itemHeights[index]; //個数に対応する高さを取得
+                if ($(this).hasClass("is-hide")) {
+                  $(this)
+                    .animate({ height: addHeight }, 180)
+                    .removeClass("is-hide"); //高さを元に戻す
+                } else {
+                  $(this)
+                    .animate({ height: 100 }, 180)
+                    .addClass("is-hide"); //高さを元に戻す
+                }
+              });
+              $(".swiper-container").css({
+                opacity: 1
+              });
+            }, 750);
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
 
       //カニくんの画像が来るか確認
-      var patternRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").orderBy('ts', 'desc').limit(1);
-      var getPatternDoc = patternRef.get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            var patternImg = doc.data().image
-            $('#waveImg').attr("src", patternImg);
-          });
+      var patternRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("image")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getPatternDoc = patternRef.get().then(snapshot => {
+        snapshot.forEach(doc => {
+          var patternImg = doc.data().image;
+          $("#waveImg").attr("src", patternImg);
         });
+      });
 
       // 前回測定時間を表記
-      var measureTimePastRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("measureTime").orderBy('ts', 'desc').limit(1);
-      var getTimeDoc = measureTimePastRef.get()
+      var measureTimePastRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("measureTime")
+        .orderBy("ts", "desc")
+        .limit(1);
+      var getTimeDoc = measureTimePastRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().ts);
+            console.log(doc.id, "=>", doc.data().ts);
             var d = new Date(doc.data().ts);
             var year = d.getFullYear();
             var month = d.getMonth() + 1;
             var day = d.getDate();
-            var hour = (d.getHours() < 10) ? '0' + d.getHours() : d.getHours();
-            var min = (d.getMinutes() < 10) ? '0' + d.getMinutes() : d.getMinutes();
-            var sec = (d.getSeconds() < 10) ? '0' + d.getSeconds() : d.getSeconds();
-            console.log(year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec);
-            $('.measureTime').text(year + '-' + month + '-' + day + ' ' + hour + ':' + min);
+            var hour = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
+            var min =
+              d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
+            var sec =
+              d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
+            console.log(
+              year +
+                "-" +
+                month +
+                "-" +
+                day +
+                " " +
+                hour +
+                ":" +
+                min +
+                ":" +
+                sec
+            );
+            $(".measureTime").text(
+              year + "-" + month + "-" + day + " " + hour + ":" + min
+            );
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
     }
-  });
-
-  // jQueryで続きを読むボタンを付ける
-  var itemHeights = []; //
-  $(function () {
-    $(".grad-item").each(function () { //ターゲット(縮めるアイテム)
-      var thisHeight = $(this).height(); //ターゲットの高さを取得
-      itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
-      $(this).addClass("is-hide"); //CSSで指定した高さにする
-    });
-
-    $(".grad-trigger").click(function () {
-      var index = $(this).index(".grad-trigger"); //トリガーが何個目か
-      var addHeight = itemHeights[index]; //個数に対応する高さを取得
-      $(this).fadeOut().addClass("is-show").prev().animate({ height: addHeight }, 200).removeClass("is-hide"); //高さを元に戻す
-    });
-
-  });
-
-  //slide機能を付ける
-  var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 2,
-    spaceBetween: 10,
-    centeredSlides: true,
-    pagination: '.swiper-pagination',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev'
-  })
-
-  $(".swiper-button-next").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
-  });
-
-  $(".swiper-button-prev").click(function () {
-    $('.grad-trigger').fadeIn().removeClass('is-hide').prev().animate({ height: '50px' }, 200).addClass("is-hide");
   });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script>
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var sensorRef = firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").orderBy('ts', 'desc').limit(3);
-      var sensorSplitDatas = []
-      var getsensorDoc = sensorRef.get()
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var sensorRef = firebase
+        .firestore()
+        .collection("user")
+        .doc(`${userId}`)
+        .collection("sensor")
+        .orderBy("ts", "desc")
+        .limit(2);
+      var sensorSplitDatas = [];
+      var getsensorDoc = sensorRef
+        .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().sensor);
-            var sensorData = doc.data().sensor
+            console.log(doc.id, "=>", doc.data().sensor);
+            var sensorData = doc.data().sensor;
             console.log(sensorData);
             // chart.jsに描画するデータを3桁ごとに区切って配列に入れる
-            for (let i = 0; i < sensorData.length; i += 3) {
-              sensorSplitDatas.push(sensorData.substring(i, i + 3))
+            for (let i = 0; i < 16; i += 3) {
+              console.log(i);
+              sensorSplitDatas.push(sensorData.substring(i, i + 3));
             }
           });
           var myChart = new Chart(ctx, {
-            type: 'line',
+            type: "line",
+            options: {
+              legend: {
+                display: false
+              },
+              // ChartJSの点を非表示
+              elements: {
+                point: {
+                  radius: 0
+                }
+              },
+              // 縦線を非表示
+              scales: {
+                xAxes: [
+                  {
+                    display: false,
+                    stacked: false,
+                    gridLines: {
+                      display: false
+                    }
+                  }
+                ],
+                yAxes: [
+                  {
+                    display: false
+                    // gridLines: {
+                    //   display: false,
+                    //   drawBorder: false
+                    // }
+                    // // 縦軸max,min固定
+                    // ticks: {
+                    //   beginAtZero: true,
+                    //   min: 550,
+                    //   max: 650
+                    // }
+                  }
+                ]
+              }
+            },
             data: {
-              // by bitter-cocoa
-              labels: [...Array(sensorSplitDatas.length)].map(() => ''),
-              datasets: [{
-                label: '脈波形',
-                data: sensorSplitDatas,
-                backgroundColor: "rgba(153,255,51,0.4)"
-              }]
+              // sensorSplitDatasの配列の数だけlabelを付ける
+              labels: [...Array(sensorSplitDatas.length)].map(() => ""),
+              datasets: [
+                {
+                  label: "脈波形",
+                  data: sensorSplitDatas,
+                  borderColor: "rgba(255, 255, 255, 0.8)",
+                  fill: false,
+                  lineTension: 0 // lineを直線にする方法
+                }
+              ]
             }
           });
         })
         .catch(err => {
-          console.log('Error getting document', err);
+          console.log("Error getting document", err);
         });
-    };
-
+    }
   });
-
 </script>
 
 
@@ -377,6 +455,5 @@
 
 
 
-</body>
-
+  </body>
 </html>

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="en" class="loginHTML">
+  
+
+  <!-- Head tag -->
+  <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -44,49 +46,41 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-
-  <!-- Nav -->
-  <header class="site-header">
-
+  <body>
+    <!-- Nav -->
+    <header class="site-header">
   <nav class="navbar">
-
     <div id="userInfo">
-      <p><img id="img" src alt><span id="googleDisplayName"></span></p>
+      <div>
+        <img id="img" src alt><span id="googleDisplayName"></span>
+      </div>
     </div>
 
-    <div id="logoutButton" style="display:none">
+    <div id="logoutButton" class="isHide">
       <a href="/login/"><input type="button" class="logoutButton" value="ログアウト" onclick="signOut()"></a>
     </div>
-
   </nav>
-
 </header>
 
-  <!-- Main Content layoutで指定したejsが表示される部分 -->
-  <body class="loginBody">
+
+    <!-- Main Content layoutで指定したejsが表示される部分 -->
+    <body class="loginBody">
   <div class="content-area-login">
-    <div class="content-area">
-      <div class="subTitle">
-        <h1 class="loginTitle">ミャクシン</h1>
-
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
-        <p id="log"></p>
-        <p id="state"></p>
-        <p id="uid"></p>
-
-
-      </div>
+    <div class="loginWrapper">
+      <h1 class="loginTitle">
+        <img src="data:image/svg+xml,%3Csvg width='241' height='74' viewBox='0 0 241 74' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40.704 7.796C27.092 3.532 20.122 2.712 5.116 1.4L3.722 13.536c5.33.492 21.566 2.05 35.506 8.2l1.476-13.94zm-2.706 24.19c-7.38-3.362-21.812-7.134-32.964-7.708L3.558 37.07c12.136.656 27.798 5.658 32.636 8.2l1.804-13.284zm4.428 24.928c-15.252-5.74-31.324-7.38-40.18-8.118L.688 61.834c20.254 1.886 33.866 6.806 39.196 9.348l2.542-14.268zm28.012-20.5l9.922-2.378c-1.64 6.888-4.346 9.84-7.38 13.038l7.134 10.332c8.774-9.594 11.07-20.91 11.07-37.72L69.29 24.114l-1.23-13.202-10.168 1.312 1.312 14.022-9.184 1.886 1.148 12.956 9.184-2.214 3.116 34.358 10.25-1.148-3.28-35.67zm39.984-32.882c-2.624 9.184-4.838 15.334-12.218 23.698l6.232 10.578c4.264-4.346 8.692-11.48 12.3-20.992h12.546c-2.46 20.336-10.25 37.474-28.782 42.312l4.018 13.12c29.192-8.364 34.686-44.362 36.162-68.716h-30.258zm60.32 5.002c-2.706-1.968-9.43-5.658-16.974-7.708l-2.624 11.48c7.298 2.214 11.726 5.248 16.482 8.528l3.116-12.3zm-4.428 20.746c-4.592-3.444-8.938-6.068-16.482-8.774l-2.46 11.808c5.904 2.296 10.906 5.166 15.908 9.184l3.034-12.218zm16.564-18.86c-5.822 38.048-19.844 44.28-33.456 45.264l3.034 15.498c26.814-6.478 34.03-24.026 39.442-53.546l-9.02-7.216zm35.474 3.116c-6.068-5.74-12.464-9.02-17.056-11.234l-3.608 12.382c7.216 3.526 10.824 6.724 16.154 12.054l4.51-13.202zM201.05 70.608c26.076-6.642 34.358-22.96 39.852-57.482l-8.446-6.15c-5.576 42.148-21.812 46.002-34.112 48.134l2.706 15.498z' fill='%23fff'/%3E%3C/svg%3E" alt width="240">
+      </h1>
+      <div id="firebaseui-auth-container"></div>
+      <div id="loader">Loading...</div>
     </div>
   </div>
 </body>
 
-  <!-- Footer -->
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+    <!-- Footer -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-
 
 <script>
   // Firebaseの初期化
@@ -111,54 +105,61 @@
     photoUrl = user.photoURL;
     emailVerified = user.emailVerified;
     uid = user.uid;
-  };
+  }
 
   // ログイン確認
-  const pattern = '/login/'
-  const isLoginPage = !!location.href.match(pattern)
+  const pattern = "/login/";
+  const isLoginPage = !!location.href.match(pattern);
 
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // ログイン認証済
-      console.log('auth user', user);
-      document.getElementById('googleDisplayName').innerText = user.displayName + '';
-      document.getElementById('img').src = user.photoURL;
+      console.log("auth user", user);
+      document.getElementById("googleDisplayName").innerText =
+        user.displayName + "";
+      document.getElementById("img").src = user.photoURL;
 
-      firebase.firestore().collection('user').doc(`${user.uid}`)
-        .set({
-          uid: user.uid,
-          name: user.displayName,
-        }, { merge: true })
-
+      firebase
+        .firestore()
+        .collection("user")
+        .doc(`${user.uid}`)
+        .set(
+          {
+            uid: user.uid,
+            name: user.displayName
+          },
+          { merge: true }
+        );
     } else {
       // No user is signed in.
       if (!isLoginPage) {
-        location.href = '/login/'
-
+        location.href = "/login/";
       }
     }
   });
-
   // ログアウト
   function signOut() {
-    firebase.auth().signOut().then(function () {
-      alert('ログアウトしました');
-    }).catch(function (error) {
-      console.log(error);
-      document.getElementById('log').innerText = 'ログアウト失敗';
-    });
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        alert("ログアウトしました");
+      })
+      .catch(function(error) {
+        console.log(error);
+        document.getElementById("log").innerText = "ログアウト失敗";
+      });
   }
-
   //#userInfoをおしたらlogoutがでてくる
-  $('#userInfo').on("click", function () {
-
-    $('#logoutButton').show();
-    $('#img').css("opacity", "0.5");
-    $('#googleDisplayName').css("opacity", "0.5");
-
+  $("#userInfo").on("click", function() {
+    if ($("#logoutButton").hasClass("isHide")) {
+      $("#logoutButton").removeClass("isHide");
+    } else {
+      $("#logoutButton").addClass("isHide");
+    }
   });
-
 </script>
+
 
 
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
@@ -210,7 +211,5 @@
 
 
 
-
-</body>
-
+  </body>
 </html>
