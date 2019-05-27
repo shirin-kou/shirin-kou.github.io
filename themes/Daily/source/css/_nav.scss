@@ -1,25 +1,31 @@
-.site-header {
-  width: 100%;
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
-  padding-left: 20px;
-  padding-right: 50px;
   height: 70px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   display: flex;
-    float: right;
-
 }
 
-.navbar {
-    margin-right: 10px;
-
+#userInfo {
+  position: relative;
   img {
-    border-radius: 25px;  
+    vertical-align:middle;
+    border-radius: 50%; 
     height: 50px;
-    width: 50px;
   }
+  p {
+    margin: 0.5rem;
+  }
+}
+
+#logoutButton {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  background-color: $color-main4;;
+}
+
+.logoutButton {
+  width: 120px;
+  height: 50px;
 }

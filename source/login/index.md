@@ -1,5 +1,5 @@
 ---
 title: ミャクシン
 layout: login
-firebase: true
+firebase_login: true
 ---

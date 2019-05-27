@@ -46,17 +46,13 @@
           uid: user.uid,
           name: user.displayName,
         }, { merge: true })
-
     } else {
       // No user is signed in.
-
       if (!isLoginPage) {
         location.href = '/login/'
-
       }
     }
   });
-
   // ログアウト
   function signOut() {
     firebase.auth().signOut().then(function () {
@@ -66,10 +62,11 @@
       document.getElementById('log').innerText = 'ログアウト失敗';
     });
   }
-
   //#userInfoをおしたらlogoutがでてくる
   $('#userInfo').on("click", function () {
-
     $('#logoutButton').show();
-
+    $('#img').css("opacity", "0.5");
+    $('#googleDisplayName').css("opacity", "0.5");
   });
+
+</script>

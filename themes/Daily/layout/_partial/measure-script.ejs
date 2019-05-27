@@ -1,0 +1,57 @@
+<script>
+  // 前回測定時間を表記
+  window.onload = function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        var didStart = false;
+        var measureTime = new Date().getTime()
+        console.log(measureTime)
+        var addDoc = firebase.firestore().collection("user").doc(`${user.uid}`).collection("measureTime").add({
+          ts: measureTime
+        }).then(ref => { });
+        firebase.firestore().collection("user").doc(`${user.uid}`).collection("sensor").where("ts", ">=", measureTime)
+          .onSnapshot(function (snapshot) {
+            snapshot.docChanges().forEach(function (change) {
+              if (change.type === "added") {
+                if (!didStart) {
+                  $('.content-area-measure').text("測定中...");
+                  setTimeout(function () {
+                    // 測定5秒（仮）に解析中に変更
+                    $('.content-area-measure').text("解析中...");
+                    onKaiseki();
+                  }, 5000)
+                  didStart = true
+                }
+              }
+            });
+          });
+
+        // 解析終了時に、波形とpatternをHOME画面に移動
+        function onKaiseki() {
+          var kaisekiTime = new Date().getTime()
+          var addDoc = firebase.firestore().collection("user").doc(`${user.uid}`).collection("kaisekiTime").add({
+            ts: kaisekiTime
+          }).then(ref => { });
+          firebase.firestore().collection("user").doc(`${user.uid}`).collection("image").where("ts", ">=", kaisekiTime)
+            .onSnapshot(function (snapshot) {
+              snapshot.docChanges().forEach(function (change) {
+                if (change.type === "added") {
+                  location.href = '/'
+                }
+              });
+            });
+
+          // by kani
+          var request = new XMLHttpRequest();
+          request.open('GET', 'https://asia-northeast1-cloud-functions-test-241007.cloudfunctions.net/function-1', true);
+          request.responseType = 'json';
+          request.onload = function () {
+            var data = this.response;
+            console.log(data);
+          };
+          request.send();
+        }
+      };
+    });
+  }
+</script>

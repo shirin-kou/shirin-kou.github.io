@@ -1,45 +1,32 @@
 <body class="homeBody">
 
-  <nav class="navbar">
-
-    <!-- googleName,Img,タップしたらlog-out Buttonがでてくる -->
-    <div id="userInfo">
-      <img id="img" src="" alt="">
-      <p id="googleDisplayName"></p>
-    </div>
-
-    <div id="logoutButton" style="display:none">
-      <a href="/login/"><input type="button" class="logoutButton" value="ログアウト" onclick="signOut()" /></a>
-    </div>
-
-  </nav>
-
-
   <div class="content-area">
     <div class="content-area-home">
-      <img id="waveImg" src="" alt="" height="150">
+      <canvas id="myChart" width="300" height="200"></canvas>
+      <!-- <img id="waveImg" src="" alt="" height="200" width="200"> -->
       <p id="feature"></p>
-      <p class="measureTime"><%= page.measureTime %></p>
-      <div class="adviceButton">
-        <a href="/measure/"><input class="adviceButton-inside" type="button" value="測定を始める"></a>
+    </div>
+    <div class="measure">
+      <div class="measureButton">
+        <a href="/measure/" class="measureButton-inside">測定を始める</a>
+      </div>
+      <div class="measureTimeTotal">
+        <p>前回測定：<span class="measureTime"></span></p>
       </div>
     </div>
   </div>
-
   <!-- Slider main container -->
   <div class="swiper-container">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
       <div class="swiper-slide">
-
         <div class="grad-item">
           <p id="question0"></p>
           <p id="condition0"></p>
           <p id="advice0"></p>
         </div>
         <span class="grad-trigger">アドバイスを読む</span>
-
       </div>
       <div class="swiper-slide">
         <div class="grad-item">
@@ -68,14 +55,8 @@
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
-
     <!-- If we need navigation buttons -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-
   </div>
-
-
-
-
 </body>

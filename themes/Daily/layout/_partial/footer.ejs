@@ -1,16 +1,15 @@
-<!-- Footer -->
-<footer class="site-info">
-
-</footer>
-
 <%- partial('_partial/common') %>
 
-<% if (page.firebase) { %>
+<% if (page.firebase_login) { %>
 <%- partial('_partial/firebase-script') %>
 <% } %>
 
 <% if (page.firebase_home) { %>
 <%- partial('_partial/home-script') %>
+<% } %>
+
+<% if (page.firebase_measure) { %>
+<%- partial('_partial/measure-script') %>
 <% } %>
 
 <% if (page.firebase_advice) { %>

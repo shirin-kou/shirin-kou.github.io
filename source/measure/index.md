@@ -1,5 +1,5 @@
 ---
 title: measure
 layout: measure
-firebase: true
+firebase_measure: true
 ---
