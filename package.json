@@ -5,7 +5,8 @@
   "scripts": {
     "build": "hexo generate",
     "start": "hexo s -i 192.168.100.115",
-    "lint": "prettier ./themes/**/*.ejs"
+    "lint": "prettier ./themes/**/*.ejs",
+    "deploy": "hexo deploy"
   },
   "hexo": {
     "version": "3.8.0"
